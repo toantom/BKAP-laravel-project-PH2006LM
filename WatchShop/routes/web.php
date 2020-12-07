@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+Route::get('/','ProductsController@index')->name('frontend.index');
+Route::get('/','BannersController@index')->name('frontend.index');
+
+
+
