@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class Feedback extends Model
 {
     use HasFactory;
-    protected $table = 'categories';
-    protected $fillable =['id','name','status'];
 }

@@ -5,7 +5,7 @@ use App\Models\Banners;
 
 use Illuminate\Http\Request;
 
-class BannersController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class BannersController extends Controller
     public function index()
     {
         $bans_ad= Banners::paginate(5);
-        $bans_client= Banners::where('status', '=', 1)->get();
-        $bans_client_small= Banners::where('status', '=', 2)->get();
-        return view('frontend.index',compact('bans_client','bans_client_small'));
+        
         // return view('')
     }
 

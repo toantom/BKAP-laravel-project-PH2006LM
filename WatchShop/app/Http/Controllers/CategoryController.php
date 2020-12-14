@@ -1,23 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Products;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $pros= Products::all();
-        $pros_bestsell= Products::where('status', '=', 1)->get();
-        return view('frontend.index',compact('pros','pros_bestsell'));
-
+        $cates = Category::where('status','=',1)->get();
+        $pros = Product::where('id_cate','=',$id)->paginate(3);
+        return view('frontend.category',compact('cates','pros'));
     }
 
     /**

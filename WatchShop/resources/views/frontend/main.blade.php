@@ -17,18 +17,18 @@
 	============================================ -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="./resources/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="{{URL::asset('public/css/vendor/bootstrap.min.css')}}">
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="./resources/css/vendor/font-awesome.min.css">
-    <link rel="stylesheet" href="./resources/css/vendor/simple-line-icons.css">
+    <link rel="stylesheet" href="{{URL::asset('public/css/vendor/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/vendor/simple-line-icons.css')}}">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="./resources/css/plugins/animation.css">
-    <link rel="stylesheet" href="./resources/css/plugins/slick.css">
-    <link rel="stylesheet" href="./resources/css/plugins/animation.css">
-    <link rel="stylesheet" href="./resources/css/plugins/nice-select.css">
-    <link rel="stylesheet" href="./resources/css/plugins/fancy-box.css">
-    <link rel="stylesheet" href="./resources/css/plugins/jqueryui.min.css">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/animation.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/slick.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/animation.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/nice-select.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/fancy-box.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('public/css/plugins/jqueryui.min.css')}}">
 
     <!-- Vendor & Plugins CSS (Please remove the comment from below vendor.min.css & plugins.min.css for better website load performance and remove css files from avobe) -->
     <!--
@@ -37,7 +37,7 @@
     -->
 
     <!-- Main Style CSS (Please use minify version for better website load performance) -->
-    <link rel="stylesheet" href="./resources/css/style.css">
+    <link rel="stylesheet" href="{{URL::asset('public/css/style.css')}}">
     <!--<link rel="stylesheet" href="assets/css/style.min.css">-->
 
 </head>
@@ -75,10 +75,10 @@
                         <div class="col-lg-6">
                             <div class="top-info-wrap text-right">
                                 <ul class="my-account-container">
-                                    <li><a href="my-account.html">My account</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="my-account.html">Thông tin tài khoản</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="wishlist.html">Danh sách ưa thích</a></li>
+                                    <li><a href="checkout.html">Thanh toán</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-4 col-5">
                             <div class="logo-area">
-                                <a href="index.html"><img src="./resources/images/logo/logo.png" alt=""></a>
+                                <a href="index.html"><img src="{{URL::asset('public/images/logo/logo1.png')}}" alt="" width="124" height="122"></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -104,17 +104,13 @@
                                         <div class="search-select-box">
                                             <select class="nice-select">
                                                 <optgroup label=" Watch">
-                                                    <option value="volvo">All</option>
-                                                    <option value="saab">Watch</option>
-                                                    <option value="saab">Air cooler</option>
-                                                </optgroup>
-                                                <optgroup label="Fashion">
-                                                    <option value="mercedes">Womens tops</option>
+                                                    <option value="saab">Sản phẩm</option>
+                                                    <option value="saab">Hãng</option>
                                                 </optgroup>
                                             </select>
                                         </div>
                                         <div class="search-field-wrap">
-                                            <input type="text" class="search-field" placeholder="Search product...">
+                                            <input type="text" class="search-field" placeholder="Tìm kiếm...">
 
                                             <div class="search-btn">
                                                 <button><i class="icon-magnifier"></i></button>
@@ -195,30 +191,17 @@
                                 <!--  Start Mainmenu Nav-->
                                 <nav class="main-navigation text-center">
                                     <ul>
-                                        <li class="active"><a href="index.html">Home <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="index.html">Home Page 1</a></li>
-                                                <li><a href="index-2.html">Home Page 2</a></li>
-                                            </ul>
+                                        <li class="active"><a href="index.html">Trang chủ</a>
                                         </li>
 
-                                        <li><a href="#">Shop <i class="fa fa-angle-down"></i></a>
+                                        <li><a href="#">Danh mục sản phẩm <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
-                                                <li><a href="#">Shop Layouts</a>
+                                                <li><a href="#">Đồng hồ chính hãng</a>
                                                     <ul>
-                                                        <li><a href="shop.html">Shop Left Sidebar</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                                        <li><a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                                                        <li><a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                                                        <li><a href="shop-fullwidth.html">Shop Full Width</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="blog.html">Product Details</a>
-                                                    <ul>
-                                                        <li><a href="product-details.html">Single Product Details</a></li>
-                                                        <li><a href="variable-product-details.html">Variable Product Details</a></li>
-                                                        <li><a href="affiliate-product-details.html">affiliatel Product Details</a></li>
-                                                        <li><a href="gallery-product-details.html">Gallery Product Details</a></li>
+                                                        <li><a href="shop.html">Đồng hồ Rolex</a></li>
+                                                        <li><a href="shop-right-sidebar.html">Đồng hồ Hublot</a></li>
+                                                        <li><a href="shop-list-left.html">Đồng hồ Patek-Philippe</a></li>
+                                                        <li><a href="shop-list-right.html">Đồng hồ Audemars-piguet-le-brassus-logo-vector </a></li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="#">Shop Pages</a>
@@ -233,14 +216,13 @@
                                             </ul>
 
                                         </li>
-                                        <li><a href="blog.html">Blog <i class="fa fa-angle-down"></i></a>
+                                        <li><a href="blog.html">Bài viết<i class="fa fa-angle-down"></i></a>
 
                                             <ul class="sub-menu">
-                                                <li><a href="blog.html">Blog Left Sidebar</a></li>
-                                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
-                                                <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                                <li><a href="blog-largeimage.html">Blog Large Image</a></li>
-                                                <li><a href="blog-details.html">Blog Details Page</a></li>
+                                                <li><a href="blog.html">Tin tức-Sự Kiện</a></li>
+                                                <li><a href="blog-right-sidebar.html">Kiến thức về đồng hồ</a></li>
+                                                <li><a href="blog-grid.html">Hỏi đáp về đồng hồ</a></li>
+                                                <li><a href="blog-largeimage.html">Báo chí viết về TBT Watch</a></li>
                                             </ul>
                                         </li>
 
@@ -465,17 +447,17 @@
             <div class="footer-top section-pb section-pt-60">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-5 col-md-6">
 
                             <div class="widget-footer mt-40">
-                                <h6 class="title-widget">Contact Info</h6>
+                                <h6 class="title-widget">Thông tin liên hệ</h6>
 
                                 <div class="footer-addres">
                                     <div class="widget-content mb--20">
-                                        <p>Address: 123 Main Street, Anytown, <br> CA 12345 - USA.</p>
-                                        <p>Phone: <a href="tel:">(012) 800 000 789</a></p>
+                                        <p>Địa chỉ: Số 38A Hoàng Cầu Mới, Phường Trung Liệt <br> Quận Đống Đa, Hà Nội.</p>
+                                        <p>Phone: <a href="tel:">0396 757 400</a></p>
                                         <p>Fax: <a href="tel:">(012) 800 888 789</a></p>
-                                        <p>Email: <a href="tel:">demo@hashthemes.com</a></p>
+                                        <p>Email: <a href="tel:">tbtwatch@gmail.com</a></p>
                                     </div>
                                 </div>
 
@@ -502,37 +484,22 @@
                         </div>
                         <div class="col-lg-2 col-md-6 col-sm-6">
                             <div class="widget-footer mt-40">
-                                <h6 class="title-widget">Information</h6>
+                                <h6 class="title-widget">Thông tin</h6>
                                 <ul class="footer-list">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact.html">Quick Contact</a></li>
-                                    <li><a href="blog.html">Blog Pages</a></li>
-                                    <li><a href="#">Concord History</a></li>
-                                    <li><a href="#">Client Feed</a></li>
+                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="about-us.html">Giới thiệu</a></li>
+                                    <li><a href="contact.html">Liên hệ nhanh</a></li>
+                                    <li><a href="blog.html">Trang Blogs</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-2 col-md-6 col-sm-6">
-                            <div class="widget-footer mt-40">
-                                <h6 class="title-widget">Extras</h6>
-                                <ul class="footer-list">
-                                   
-                                    <li><a href="#">Concord History</a></li>
-                                    <li><a href="#">Client Feed</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact.html">Quick Contact</a></li>
-                                    <li><a href="blog.html">Blog Pages</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-5 col-md-6">
                             <div class="widget-footer mt-40">
                                 <h6 class="title-widget">Get the app</h6>
                                 <p>GreenLife App is now available on Google Play & App Store. Get it now.</p>
                                 <ul class="footer-list">
-                                    <li><img src="assets/images/brand/img-googleplay.jpg" alt=""></li>
-                                    <li><img src="assets/images/brand/img-appstore.jpg" alt=""></li>
+                                    <li><img src="./public/images/brand/img-googleplay.jpg" alt=""></li>
+                                    <li><img src="./public/images/brand/img-appstore.jpg" alt=""></li>
                                 </ul>
                             </div>
                         </div>
@@ -545,7 +512,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="copy-left-text">
-                                <p>Copyright &copy; <a href="#">Ruiz</a> 2019. All Right Reserved.</p>
+                                <p>Copyright &copy; <a href="#">TBT Watch</a> 2020. All Right Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -571,31 +538,31 @@
 ============================================ -->
 
     <!-- Modernizer JS -->
-    <script src="./resources/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="{{URL::asset('public/js/vendor/modernizr-3.6.0.min.js')}}"></script>
     <!-- jQuery JS -->
-    <script src="./resources/js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
     <!-- Bootstrap JS -->
-    <script src="./resources/js/vendor/popper.min.js"></script>
-    <script src="./resources/js/vendor/bootstrap.min.js"></script>
+    <script src="{{URL::asset('public/js/vendor/popper.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/vendor/bootstrap.min.js')}}"></script>
 
     <!-- Plugins JS -->
-    <script src="./resources/js/plugins/slick.min.js"></script>
-    <script src="./resources/js/plugins/jquery.nice-select.min.js"></script>
-    <script src="./resources/js/plugins/countdown.min.js"></script>
-    <script src="./resources/js/plugins/image-zoom.min.js"></script>
-    <script src="./resources/js/plugins/fancybox.js"></script>
-    <script src="./resources/js/plugins/scrollup.min.js"></script>
-    <script src="./resources/js/plugins/jqueryui.min.js"></script> 
-    <script src="./resources/js/plugins/ajax-contact.js"></script>
+    <script src="{{URL::asset('public/js/plugins/slick.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/jquery.nice-select.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/countdown.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/image-zoom.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/fancybox.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/scrollup.min.js')}}"></script>
+    <script src="{{URL::asset('public/js/plugins/jqueryui.min.js')}}"></script> 
+    <script src="{{URL::asset('public/js/plugins/ajax-contact.js')}}"></script>
 
     <!-- Vendor & Plugins JS (Please remove the comment from below vendor.min.js & plugins.min.js for better website load performance and remove js files from avobe) -->
     <!--
-<script src="assets/js/vendor/vendor.min.js"></script>
-<script src="assets/js/plugins/plugins.min.js"></script>
+<script src="assets/js/vendor/vendor.min.js');}}"></script>
+<script src="assets/js/plugins/plugins.min.js');}}"></script>
 -->
 
     <!-- Main JS -->
-    <script src="./resources/js/main.js"></script>
+    <script src="{{URL::asset('public/js/main.js')}}"></script>
 
 </body>
 
