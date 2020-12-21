@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('frontend.category');
 // });
 Route::get('/','HomeController@index')->name('frontend.index');
-route::get('category/{id}','CategoryController@index')->name('frontend.category');
+Route::get('category/{id}','CategoryController@index')->name('frontend.category');
 
-
+Route::group(['prefix' => 'backend'], function () {
+    Route::get('/backend','AdminController@index')->name('backend.index');
+});
 
 
 
