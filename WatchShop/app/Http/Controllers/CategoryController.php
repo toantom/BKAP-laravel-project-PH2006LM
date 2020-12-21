@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File; 
 
 class CategoryController extends Controller
 {
@@ -19,6 +22,11 @@ class CategoryController extends Controller
         return view('frontend.category',compact('cates','pros'));
     }
 
+    public function indexBE(){
+        $cates = Category::paginate(5);
+        return view ('backend.category.index', compact('cates'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.category.create');
     }
 
     /**
@@ -35,9 +43,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        $file_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->move(public_path('be/img/brand'),$file_name);
+        Category::create([
+            'name'=>$request->name,
+            'status' =>$request->status,
+            'image' => $file_name,
+            'slug' => $request->slug
+        ]);
+        return redirect()->route('backend.category');
     }
 
     /**
@@ -59,7 +75,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat = Category::find($id);
+        return view('backend.category.edit',compact('cat'));
     }
 
     /**
@@ -69,9 +86,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
-        //
+        $filename = Product::find($id)->image;
+        if( $request->file('image') != null){
+            $file_name = $request->file('image')->getClientOriginalName();
+            File::delete('be/img/brand/'.$filename.'');
+            $request->file('image')->move(public_path('be/img/brand'),$file_name);
+        }else{
+            $file_name = $filename;
+        }
+        Category::where ('id',$id)->update([
+            'name'=>$request->name,
+            'status'=>$request->status,
+            'image'=>$file_name,
+            'slug'=>$request->slug
+        ]);
+        return redirect()->route('backend.category');
     }
 
     /**
@@ -82,6 +113,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $filename = Category::find($id)->image;
+        if($filename!=null){
+            File::delete('be/img/brand/'.$filename.'');
+        }
+        Category::where('id',$id)->delete();
+    	return redirect()->route('backend.category');
     }
 }

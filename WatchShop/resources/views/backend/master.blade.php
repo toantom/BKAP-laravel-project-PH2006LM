@@ -12,9 +12,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>AdminLTE 3 | Starter</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{url}}/public/fe/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{asset('be/plugins')}}/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{url}}/public/fe/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{asset('be/css')}}/adminlte.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('be/plugins')}}/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{asset('be/plugins')}}/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -29,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{{route('backend.index')}}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -60,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{url}}/public/fe/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="{{asset('fe/img')}}/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -76,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{url}}/public/fe/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{asset('be/img')}}/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -92,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="{{url}}/public/fe/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="{{asset('be/img')}}/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -135,10 +138,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-            class="fas fa-th-large"></i></a>
-      </li>
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -146,10 +145,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{url}}/public/fe/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="{{route('backend.index')}}" class="brand-link">
+      <img src="{{asset('be/img/logo')}}/logo1.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">TBT</span>
     </a>
 
     <!-- Sidebar -->
@@ -157,7 +156,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{url}}/public/fe/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('be/img')}}/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -170,36 +169,124 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
+            <a href="" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý danh mục
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="{{route('backend.category')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
+                  <p>Danh sách danh mục</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('backend.category.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm mới danh mục</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý sản phẩm
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách sản phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                  <p>Thêm mới sản phẩm</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý đơn hàng
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách đơn hàng</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý Banner
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách Banner</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm mới Banner</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý Blog
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách Blog</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Thêm mới Blog</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-table"></i>              
+                <p>Quản lý Feedback
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách Feedback</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -210,101 +297,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
+    @yield('content')
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
+    
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
@@ -320,10 +317,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{url}}/public/fe/plugins/jquery/jquery.min.js"></script>
+<script src="{{asset('be/plugins')}}/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="{{url}}/public/fe/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('be/plugins')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="{{asset('be.plugins')}}/datatables/jquery.dataTables.min.js"></script>
+<script src="{{asset('be.plugins')}}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{asset('be.plugins')}}/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{asset('be.plugins')}}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="{{asset('be/plugins')}}/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<script src="{{url}}/public/fe/js/adminlte.min.js"></script>
+<script src="{{asset('be/js')}}/adminlte.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    bsCustomFileInput.init();
+  });
+</script>
 </body>
 </html>
