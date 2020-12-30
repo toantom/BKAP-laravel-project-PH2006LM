@@ -59,18 +59,18 @@
                     <!-- single-product-area start -->
                     <div class="single-product-area mt-30">
                         <div class="product-thumb">
-                            <a href="product-details.html">
+                            <a href="{{route('frontend.product',$item->id)}}">
                             <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
                             </a>
                             <div class="label-product label_new">New</div>
                             <div class="action-links">
-                                <a href="cart.html" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                                <a href="wishlist.html" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
+                                <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
                                 <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
                             </div>
                         </div>
                         <div class="product-caption">
-                            <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                            <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
                                 <span class="new-price">${{$item->discount}}</span>
                                 <span class="old-price">${{$item->price}}</span>
@@ -125,24 +125,23 @@
                 <div class="tab-pane fade show active" id="nav-man" role="tabpanel">
                     <div class="product-carousel-group">
                         <div class="row product-active-row-4">
-                            @foreach($pros_man as $pro)
-                            @foreach ($pro->products as $item)
+                            @foreach($pros_man as $item)
                             <div class="col-lg-12">
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="{{route('frontend.product',$item->id)}}">
                                             <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
-                                            <a href="cart.html" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                                            <a href="wishlist.html" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
+                                            <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                            <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
                                             <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">
-                                        <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                                        <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
                                             <span class="new-price">${{$item->discount}}</span>
                                             <span class="old-price">${{$item->price}}</span>
@@ -151,7 +150,6 @@
                                 </div>
                                 <!-- single-product-area end -->
                             </div>
-                            @endforeach
                             @endforeach
                         </div>
                         
@@ -161,24 +159,23 @@
                 <div class="tab-pane fade" id="nav-woman" role="tabpanel">
                     <div class="product-carousel-group">
                         <div class="row product-active-row-4">
-                            @foreach($pros_woman as $pro)
-                            @foreach ($pro->products as $item)
+                            @foreach($pros_woman as $item)
                             <div class="col-lg-12">
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="{{route('frontend.product',$item->id)}}">
                                             <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
-                                            <a href="cart.html" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                                            <a href="wishlist.html" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
+                                            <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                            <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
                                             <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">
-                                        <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                                        <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
                                             <span class="new-price">${{$item->discount}}</span>
                                             <span class="old-price">${{$item->price}}</span>
@@ -187,7 +184,6 @@
                                 </div>
                                 <!-- single-product-area end -->
                             </div>
-                            @endforeach
                             @endforeach
                         </div>
                         
@@ -202,18 +198,18 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="{{route('frontend.product',$item->id)}}">
                                             <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
-                                            <a href="cart.html" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                                            <a href="wishlist.html" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
+                                            <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                            <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
                                             <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">
-                                        <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                                        <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
                                             <span class="new-price">${{$item->discount}}</span>
                                             <span class="old-price">${{$item->price}}</span>
@@ -236,18 +232,18 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="product-details.html">
+                                        <a href="{{route('frontend.product',$item->id)}}">
                                             <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
-                                            <a href="cart.html" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                                            <a href="wishlist.html" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
+                                            <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                            <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
                                             <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-caption">
-                                        <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                                        <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
                                             <span class="new-price">${{$item->discount}}</span>
                                             <span class="old-price">${{$item->price}}</span>

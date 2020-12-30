@@ -51,7 +51,18 @@
 
             <!-- Header Top Start -->
             <div class="header-top-area d-none d-lg-block text-color-white bg-gren border-bm-1">
-
+                @if(Session::has('success'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{Session::get('success')}}
+                </div>
+                @endif
+                @if(Session::has('checkout_success'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{Session::get('checkout_success')}}
+                </div>
+                @endif
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
@@ -75,10 +86,15 @@
                         <div class="col-lg-6">
                             <div class="top-info-wrap text-right">
                                 <ul class="my-account-container">
-                                    <li><a href="my-account.html">Thông tin tài khoản</a></li>
-                                    <li><a href="cart.html">Giỏ hàng</a></li>
-                                    <li><a href="wishlist.html">Danh sách ưa thích</a></li>
-                                    <li><a href="checkout.html">Thanh toán</a></li>
+                                    @if (Auth::check())
+                                    <li><a href="{{route('frontend.login-register')}}">{{Auth::user()->name}}</a></li>
+                                    <li><a onclick="return confirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}">Đăng xuất</a></li>
+                                    <li><a href="{{route('frontend.wishlist')}}">Danh sách ưa thích</a></li>
+                                    @else
+                                    <li><a href="{{route('frontend.login-register')}}">Đăng nhập/Đăng ký</a></li>
+                                    @endif
+                                    <li><a href="{{route('frontend.cart')}}">Giỏ hàng</a></li>
+                                    <li><a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -94,7 +110,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-4 col-5">
                             <div class="logo-area">
-                                <a href="index.html"><img src="{{URL::asset('public/images/logo/logo1.png')}}" alt="" width="124" height="122"></a>
+                                <a href="{{route('frontend.index')}}"><img src="{{URL::asset('public/images/logo/logo1.png')}}" alt="" width="124" height="122"></a>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -125,51 +141,38 @@
                             <div class="right-blok-box text-white d-flex">
 
                                 <div class="user-wrap">
-                                    <a href="wishlist.html"><span class="cart-total">2</span> <i class="icon-heart"></i></a>
+                                    <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để xem danh sách yêu thích')" @endif href="{{route('frontend.wishlist')}}"><span class="cart-total">@if(Auth::check()){{count($wishlist)}}@else 0 @endif</span> <i class="icon-heart"></i></a>
                                 </div>
 
                                 <div class="shopping-cart-wrap">
-                                    <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">2</span></a>
+                                    <a href="{{route('frontend.cart')}}"><i class="icon-basket-loaded"></i><span class="cart-total">{{count($cart->items)}}</span></a>
                                     <ul class="mini-cart">
+                                        @foreach ($cart->items as $item)
                                         <li class="cart-item">
                                             <div class="cart-image">
-                                                <a href="product-details.html"><img alt="" src="./resources/images/product/product-02.png"></a>
+                                                <a href="{{route('frontend.product',$item['id'])}}"><img alt="" src="{{URL::asset('public/images/product/')}}/{{$item['image']}}"></a>
                                             </div>
                                             <div class="cart-title">
-                                                <a href="product-details.html">
-                                                    <h4>Product Name 01</h4>
+                                                <a href="{{route('frontend.product',$item['id'])}}">
+                                                    <h4>{{$item['name']}}</h4>
                                                 </a>
                                                 <div class="quanti-price-wrap">
-                                                    <span class="quantity">1 ×</span>
-                                                    <div class="price-box"><span class="new-price">$130.00</span></div>
+                                                    <span class="quantity">{{$item['quantity']}} ×</span>
+                                                    <div class="price-box"><span class="new-price">${{$item['price']}}</span></div>
                                                 </div>
-                                                <a class="remove_from_cart" href="#"><i class="icon_close"></i></a>
+                                                <a class="remove_from_cart" onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')" href="{{route('frontend.deletecart',$item['id'])}}"><i class="icon_close"></i></a>
                                             </div>
                                         </li>
-                                        <li class="cart-item">
-                                            <div class="cart-image">
-                                                <a href="product-details.html"><img alt="" src="./resources/images/product/product-03.png"></a>
-                                            </div>
-                                            <div class="cart-title">
-                                                <a href="product-details.html">
-                                                    <h4>Product Name 03</h4>
-                                                </a>
-                                                <div class="quanti-price-wrap">
-                                                    <span class="quantity">1 ×</span>
-                                                    <div class="price-box"><span class="new-price">$130.00</span></div>
-                                                </div>
-                                                <a class="remove_from_cart" href="#"><i class="icon-trash icons"></i></a>
-                                            </div>
-                                        </li>
+                                        @endforeach
                                         <li class="subtotal-box">
                                             <div class="subtotal-title">
-                                                <h3>Sub-Total :</h3><span>$ 260.99</span>
+                                                <h3>Tổng tiền cần thanh toán :</h3><span>$ {{$cart->total_price}}</span>
                                             </div>
                                         </li>
                                         <li class="mini-cart-btns">
                                             <div class="cart-btns">
-                                                <a href="cart.html">View cart</a>
-                                                <a href="checkout.html">Checkout</a>
+                                                <a href="{{route('frontend.cart')}}">Xem giỏ hàng</a>
+                                                <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -191,17 +194,16 @@
                                 <!--  Start Mainmenu Nav-->
                                 <nav class="main-navigation text-center">
                                     <ul>
-                                        <li class="active"><a href="index.html">Trang chủ</a>
+                                        <li class="active"><a href="{{route('frontend.index')}}">Trang chủ</a>
                                         </li>
 
                                         <li><a href="#">Danh mục sản phẩm <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 <li><a href="#">Đồng hồ chính hãng</a>
                                                     <ul>
-                                                        <li><a href="shop.html">Đồng hồ Rolex</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Đồng hồ Hublot</a></li>
-                                                        <li><a href="shop-list-left.html">Đồng hồ Patek-Philippe</a></li>
-                                                        <li><a href="shop-list-right.html">Đồng hồ Audemars-piguet-le-brassus-logo-vector </a></li>
+                                                        @foreach ($cates as $item)
+                                                        <li><a href="{{route('frontend.category',$item->id)}}">{{$item->name}}</a></li>
+                                                        @endforeach
                                                     </ul>
                                                 </li>
                                                 <li><a href="#">Shop Pages</a>
