@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +22,12 @@ class CategoryController extends Controller
     public function indexBE(){
         $cates = Category::paginate(5);
         return view ('backend.category.index', compact('cates'));
+    }
+    //Show pro trang category
+    public function showpro($id)
+    {
+        $pros = Product::where('id_cate','=',$id)->paginate(3);
+        return view('frontend.category',compact('pros'));
     }
 
     /**

@@ -7,22 +7,28 @@ use App\Models\Product_img;
 use App\Models\Category;
 use App\Models\Attribute;
 use App\Http\Requests\StoreProductRequest;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
     use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+  public function index()
+  {
         $pro_img = Product_img::all();
         $prod = Product::paginate(10);
         return view('backend.product.index', compact('prod', 'pro_img'));
+  }
+    public function show_pro($id)
+    {
+        $pro_fend = Product::find($id);
+        $id_cate = $pro_fend->id_cate;
+        $pro_related = Product::where('id_cate','=',$id_cate)->limit(4)->get();
+        $feedbacks = Feedback::where('id_product','=',$id)->get();
+        $pro_img = Product_img::where('id_product','=',$id)->get();
+        $pro_upsell = Product::limit(4)->get();
+        return view('frontend.product',compact('pro_upsell','pro_fend','pro_img','feedbacks','pro_related'));
     }
 
     /**
@@ -77,37 +83,5 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
