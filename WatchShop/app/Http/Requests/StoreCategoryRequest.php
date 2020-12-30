@@ -27,7 +27,7 @@ class StoreCategoryRequest extends FormRequest
             'name' => 'required|unique:categories|max:100',
             'status'=> 'required',
             'image' => 'required|mimes:jpg,jpeg,png,gif',
-            'slug' => 'required'
+            
         ];
     }
     public function messages()
@@ -39,7 +39,6 @@ class StoreCategoryRequest extends FormRequest
             'status.required' => 'Vui lòng chọn trạng thái',
             'image.required' => 'Vui lòng chọn ảnh cho danh mục',
             'image.mimes' => 'Ảnh phải có định dạnh jpeg,png,gif',
-            'slug.required' => 'Vui lòng nhập đường dẫn'
         ];
     }
 }

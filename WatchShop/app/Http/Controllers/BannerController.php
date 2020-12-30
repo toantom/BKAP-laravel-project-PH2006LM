@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Banners;
+use App\Models\Banner;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +14,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $bans_ad= Banners::paginate(5);
+        $bans_ad= Banner::paginate(5);
         
         // return view('')
     }

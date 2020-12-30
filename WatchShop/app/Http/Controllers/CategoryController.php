@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,12 +16,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-    {
-        $cates = Category::where('status','=',1)->get();
-        $pros = Product::where('id_cate','=',$id)->paginate(3);
-        return view('frontend.category',compact('cates','pros'));
-    }
+
 
     public function indexBE(){
         $cates = Category::paginate(5);
@@ -47,11 +43,13 @@ class CategoryController extends Controller
     {
         $file_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('be/img/brand'),$file_name);
+        $request['slug'] = Str::slug($request->name);
+        
         Category::create([
-            'name'=>$request->name,
-            'status' =>$request->status,
-            'image' => $file_name,
-            'slug' => $request->slug
+            'name' => $request->name,
+            'image'=> $file_name,
+            'status'=>$request->status,
+            'slug'=>$request->slug
         ]);
         return redirect()->route('backend.category');
     }

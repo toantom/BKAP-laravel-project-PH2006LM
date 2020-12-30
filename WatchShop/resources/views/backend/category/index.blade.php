@@ -42,7 +42,7 @@
                       <td>{{$key+1}}</td>
                       <td>{{$cate->name}}
                       </td>
-                      <td><img src="{{asset('be/img/brand')}}/{{$cate->image}}" alt="" width="100"></td>
+                      <td><img src="{{URL::asset('public/be/img/brand/')}}/{{$cate->image}}" alt="" width="100"></td>
                       @if($cate->status==1)
                       <td> Hiện</td>
                       @else
@@ -52,7 +52,7 @@
                         <a href="{{route('backend.category.edit', $cate->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
                         <form action="{{route('backend.category.destroy',$cate->id)}}" method="POST">
                           @method('DELETE') @csrf 
-                          <button class="btn btn-block btn-outline-danger btn-sm">Xóa</button>
+                          <a href="" onclick=" return confirm('Bạn có chắc là muốn xóa {{$cate->name}}')"><button class="btn btn-block btn-outline-danger btn-sm">Xóa</button></a>
                         </form>
                         </td>
                     </tr> 

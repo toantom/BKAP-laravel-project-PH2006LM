@@ -54,13 +54,6 @@
                       <small class="help-block text-danger">{{$message}}</small>
                     @enderror
                   </div>
-                  <div class="form-group">
-                    <label>Đường dẫn</label>
-                    <input type="text" class="form-control" name="slug" placeholder="Nhập đường dẫn">
-                    @error('slug')
-                      <small class="help-block text-danger">{{$message}}</small>
-                    @enderror
-                  </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
