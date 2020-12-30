@@ -34,7 +34,7 @@
                             <div class="category-sub-menu">
                                 <ul>
                                     @foreach ($cates as $item)
-                                    <li><h4 style="color: red"><a href="#">{{$item->name}}</a></h4>
+                                    <li><h4 style="color: red"><a href="{{route('frontend.category',$item->id)}}">{{$item->name}}</a></h4>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -77,7 +77,7 @@
                             <!-- filter-price-content end -->
                         </div>
                         <!-- shop-sidebar end -->
-                        <!-- shop-sidebar start -->
+                        {{-- <!-- shop-sidebar start -->
                         <div class="shop-sidebar mb-30">
                             <h4 class="title">Product tags</h4>
 
@@ -95,7 +95,7 @@
                             </ul>
 
                         </div>
-                        <!-- shop-sidebar end -->
+                        <!-- shop-sidebar end --> --}}
 
                     </div>
                 </div>
@@ -113,22 +113,16 @@
 
                                 <div class="product-mode">
                                     <!--shop-item-filter-list-->
-                                    <ul class="nav shop-item-filter-list" role="tablist">
-                                        <li class="active"><a class="active grid-view" data-toggle="tab" href="#grid"><i class="fa fa-th"></i></a></li>
-                                        <li><a class="list-view" data-toggle="tab" href="#list"><i class="fa fa-th-list"></i></a></li>
-                                    </ul>
+                                    <h4>Danh sách sản phẩm</h4>
                                     <!-- shop-item-filter-list end -->
                                 </div>
                                 <!-- product-view-mode end -->
                                 <!-- product-short start -->
                                 <div class="product-short">
-                                    <p>Sort By :</p>
+                                    <p>Sắp xếp :</p>
                                     <select class="nice-select" name="sortby">
-                                        <option value="trending">Relevance</option>
-                                        <option value="sales">Name(A - Z)</option>
-                                        <option value="sales">Name(Z - A)</option>
-                                        <option value="rating">Price(Low > High)</option>
-                                        <option value="date">Rating(Lowest)</option>
+                                        <option value="rating">Giá(Cao > Thấp)</option>
+                                        <option value="date">Đánh giá</option>
                                     </select>
                                 </div>
                                 <!-- product-short end -->
@@ -207,13 +201,13 @@
                     <!-- shop-products-wrap end -->
 
                     <!-- paginatoin-area start -->
-                    <div class="paginatoin-area">
+                    {{-- <div class="paginatoin-area">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12">
+                            <div class="col-lg-12 col-md-12"> --}}
                                 {{$pros->links()}}
-                            </div>
+                            {{-- </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- paginatoin-area end -->
                 </div>
                 <!-- shop-product-wrapper end -->

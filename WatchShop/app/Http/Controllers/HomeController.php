@@ -23,11 +23,10 @@ class HomeController extends Controller
         $pros= Product::all();
         $pros_sale= Product::where('discount', '>', 0)->get();
         $pros_bestsell= Product::where('status', '=', 1)->get();
-        $pros_man = Attribute::where('type', '=', 0)->get();
-        $pros_woman = Attribute::where('type', '=', 1)->get();
+        $pros_man = Product::where('type', '=', 0)->get();
+        $pros_woman = Product::where('type', '=', 1)->get();
         $blogs = Blog::all();
-        $cates = Category::where('status', '=', 1)->get();
-        return view('frontend.index',compact('cates','blogs','bans_client_1','bans_client_2','bans_client_3','pros','pros_bestsell','pros_man','pros_woman','pros_sale'));
+        return view('frontend.index',compact('blogs','bans_client_1','bans_client_2','bans_client_3','pros','pros_bestsell','pros_man','pros_woman','pros_sale'));
     }
 
     /**

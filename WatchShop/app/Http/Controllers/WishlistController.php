@@ -1,32 +1,38 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Banner;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
-class BannerController extends Controller
+class WishlistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $bans_ad= Banner::paginate(5);
-        
-        // return view('')
+        //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //Show Whislist
+    public function show_whislist()
+    {   
+        $wishlist = Wishlist::Where('id_user','=', "21" )->get();
+        return view('frontend.wishlist',compact('wishlist'));
+    }
+    //Add whislist
+    public function create($id)
     {
-        //
+        if(null !== Wishlist::where(['id_user'=> Auth::user()->id ,'id_product'=> $id])){
+            return redirect()->route('frontend.wishlist')->with('wish',"Sản phẩm này đã có trong danh sách yêu thích");
+        }else{
+        Wishlist::create([
+            'id_user'=> Auth::user()->id,
+            'id_product'=>$id,
+        ]);
+        return redirect()->route('frontend.wishlist');
+        }
     }
 
     /**
@@ -82,6 +88,7 @@ class BannerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Wishlist::where('id_product','=',$id)->delete();
+        return Redirect()->back()->with('delete','Đã bỏ một sản phẩm ưa thích');
     }
 }

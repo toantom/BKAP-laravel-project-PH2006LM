@@ -7,16 +7,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($id)
+    //Show pro trang category
+    public function showpro($id)
     {
-        $cates = Category::where('status','=',1)->get();
         $pros = Product::where('id_cate','=',$id)->paginate(3);
-        return view('frontend.category',compact('cates','pros'));
+        return view('frontend.category',compact('pros'));
     }
 
     /**
