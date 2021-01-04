@@ -7,7 +7,7 @@
             <div class="col-12">
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Home</a></li>
                     <li class="breadcrumb-item active">Product Details</li>
                 </ul>
                 <!-- breadcrumb-list end -->
@@ -153,8 +153,13 @@
                         <div class="product_tab_content tab-pane" id="reviews" role="tabpanel">
                             <div class="review_address_inner mt-30">
                                 <!-- Start Single Review -->
-                                <div class="pro_review">
-                                    @foreach ($feedbacks as $item)
+                                @foreach ($feedbacks as $item)
+                                <div class="pro_review" style="margin: 20px">
+                                    <div class="review_thumb">
+                                        <a href="{{URL::asset('public/images/feedback/')}}/{{$item->image}}" data-fancybox="images">
+                                        <img src="{{URL::asset('public/images/feedback/')}}/{{$item->image}}" alt="review images" height="180px" width="180px" />
+                                        </a>
+                                    </div>
                                     <div class="review_details">
                                         <div class="review_info mb-10">
                                             <ul class="product-rating d-flex mb-10">
@@ -162,19 +167,19 @@
                                                 <li><span class="icon-star"></span></li>
                                                 @endfor
                                             </ul>
-                                            <h5>{{$item->user->name}} - <span> {{$item->updated_at}}</span></h5>
-
+                                            <h5>{{$item->name}} - <span> {{$item->updated_at->format('d-m-Y')}}</span></h5>
                                         </div>
                                         <p>{{$item->content}}</p>
                                     </div>
-                                    @endforeach
                                 </div>
+                                @endforeach
                                 <!-- End Single Review -->
                             </div>
                             <!-- Start RAting Area -->
                             <div class="rating_wrap mt-50">
                                 <h5 class="rating-title-1">Thêm đánh giá </h5>
                                 <p>Địa chỉ email của bạn sẽ không được công bố. Các mục bắt buộc được đánh dấu *</p>
+                                <p>Bạn cần đăng nhập và mua sản phẩm để có thể viết đánh giá về sản phẩm này *</p>
                                 <h6 class="rating-title-2">Đánh giá của bạn</h6>
                                 <div class="rating_list">
                                     <div class="review_info mb-10">
@@ -192,23 +197,36 @@
                             <div class="comments-area comments-reply-area">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <form action="#" class="comment-form-area">
+                                        <form action="{{route('frontend.feedback')}}" class="comment-form-area" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="row comment-input">
                                                 <div class="col-md-6 comment-form-author mt-15">
-                                                    <label>Name <span class="required">*</span></label>
-                                                    <input type="text" required="required" name="Name">
+                                                    <label>Tên <span class="required">*</span></label>
+                                                    <input type="text" name="name">
+                                                    @error('name')
+                                                        <small class='text-danger'>{{$message}}</small>
+                                                    @enderror
+                                                    <input type="hidden" name="id_product" value="{{$pro_fend->id}}">
                                                 </div>
-                                                <div class="col-md-6 comment-form-email mt-15">
-                                                    <label>Email <span class="required">*</span></label>
-                                                    <input type="text" required="required" name="email">
+                                            </div>
+                                            <div class="row comment-input">
+                                                <div class="col-md-6 comment-form-author mt-15">
+                                                    <label>Ảnh sản phẩm <span class="required"></span></label>
+                                                    <input type="file" name="image">
+                                                @error('image')
+                                                    <small class='text-danger'>{{$message}}</small>
+                                                @enderror
                                                 </div>
                                             </div>
                                             <div class="comment-form-comment mt-15">
-                                                <label>Comment</label>
-                                                <textarea class="comment-notes" required="required"></textarea>
+                                                <label>Đánh giá/ Nhận xét</label>
+                                                <textarea class="comment-notes" name="content" placeholder="Nhận xét..."></textarea>
+                                                @error('content')
+                                                    <small class='text-danger'>{{$message}}</small>
+                                                @enderror
                                             </div>
                                             <div class="comment-form-submit mt-15">
-                                                <input type="submit" value="Đánh giá" class="comment-submit">
+                                                <input @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để đánh giá sản phẩm')" @endif    type="submit" value="Đánh giá" class="comment-submit">
                                             </div>
                                         </form>
                                     </div>

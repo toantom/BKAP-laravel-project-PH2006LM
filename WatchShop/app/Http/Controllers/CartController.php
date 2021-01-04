@@ -24,14 +24,13 @@ class CartController extends Controller
         $cart->delete($product);
         return redirect()->back();
     }
-    //update cart
-    public function updatecart(CartHelper $cart,$id){
-        $product = Product::find($id);
-        $cart->delete($product);
-        return redirect()->back();
+    //update cart ajax
+    public function updatecart( CartHelper $cart,Request $request){
+        $id= $request->id;
+        $qty = $request->qty;
+        $cart->update($id,$qty);
     }
     //addcart detail
-    //addcart
     public function addcartdetail(CartHelper $cart,Request $request){
         $id = $request->id;
         $qty = $request->quantity;

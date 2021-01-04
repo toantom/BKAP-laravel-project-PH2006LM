@@ -141,6 +141,56 @@
         <!-- checkout-details-wrapper end -->
     </div>
 </div>
+<div id="serviceSup">
+    <div class="wrp">
+        <div class="group">
+            <div class="item">
+                <div class="flex">
+                    <div class="img">
+                        <img data-src="/view/css/icon/sup1.png" alt="Ship" class="lazy" src="/view/css/icon/sup1.png">
+                    </div>
+                    <div class="text">
+                        <p class="ttu fRobotoB">GIAO HÀNG MIỄN PHÍ</p>
+                        <p>Thanh toán (COD) tại nhà</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="item">
+                <div class="flex">
+                    <div class="img">
+                        <img data-src="/view/css/icon/sup2.png" alt="Doi san pham" class="lazy" src="/view/css/icon/sup2.png">
+                    </div>
+                    <div class="text">
+                        <p class="ttu fRobotoB">30 NGÀY ĐỔI SẢN PHẨM</p>
+                        <p>Miễn phí</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="item">
+                <div class="flex">
+                    <div class="img">
+                        <img data-src="/view/css/icon/sup3.png" alt="Bao hanh" class="lazy" src="/view/css/icon/sup3.png">
+                    </div>
+                    <div class="text">
+                        <p class="ttu fRobotoB">BẢO HÀNH QUỐC TẾ</p>
+                        <p>Thay pin miễn phí</p>
+                    </div>
+                </div> 
+            </div>
+            <div class="item">
+                <div class="flex">
+                    <div class="img">
+                        <img data-src="/view/css/icon/sup4.png" alt="Hoa don do" class="lazy" src="/view/css/icon/sup4.png">
+                    </div>
+                    <div class="text">
+                        <p class="ttu fRobotoB">CHÍNH HÃNG 100%</p>
+                        <p>Xuất hóa đơn đỏ</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
 <!-- main-content-wrap end -->
 
 

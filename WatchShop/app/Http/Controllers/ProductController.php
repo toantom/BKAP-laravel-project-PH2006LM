@@ -17,7 +17,7 @@ class ProductController extends Controller
   public function index()
   {
         $pro_img = Product_img::all();
-        $prod = Product::paginate(10);
+        $prod = Product::paginate(5);
         return view('backend.product.index', compact('prod', 'pro_img'));
   }
     public function show_pro($id)

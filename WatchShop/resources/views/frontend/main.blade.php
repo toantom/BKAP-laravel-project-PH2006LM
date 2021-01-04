@@ -87,7 +87,7 @@
                             <div class="top-info-wrap text-right">
                                 <ul class="my-account-container">
                                     @if (Auth::check())
-                                    <li><a href="{{route('frontend.login-register')}}">{{Auth::user()->name}}</a></li>
+                                    <li><a href="{{route('frontend.information')}}">Xin chào {{Auth::user()->name}}</a></li>
                                     <li><a onclick="return confirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}">Đăng xuất</a></li>
                                     <li><a href="{{route('frontend.wishlist')}}">Danh sách ưa thích</a></li>
                                     @else
@@ -530,7 +530,7 @@
         <!-- footer End -->
           
            
-          
+        
            
         
         

@@ -20,8 +20,9 @@ class OrderController extends Controller
     public function showcheckout(){
         return view('frontend.checkout');
     }
-
     
+
+    //check out
     public function create(CartHelper $cart,CheckoutRequest $request)
     {
         $data = new CartHelper;

@@ -16,7 +16,7 @@
                             <p>{{$item->content}} </p>
                             <p>Chỉ từ <strong>{{$item->title}}</strong></p>
                             <div class="slide-btn-group">
-                                <a href="shop.html" class="btn btn-bordered btn-style-1">Mua ngay</a>
+                                <a href="{{route('frontend.category',1)}}" class="btn btn-bordered btn-style-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
              @foreach ($bans_client_2 as $item)
                 <div class="col-lg-6 col-md-6">
                     <div class="single-banner mb-30">
-                        <a href="#"><img src="./public/images/banner/{{$item->image}}" alt=""></a>
+                        <a href="{{route('frontend.category',2)}}"><img src="./public/images/banner/{{$item->image}}" alt=""></a>
                     </div>
                 </div>
              @endforeach
@@ -66,7 +66,7 @@
                             <div class="action-links">
                                 <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                 <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                
                             </div>
                         </div>
                         <div class="product-caption">
@@ -137,7 +137,7 @@
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -171,7 +171,7 @@
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -205,7 +205,7 @@
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -239,7 +239,7 @@
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
@@ -293,7 +293,7 @@
             <div class="row our-brand-active">
                 @foreach ($cates as $item)
                 <div class="brand-single-item" >
-                    <a href="#"><img src="./public/images/brand/{{$item->image}}" alt=""></a>
+                    <a href="{{route('frontend.category',$item->id)}}"><img src="./public/images/brand/{{$item->image}}" alt=""></a>
                 </div>
                 @endforeach
             </div>

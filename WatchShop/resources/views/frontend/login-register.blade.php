@@ -7,7 +7,7 @@
                     <div class="col-12">
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Home</a></li>
                             <li class="breadcrumb-item active">login &amp; register</li>
                         </ul>
                         <!-- breadcrumb-list end -->
@@ -34,7 +34,7 @@
                             </div>
                             <!-- login-register-tab-list end -->
                             <div class="tab-content">
-                                <div id="lg1" class ="tab-pane @if($error_re = 0) active @endif" >
+                                <div id="lg1" class ="tab-pane active " >
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                         <form action="{{route('frontend.login')}}" method="post">
@@ -69,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="lg2"  class ="tab-pane @if($error_re = 1) active @endif " >
+                                <div id="lg2"  class ="tab-pane" >
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                         <form action="{{route('frontend.register')}}" method="post">

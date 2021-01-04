@@ -22,6 +22,11 @@ class UserController extends Controller
         $error_re = 0;
         return view('frontend.login-register',compact('error_re'));
     }
+    // view thông tin tài khoản
+    public function infor(){
+        return view('frontend.information');
+    }
+
     //dang ky
 
     public function create(UserRegisterRequest $request)

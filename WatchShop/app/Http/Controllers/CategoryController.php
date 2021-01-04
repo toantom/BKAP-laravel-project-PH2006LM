@@ -20,8 +20,8 @@ class CategoryController extends Controller
 
 
     public function indexBE(){
-        $cates = Category::paginate(5);
-        return view ('backend.category.index', compact('cates'));
+        $cats = Category::where('status','=',1)->paginate(5);
+        return view ('backend.category.index', compact('cats'));
     }
     //Show pro trang category
     public function showpro($id)

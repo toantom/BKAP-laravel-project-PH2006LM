@@ -37,7 +37,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($cates as $key => $cate)
+                    @foreach($cats as $key => $cate)
                     <tr>
                       <td>{{$key+1}}</td>
                       <td>{{$cate->name}}
@@ -69,7 +69,7 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-        {{$cates->links()}}
+        {{$cats->links()}}
       </section>
       <!-- /.content -->
       

@@ -47,7 +47,7 @@
                     <tr>
                         <td>1</td>
                         <td>{{$pro->name}}</td>
-                        <td><img src="{{URL::asset('public/be/img/product/{{$pro->image}}')}}" alt="" width="100"></td>
+                        <td><img src="{{URL::asset('public/images/product')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td></td>
                         <td>{{$pro->stock}}</td>
                         <td>{{$pro->price}}</td>
@@ -81,6 +81,7 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
+    {{$prod->links()}}
       </section>
       <!-- /.content -->
 @endsection

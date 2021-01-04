@@ -29,14 +29,14 @@ Route::group(['prefix' => 'backend'], function () {
     Route::put('/category/update', 'CategoryController@update')->name('backend.category.update');
     Route::delete('/category/destroy/{id}', 'CategoryController@destroy')->name('backend.category.destroy');
     //Product
-    Route::resource('product', 'ProductController');
-    // Route::get('/product', 'ProductController@indexBE')->name('backend.product');
-    // Route::get('/product/create', 'ProductController@create')->name('backend.product.create');
-    // Route::post('/product', 'ProductController@store')->name('backend.product.store');
-    // Route::get('/product/edit/{id}', 'ProductController@edit')->name('backend.product.edit');
-    // Route::put('/product/update', 'ProductController@update')->name('backend.product.update');
-    // Route::delete('/product/destroy/{id}', 'ProductController@destroy')->name('backend.product.destroy');
     // Route::resource('product', 'ProductController');
+    Route::get('/product', 'ProductController@indexBE')->name('backend.product');
+    Route::get('/product/create', 'ProductController@create')->name('backend.product.create');
+    Route::post('/product', 'ProductController@store')->name('backend.product.store');
+    Route::get('/product/edit/{id}', 'ProductController@edit')->name('backend.product.edit');
+    Route::put('/product/update', 'ProductController@update')->name('backend.product.update');
+    Route::delete('/product/destroy/{id}', 'ProductController@destroy')->name('backend.product.destroy');
+    Route::resource('product', 'ProductController');
 });
 
 //route frontend
@@ -52,15 +52,20 @@ Route::group(['prefix' => 'user'], function () {
     route::post('login-register/login','UserController@login')->name('frontend.login');
     //Thuc hien dang xuat
     route::get('login-register/logout','UserController@logout')->name('frontend.logout');
+    //Thong tin tai khoan
+    route::get('information','UserController@infor')->name('frontend.information')->middleware('auth');
 });
 //route cart
 route::get('add_cart/{id}/{qty}','CartController@addcart')->name('frontend.addcart');
 route::get('cart','CartController@show')->name('frontend.cart');
 route::get('delete_cart/{id}','CartController@deletecart')->name('frontend.deletecart');
 route::get('add_cart_detail','CartController@addcartdetail')->name('frontend.addcartdetail');
+route::post('update_cart','CartController@updatecart')->name('frontend.updatecart');
 route::get('checkout','OrderController@showcheckout')->name('frontend.checkout')->middleware('auth');
 route::post('checkout','OrderController@create')->name('frontend.checkout');
 //route wish
 route::get('wishlist','WishlistController@show_whislist')->name('frontend.wishlist')->middleware('auth');
 route::get('wishlist/add/{id}','WishlistController@create')->name('frontend.add-wishlist')->middleware('auth');
 route::get('wishlist/delete/{id}','WishlistController@destroy')->name('frontend.delete-wishlist')->middleware('auth');
+//route feedbacks
+route::post('feedback','FeedbackController@create')->name('frontend.feedback')->middleware('auth');

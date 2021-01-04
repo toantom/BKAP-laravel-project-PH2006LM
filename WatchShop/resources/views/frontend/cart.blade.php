@@ -7,7 +7,7 @@
             <div class="col-12">
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Home</a></li>
                     <li class="breadcrumb-item active">Cart Page</li>
                 </ul>
                 <!-- breadcrumb-list end -->
@@ -38,11 +38,13 @@
                             <tbody>
                                 @foreach($data->items as $item)
                                 <tr>
+                                    
                                     <td class="plantmore-product-thumbnail"><a href="#"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="100px"></a></td>
                                     <td class="plantmore-product-name"><a href="#">{{$item['name']}}</a></td>
                                     <td class="plantmore-product-price"><span class="amount">${{$item['price']}}</span></td>
                                     <td class="plantmore-product-quantity">
-                                        <input value="{{$item['quantity']}}" type="number">
+                                        @csrf
+                                        <input value="{{$item['quantity']}}" dataId="{{$item['id']}}" class="update" type="number">
                                     </td>
                                     <td class="product-subtotal"><span class="amount">${{$item['price']*$item['quantity']}}</span></td>
                                     <td class="plantmore-product-remove"><a onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')" href="{{route('frontend.deletecart',$item['id'])}}"><i class="fa fa-times"></i></a></td>
@@ -54,9 +56,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="coupon-all">
-
                                 <div class="coupon2">
-                                    <input class="submit" name="update_cart" value="Cập nhật giỏ hàng" type="submit">
                                     <a href="{{route('frontend.index')}}" class=" continue-btn">Tiếp tục mua sắm</a>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -85,5 +85,21 @@
 
 
 
-
+<script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+<script type="text/javascript">
+    
+    $('.update').change(function(event){
+        var qty = this.value;
+        var id = this.getAttribute('dataId');
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+           type:'POST',
+           url:"{{route('frontend.updatecart')}}",
+           data:{id:id, qty:qty, _token:_token},
+           success:function(data){
+            location.reload()
+           }
+        });
+    });
+</script>
 @endsection

@@ -3,6 +3,7 @@
      * 
      */
     namespace App\Helper;
+    use Symfony\Component\HttpFoundation\Session\Session;
     class CartHelper
     {
         public $items = [];
@@ -35,6 +36,11 @@
         //delete item
         public function delete($product){
             unset($this->items[$product->id]);
+            session(['cart'=>$this->items]);
+        }
+        //update cart
+        public function update($id,$qty){
+            $this->items[$id]['quantity']=$qty;
             session(['cart'=>$this->items]);
         }
         //addCart Detail
