@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->char('name',225);
             $table->char('slug',225);
             $table->char('sku',225)->unique();
-            $table->unsignedFloat('price');
-            $table->unsignedDouble('discount',8.2);
+            $table->unsignedFloat('price', 11);
+            $table->unsignedDouble('discount',11);
             $table->unsignedInteger('stock');
             $table->foreignId('id_cate');
             $table->foreign('id_cate')->references('id')->on('categories');

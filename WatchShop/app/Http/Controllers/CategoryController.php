@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Product_img;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -19,9 +20,9 @@ class CategoryController extends Controller
      */
 
 
-    public function indexBE(){
-        $cates = Category::paginate(5);
-        return view ('backend.category.index', compact('cates'));
+    public function index(){
+        $cats = Category::paginate(5);
+        return view ('backend.category.index', compact('cats'));
     }
     //Show pro trang category
     public function showpro($id)
@@ -52,13 +53,17 @@ class CategoryController extends Controller
         $request->file('image')->move(public_path('be/img/brand'),$file_name);
         $request['slug'] = Str::slug($request->name);
         
-        Category::create([
+        $cate = Category::create([
             'name' => $request->name,
             'image'=> $file_name,
             'status'=>$request->status,
             'slug'=>$request->slug
         ]);
-        return redirect()->route('backend.category');
+        if($cate){
+            return redirect()->route('category.index')->with('addcate-success','Thêm mới thành công');
+        }else{
+            return redirect()->back()->with('addcate-error','Thêm mới không thành công');
+        }
     }
 
     /**
@@ -81,7 +86,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $cat = Category::find($id);
-        return view('backend.category.edit',compact('cat'));
+        return view('backend.category.edit',compact('cat','id'));
     }
 
     /**
@@ -93,21 +98,26 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $filename = Product::find($id)->image;
+        $filename = Category::find($id)->image;
         if( $request->file('image') != null){
             $file_name = $request->file('image')->getClientOriginalName();
-            File::delete('be/img/brand/'.$filename.'');
+            File::delete('public/be/img/brand/'.$filename.'');
             $request->file('image')->move(public_path('be/img/brand'),$file_name);
         }else{
             $file_name = $filename;
         }
-        Category::where ('id',$id)->update([
+        $request['slug'] = Str::slug($request->name);
+        $cate = Category::where('id',$id)->update([
             'name'=>$request->name,
             'status'=>$request->status,
             'image'=>$file_name,
             'slug'=>$request->slug
         ]);
-        return redirect()->route('backend.category');
+        if($cate){
+            return redirect()->route('category.index')->with('updatecate-success');
+        }else{
+            return redirect()->back()->with('updatecate-error');
+        }
     }
 
     /**
@@ -117,12 +127,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        $pro = Product::where('id_cate',$id)->get();
         $filename = Category::find($id)->image;
-        if($filename!=null){
-            File::delete('be/img/brand/'.$filename.'');
+        if($pro->count() > 0){
+            return redirect()->back()->with('delcate-error','Xóa không thàn công');
+        }else{
+            if($filename){
+                File::delete('public/be/img/brand/'.$filename.'');
+            }
+            $cate = Category::where('id',$id)->delete();
+            if($cate){
+                return redirect()->route('category.index')->with('delcate-success','Xoá thành công');
+            }else{
+                return redirect()->back()->with('delcate-error','Xóa không thàn công');
+            }
         }
-        Category::where('id',$id)->delete();
-    	return redirect()->route('backend.category');
     }
 }

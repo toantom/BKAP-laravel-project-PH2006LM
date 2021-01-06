@@ -22,7 +22,7 @@
     <section class="content">
       <div class="row">
         <div class="col-md-6">
-            <form action="{{route('backend.category.store')}}" role="form" method="POST" enctype="multipart/form-data">
+            <form action="{{route('category.store')}}" role="form" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">

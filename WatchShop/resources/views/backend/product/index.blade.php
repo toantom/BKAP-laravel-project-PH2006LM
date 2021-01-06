@@ -22,49 +22,56 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <div class="card" style=" height: 800px ,overflow: scroll">
+              <div class="card">
                 <!-- /.card-header -->
-                <div class="card-body table-responsive">
-                  <table id="table" class="table table-bordered table-hover">
+                <div class="card-body" >
+                  <table id="table-pro" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ảnh sản phẩm</th>
-                        <th>Ảnh chi tiết</th>
+                        <th style="width:5em" >Tên sản phẩm</th>
+                        <th style="width:100px">Ảnh sản phẩm</th>
                         <th>Tồn kho</th>
-                        <th>Giá sản phẩm</th>
-                        <th>Giảm giá</th>
-                        <th>Danh mục</th>
+                        <th style="width:3em">Giá sản phẩm</th>
+                        <th style="width:3em">Giảm giá</th>
+                        <th style="width:5em">Danh mục</th>
                         <th>Miêu tả sản phẩm</th>
-                        <th>Thông tin sản phẩm</th>
+                        <th style="width:10em">Thông tin sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Hoạt động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($prod as $pro)    
+                    @foreach ($prod as $key=> $pro)    
                     <tr>
-                        <td>1</td>
+                        <td>{{$key+1}} </td>
                         <td>{{$pro->name}}</td>
-                        <td><img src="{{URL::asset('public/be/img/product/{{$pro->image}}')}}" alt="" width="100"></td>
-                        <td></td>
+                        <td><img src="{{URL::asset('public/be/img/product/')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td>{{$pro->stock}}</td>
                         <td>{{$pro->price}}</td>
                         <td>{{$pro->discount}}</td>
-                        <td></td>
-                        <td>{{$pro->des}}</td>
-                        <td></td>
+                        <td>{{$pro->category->name}}</td>
+                        <td style="display:inline-block;text-overflow: ellipsis;width: 100px;overflow: hidden !important; white-space: nowrap;">{{$pro->des}}</td>
+                        <td>
+                          Đường kính mặt: {{$pro->attribute->length_face}}mm
+                          Chống nước: {{$pro->attribute->waterproof}} ATM <br>
+                          Chất liệu mặt: {{$pro->attribute->material_face}} <br>
+                          Năng lượng sử dụng: {{$pro->attribute->use_energy}} <br>
+                          Chất liệu dây: {{$pro->attribute->material_strap}} <br>
+                          Chất liệu vỏ: {{$pro->attribute->material_coat}} <br>
+                          Xuất xứ: {{$pro->attribute->origin}} <br>
+                          Chế độ bảo hành: {{$pro->attribute->guarantee}} <br>
+                        </td>
                         @if($pro->status==1)
                         <td> Hiện</td>
                         @else
                         <td>Ẩn</td>
                         @endif
                         <td>
-                            <a href="{{route('backend.product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
-                            <form action="{{route('backend.product.destroy',$pro->id)}}" method="POST">
+                            <a href="{{route('product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
+                            <form action="{{route('product.destroy',$pro->id)}}" method="POST">
                             @method('DELETE') @csrf 
-                            <button class="btn btn-block btn-outline-danger btn-sm">Xóa</button>
+                            <a href="" onclick=" return confirm('Bạn có chắc là muốn xóa {{$pro->name}}')"><button class="btn btn-block btn-outline-danger btn-sm">Xóa</button></a>                            
                             </form>
                         </td>
                     </tr> 
@@ -82,5 +89,6 @@
         </div>
         <!-- /.container-fluid -->
       </section>
+      {{$prod->links()}}
       <!-- /.content -->
 @endsection
