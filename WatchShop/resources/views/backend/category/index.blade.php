@@ -72,6 +72,39 @@
       </section>
       {{$cats->links()}}
       <!-- /.content -->
+      {{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- sweetalert category --}}
+@if(Session::has('addcate-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm mới danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('addcate-error'))
+  <script>
+    swal("Thất bại","Bạn thêm mới danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatecate-success'))
+  <script>
+    swal("Thành công","Bạn sửa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatecate-error'))
+  <script>
+    swal("Thất bại","Bạn sửa danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delcate-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('delcate-error'))
+  <script>
+    swal("Thất bại","Bạn đã xóa danh mục không thành công", "error");
+  </script>
+@endif
 @endsection
 
 

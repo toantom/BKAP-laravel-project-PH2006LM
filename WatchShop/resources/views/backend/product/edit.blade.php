@@ -136,7 +136,7 @@
 					</div>
 					<!-- /.card-body -->
 					<div class="card-footer">
-						<button type="submit" class="btn btn-primary">Thêm mới</button>
+						<button type="submit" class="btn btn-primary">Sửa</button>
 					</div>
 				</div>
 				<div class="col-md-4">

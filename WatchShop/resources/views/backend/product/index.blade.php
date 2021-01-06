@@ -91,4 +91,37 @@
       </section>
       {{$prod->links()}}
       <!-- /.content -->
+      {{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- sweetalert product --}}
+@if(Session::has('addpro-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('addpro-error'))
+  <script>
+    swal("Thất bại","Bạn thêm sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatepro-success'))
+  <script>
+    swal("Thành công","Bạn đã sửa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatepro-error'))
+  <script>
+    swal("Thất bại","Bạn sửa sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delpro-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('delpro-error'))
+  <script>
+    swal("Thất bại","Bạn xóa sản phẩm không thành công", "error");
+  </script>
+@endif
 @endsection

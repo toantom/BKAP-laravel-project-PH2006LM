@@ -33,10 +33,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('backend.index')}}" class="nav-link">Home</a>
+        <a href="{{route('backend.index')}}" class="nav-link">Trang quản trị</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{route('frontend.index')}}" class="nav-link">Trang mua hàng</a>
       </li>
     </ul>
 
@@ -262,8 +262,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{URL::asset('public/be/js/adminlte.min.js')}}"></script>
-{{-- SweetAlert --}}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		bsCustomFileInput.init();
@@ -285,6 +284,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     })
   } );
 </script>
+{{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{-- sweetalert category --}}
 @if(Session::has('addcate-success'))
   <script>
@@ -316,6 +317,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     swal("Thất bại","Bạn đã xóa danh mục không thành công", "error");
   </script>
 @endif
+{{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{-- sweetalert product --}}
 @if(Session::has('addpro-success'))
   <script>
