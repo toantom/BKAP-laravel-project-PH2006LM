@@ -65,4 +65,5 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  
 @endsection

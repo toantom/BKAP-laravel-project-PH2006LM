@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //BE
-Route::group(['prefix' => 'backend'], function () {
+Route::get('/loginAdmin','AdminController@login')->name('backend.login');
+Route::post('/loginAdmin','AdminController@postLogin')->name('backend.postLogin');
+Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     Route::get('/','AdminController@index')->name('backend.index');
     //Category
     Route::resource('category', 'CategoryController');

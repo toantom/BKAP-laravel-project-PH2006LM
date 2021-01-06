@@ -86,7 +86,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $cat = Category::find($id);
-        return view('backend.category.edit',compact('cat','id'));
+        return view('backend.category.edit',compact('cat'));
     }
 
     /**
@@ -97,9 +97,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, $id)
-    {
+    {   
         $filename = Category::find($id)->image;
-        if( $request->file('image') != null){
+        if( $request->file('image')){
             $file_name = $request->file('image')->getClientOriginalName();
             File::delete('public/be/img/brand/'.$filename.'');
             $request->file('image')->move(public_path('be/img/brand'),$file_name);
@@ -114,9 +114,9 @@ class CategoryController extends Controller
             'slug'=>$request->slug
         ]);
         if($cate){
-            return redirect()->route('category.index')->with('updatecate-success');
+            return redirect()->route('category.index')->with('updatecate-success','Sửa thành công');
         }else{
-            return redirect()->back()->with('updatecate-error');
+            return redirect()->back()->with('updatecate-error','Sửa không thành công');
         }
     }
 
