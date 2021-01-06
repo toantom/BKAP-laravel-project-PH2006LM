@@ -38,7 +38,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
     }
 
     /**
@@ -50,7 +49,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('be/img/brand'),$file_name);
+        $request->file('image')->move(public_path('images/brand'),$file_name);
         $request['slug'] = Str::slug($request->name);
         
         $cate = Category::create([
@@ -85,8 +84,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $cats = Category::paginate(5);
         $cat = Category::find($id);
-        return view('backend.category.edit',compact('cat'));
+        return view('backend.category.edit',compact('cats','cat'));
     }
 
     /**
@@ -101,8 +101,8 @@ class CategoryController extends Controller
         $filename = Category::find($id)->image;
         if( $request->file('image')){
             $file_name = $request->file('image')->getClientOriginalName();
-            File::delete('public/be/img/brand/'.$filename.'');
-            $request->file('image')->move(public_path('be/img/brand'),$file_name);
+            File::delete('public/images/brand/'.$filename.'');
+            $request->file('image')->move(public_path('images/brand/'),$file_name);
         }else{
             $file_name = $filename;
         }
@@ -134,7 +134,7 @@ class CategoryController extends Controller
             return redirect()->back()->with('delcate-error','Xóa không thàn công');
         }else{
             if($filename){
-                File::delete('public/be/img/brand/'.$filename.'');
+                File::delete('public/images/brand/'.$filename.'');
             }
             $cate = Category::where('id',$id)->delete();
             if($cate){

@@ -39,8 +39,11 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     // Route::put('/product/update', 'ProductController@update')->name('backend.product.update');
     // Route::delete('/product/destroy/{id}', 'ProductController@destroy')->name('backend.product.destroy');
     // Route::resource('product', 'ProductController');
+    //Order
+    Route::get('/order','OrderController@index')->name('order.index');
+    Route::get('/order/order-detail/{id}','OrderController@detail')->name('order.detail');
+    Route::post('/order/order-detail/{id}','OrderController@updateStatus')->name('order.update');
 });
-
 //route frontend
 Route::get('/','HomeController@index')->name('frontend.index');
 route::get('category/{id}','CategoryController@showpro')->name('frontend.category');

@@ -10,11 +10,30 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
+    //backend order index
     public function index()
     {
-        //
+        $order = Order::paginate(5);
+        return view('backend.order.index',compact('order'));
     }
 
+    //backend order detail
+    public function detail($id){
+        $order = Order::find($id);
+        $order_detail = Order_detail::where('id_order',$id)->get();
+        return view('backend.order.detail',compact('order','order_detail'));
+    }
+
+    public function updateStatus(Request $req, $id){
+        $order = Order::find($id)->update([
+            'status' => $req->status
+        ]);
+        if($order){
+            return redirect()->back()->with('updateorder-success','thanh cong');
+        }else{
+            return redirect()->back()->with('updateorder-error','that bai');
+        }
+    }
 
     //show checkout
     public function showcheckout(){
