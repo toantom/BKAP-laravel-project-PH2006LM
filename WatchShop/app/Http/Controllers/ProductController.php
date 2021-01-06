@@ -54,7 +54,7 @@ class ProductController extends Controller
         if($request->hasFile('avatar')){
             $file = $request->file('avatar');
             $file_name = $file->getClientOriginalName();
-            $file->move(public_path('be/img/product'),$file_name);
+            $file->move(public_path('images/product/'),$file_name);
         } 
         $attr = Attribute::create([
             'length_face' => $request->length_face,
@@ -75,7 +75,7 @@ class ProductController extends Controller
             $files = $request->file('avatars');
             foreach ($files as $value) {
                 $file_names = $value->getClientOriginalName();
-                $value->move(public_path('be/img/product/imgs'),$file_names);
+                $value->move(public_path('images/product/imgs'),$file_names);
                 Product_img::create([
                     'id_product' => $product->id,
                     'image' => $file_names
@@ -128,10 +128,10 @@ class ProductController extends Controller
         //cập nhật ảnh đại diện
         $filename = Product::find($id)->image;
         if($request->hasFile('avatar')){
-            File::delete('public/be/img/product/'.$filename.'');
+            File::delete('public/images/product/'.$filename.'');
             $file = $request->file('avatar');
             $file_name = $file->getClientOriginalName();
-            $file->move(public_path('be/img/product'),$file_name);
+            $file->move(public_path('images/product'),$file_name);
         }else{
             $file_name = $filename;
         }
@@ -176,7 +176,7 @@ class ProductController extends Controller
             Product_img::where('id_product',$id)->delete();
             foreach ($files as $value) {
                 $file_names = $value->getClientOriginalName();
-                $value->move(public_path('be/img/product/imgs'),$file_names);
+                $value->move(public_path('images/product/imgs'),$file_names);
                 Product_img::create([
                     'id_product' => $id,
                     'image' => $file_names
@@ -203,11 +203,11 @@ class ProductController extends Controller
         $filenames = Product_img::where('id_product',$id)->get();
         if($filenames){
             foreach ($filenames as $value) {
-                File::delete('public/be/img/product/imgs/'.$value.'');
+                File::delete('public/images/product/imgs/'.$value.'');
             }
         }
         if($filename){
-            File::delete('public/be/img/product/'.$filename.'');
+            File::delete('public/images/product/'.$filename.'');
         }
         Product_img::where('id_product',$id)->delete();
         $pro = Product::find($id)->delete();

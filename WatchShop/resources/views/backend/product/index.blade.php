@@ -46,9 +46,9 @@
                     <tr>
                         <td>{{$key+1}} </td>
                         <td>{{$pro->name}}</td>
-                        <td><img src="{{URL::asset('public/be/img/product/')}}/{{$pro->image}}" alt="" width="100"></td>
+                        <td><img src="{{URL::asset('public/images/product/')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td>{{$pro->stock}}</td>
-                        <td>{{$pro->price}}</td>
+                        <td>{{number_format($pro->price)}}</td>
                         <td>{{$pro->discount}}</td>
                         <td>{{$pro->category->name}}</td>
                         <td style="display:inline-block;text-overflow: ellipsis;width: 100px;overflow: hidden !important; white-space: nowrap;">{{$pro->des}}</td>
