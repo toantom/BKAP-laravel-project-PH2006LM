@@ -17,7 +17,7 @@
     </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
+    
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -26,7 +26,7 @@
               <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="" class="table table-bordered table-hover">
+                  <table id="table-cate" class="table table-bordered table-hover">
                     <thead>
                     <tr>
                       <th>STT</th>
@@ -37,7 +37,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($cates as $key => $cate)
+                    @foreach($cats as $key => $cate)
                     <tr>
                       <td>{{$key+1}}</td>
                       <td>{{$cate->name}}
@@ -49,12 +49,12 @@
                       <td>Ẩn</td>
                       @endif
                       <td>
-                        <a href="{{route('backend.category.edit', $cate->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
-                        <form action="{{route('backend.category.destroy',$cate->id)}}" method="POST">
+                        <a href="{{route('category.edit', $cate->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
+                        <form action="{{route('category.destroy',$cate->id)}}" method="POST">
                           @method('DELETE') @csrf 
                           <a href="" onclick=" return confirm('Bạn có chắc là muốn xóa {{$cate->name}}')"><button class="btn btn-block btn-outline-danger btn-sm">Xóa</button></a>
                         </form>
-                        </td>
+                      </td>
                     </tr> 
                     @endforeach
                     </tbody>
@@ -69,8 +69,10 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-        {{$cates->links()}}
       </section>
+      {{$cats->links()}}
       <!-- /.content -->
-      
 @endsection
+
+
+

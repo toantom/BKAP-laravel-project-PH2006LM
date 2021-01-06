@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>TBT WatchShop</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/fontawesome-free/css/all.min.css')}}">
@@ -58,9 +58,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('backend.index')}}" class="brand-link">
-      <img src="{{URL::asset('public/be/img/logo/logo1.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{URL::asset('public/be/img/logo/logo1.png')}}" alt="TBT Logo" class="brand-image elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">TBT</span>
+      <span class="brand-text font-weight-light">TBT WatchShop</span>
     </a>
 
     <!-- Sidebar -->
@@ -88,13 +88,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('backend.category')}}" class="nav-link ">
+                <a href="{{route('category.index')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Danh sách danh mục</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('backend.category.create')}}" class="nav-link">
+                <a href="{{route('category.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Thêm mới danh mục</p>
                 </a>
@@ -259,19 +259,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{URL::asset('public/be/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('public/be/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <!-- bs-custom-file-input -->
-<script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.j')}}s"></script>
+<script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{URL::asset('public/be/js/adminlte.min.js')}}"></script>
-
+{{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		bsCustomFileInput.init();
 	});
   $(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollX": true
+    $('#table-pro').DataTable( {
+        "scrollX": true,
+        "searching": false,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
     } );
+    $('#table-cate').DataTable({
+        "order": false,
+        "searching": false,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+    })
   } );
 </script>
+{{-- sweetalert category --}}
+@if(Session::has('addcate-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm mới danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('addcate-error'))
+  <script>
+    swal("Thất bại","Bạn thêm mới danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatecate-success'))
+  <script>
+    swal("Thành công","Bạn sửa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatecate-error'))
+  <script>
+    swal("Thất bại","Bạn sửa danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delcate-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('delcate-error'))
+  <script>
+    swal("Thất bại","Bạn đã xóa danh mục không thành công", "error");
+  </script>
+@endif
+{{-- sweetalert product --}}
+@if(Session::has('addpro-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('addpro-error'))
+  <script>
+    swal("Thất bại","Bạn thêm sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatepro-success'))
+  <script>
+    swal("Thành công","Bạn đã sửa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatepro-error'))
+  <script>
+    swal("Thất bại","Bạn sửa sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delpro-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('delpro-error'))
+  <script>
+    swal("Thất bại","Bạn xóa sản phẩm không thành công", "error");
+  </script>
+@endif
 </body>
 </html>
