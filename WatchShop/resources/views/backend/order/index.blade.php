@@ -31,11 +31,9 @@
                     <tr>
                       <th>STT</th>
                       <th>Tên khách hàng</th>
-                      <th>Số điện thoại</th>
-                      <th>Địa chỉ giao hàng</th>
-                      <th>Trạng thái đơn hàng</th>
                       <th>Ngày đặt</th>
-                      <th>Tổng tiền thanh toán</th>
+                      <th>Tổng tiền</th>
+                      <th>Trạng thái đơn hàng</th>
                       <th>Ghi chú</th>
                       <th>Hoạt động</th>
                     </tr>
@@ -45,8 +43,8 @@
                     <tr>
                       <td>{{$key+1}}</td>
                       <td>{{$item->name}}</td>
-                      <td>{{$item->phone}}</td>
-                      <td>{{$item->address_ship}}</td>
+                      <td>{{$item->created_at}}</td>
+                      <td>{{number_format($item->total_price)}} VND</td>
                       <td>
                         @if ($item->status == 0)
                           Chờ duyệt
@@ -56,8 +54,6 @@
                           Thành công
                         @endif
                       </td>
-                      <td>{{$item->created_at}}</td>
-                      <td>{{number_format($item->total_price) }}</td>
                       <td>{{$item->note}}</td>
                       <td>
                         <a href="{{route('order.detail',$item->id)}}">Xem chi tiết</a>

@@ -24,19 +24,18 @@
             <div class="col-12">
               <div class="card">
                 <!-- /.card-header -->
-                <div class="card-body" >
+                <div class="card-body table-responsive" >
                   <table id="table-pro" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>STT</th>
-                        <th style="width:5em" >Tên sản phẩm</th>
-                        <th style="width:100px">Ảnh sản phẩm</th>
+                        <th style="width:10%" >Tên sản phẩm</th>
+                        <th style="width:10%">Ảnh sản phẩm</th>
                         <th>Tồn kho</th>
-                        <th style="width:3em">Giá sản phẩm</th>
-                        <th style="width:3em">Giảm giá</th>
-                        <th style="width:5em">Danh mục</th>
+                        <th style="width:10%">Giá sản phẩm</th>
+                        <th style="width:10%">Giảm giá</th>
+                        <th style="width:10%">Danh mục</th>
                         <th>Miêu tả sản phẩm</th>
-                        <th style="width:10em">Thông tin sản phẩm</th>
+                        <th style="width:10%">Thông tin sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Hoạt động</th>
                     </tr>
@@ -44,23 +43,17 @@
                     <tbody>
                     @foreach ($prod as $key=> $pro)    
                     <tr>
-                        <td>{{$key+1}} </td>
                         <td>{{$pro->name}}</td>
                         <td><img src="{{URL::asset('public/images/product/')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td>{{$pro->stock}}</td>
-                        <td>{{number_format($pro->price)}}</td>
+                        <td>{{number_format($pro->price)}} VND</td>
                         <td>{{$pro->discount}}</td>
                         <td>{{$pro->category->name}}</td>
-                        <td style="display:inline-block;text-overflow: ellipsis;width: 100px;overflow: hidden !important; white-space: nowrap;">{{$pro->des}}</td>
+                        <td style="display:block;text-overflow: ellipsis;width:150px;overflow: hidden !important; white-space: nowrap; border-left: inherit">{{$pro->des}}</td>
                         <td>
-                          Đường kính mặt: {{$pro->attribute->length_face}}mm
-                          Chống nước: {{$pro->attribute->waterproof}} ATM <br>
-                          Chất liệu mặt: {{$pro->attribute->material_face}} <br>
-                          Năng lượng sử dụng: {{$pro->attribute->use_energy}} <br>
-                          Chất liệu dây: {{$pro->attribute->material_strap}} <br>
-                          Chất liệu vỏ: {{$pro->attribute->material_coat}} <br>
-                          Xuất xứ: {{$pro->attribute->origin}} <br>
-                          Chế độ bảo hành: {{$pro->attribute->guarantee}} <br>
+                          {{$pro->attribute->length_face}}mm <br>
+                          {{$pro->attribute->waterproof}} ATM <br>
+                          {{$pro->attribute->material_face}}
                         </td>
                         @if($pro->status==1)
                         <td> Hiện</td>
@@ -68,7 +61,8 @@
                         <td>Ẩn</td>
                         @endif
                         <td>
-                            <a href="{{route('product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
+                            <a href="{{route('backend.product.editPic', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-primary btn-sm">Sửa ảnh</button></a>
+                            <a href="{{route('product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa thông tin</button></a>
                             <form action="{{route('product.destroy',$pro->id)}}" method="POST">
                             @method('DELETE') @csrf 
                             <a href="" onclick=" return confirm('Bạn có chắc là muốn xóa {{$pro->name}}')"><button class="btn btn-block btn-outline-danger btn-sm">Xóa</button></a>                            
@@ -79,6 +73,7 @@
                     </tbody>
                   </table>
                 </div>
+                {{$prod->links()}}
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
@@ -89,7 +84,6 @@
         </div>
         <!-- /.container-fluid -->
       </section>
-      {{$prod->links()}}
       <!-- /.content -->
       {{-- SweetAlert --}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

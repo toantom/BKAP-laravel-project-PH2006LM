@@ -24,6 +24,10 @@ class CategoryController extends Controller
         $cats = Category::paginate(5);
         return view ('backend.category.index', compact('cats'));
     }
+    public function allpro(){
+        $pros = Product::paginate(10);
+        return view('frontend.category',compact('pros'));
+    }
     //Show pro trang category
     public function showpro($id)
     {

@@ -19,10 +19,8 @@ class CreateOrderDetailsTable extends Migration
             $table->foreign('id_order')->references('id')->on('orders');
             $table->foreignId('id_product');
             $table->foreign('id_product')->references('id')->on('products');
-            $table->unsignedFloat('price');
+            $table->unsignedFloat('price',11);
             $table->unsignedInteger('quantity');
-
-
             $table->timestamps();
         });
     }

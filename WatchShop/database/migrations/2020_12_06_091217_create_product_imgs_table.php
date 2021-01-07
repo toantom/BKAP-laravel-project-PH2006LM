@@ -17,7 +17,7 @@ class CreateProductImgsTable extends Migration
             $table->id();
             $table->foreignId('id_product');
             $table->foreign('id_product')->references('id')->on('products');
-            $table->char('image',225);
+            $table->char('image',255);
             $table->timestamps();
 
         });
