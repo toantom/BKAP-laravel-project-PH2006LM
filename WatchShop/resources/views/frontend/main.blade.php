@@ -197,7 +197,7 @@
                                         <li class="active"><a href="{{route('frontend.index')}}">Trang chủ</a>
                                         </li>
 
-                                        <li><a href="#">Danh mục sản phẩm <i class="fa fa-angle-down"></i></a>
+                                        <li><a href="{{route('frontend.pro')}}">Danh mục sản phẩm <i class="fa fa-angle-down"></i></a>
                                             <ul class="mega-menu">
                                                 <li><a href="#">Đồng hồ chính hãng</a>
                                                     <ul>

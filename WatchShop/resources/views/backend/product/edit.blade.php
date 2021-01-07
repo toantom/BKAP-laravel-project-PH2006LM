@@ -6,7 +6,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1>Sửa sản phẩm</h1>
+				<h1>Sửa sản phẩm {{$pro->sku}}</h1>
 			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -41,7 +41,6 @@
 							<small class="help-block text-danger">{{$message}}</small>
 						@enderror
 					</div>                 
-					
 					<div class="form-group">
 						<label for="">Danh mục</label>
 						<select class="form-control" name="id_cate" id="">
@@ -53,38 +52,6 @@
 							<small class="help-block text-danger">{{$message}}</small>
 						@enderror
 					</div>                 
-					<div class="form-group">
-						<label for="exampleInputFile">Ảnh đại diện</label>
-						<div class="input-group">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="avatar">
-							<label class="custom-file-label" for="exampleInputFile">{{$pro->image}}</label>
-						</div>
-						</div>
-						@error('avatar')
-							<small class="help-block text-danger">{{$message}}</small>
-						@enderror
-						<img src="{{URL::asset('public/images/product/'.$pro->image)}}" alt="" width="200px">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputFile">Ảnh chi tiết</label>
-						<div class="input-group">
-						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="avatars[]" multiple>
-							<label class="custom-file-label" for="exampleInputFile">
-								@foreach ($pro_imgs as $item)
-									{{$item->image}}
-								@endforeach
-							</label>
-						</div>
-						</div>
-						@error('avatars[]')
-							<small class="help-block text-danger">{{$message}}</small>
-						@enderror
-						@foreach ($pro_imgs as $img)
-							<img src="{{URL::asset('public/images/product/imgs/'.$img->image)}}" alt="" width="200px">
-						@endforeach
-					</div>
 					<div class="form-group">
 						<label for="">Kiểu đồng hồ</label>
 						<select class="form-control" name="type" id="">

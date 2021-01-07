@@ -38,7 +38,7 @@
                             <tbody>
                                 @foreach($data->items as $item)
                                 <tr>
-                                    <td class="plantmore-product-thumbnail"><a href="#"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="100px"></a></td>
+                                    <td class="plantmore-product-thumbnail"><a href="#"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" width="100px"></a></td>
                                     <td class="plantmore-product-name"><a href="#">{{$item['name']}}</a></td>
                                     <td class="plantmore-product-price"><span class="amount">${{$item['price']}}</span></td>
                                     <td class="plantmore-product-quantity">

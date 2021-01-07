@@ -18,7 +18,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -81,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-list-alt"></i>  
                 <p>Quản lý danh mục
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -89,7 +88,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('category.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách danh mục</p>
                 </a>
               </li>
@@ -97,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-clock"></i>              
                 <p>Quản lý sản phẩm
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -105,13 +104,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('product.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách sản phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới sản phẩm</p>
                 </a>
               </li>
@@ -119,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-truck"></i>              
                 <p>Quản lý nhập hàng
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -127,13 +126,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('product.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách nhập hàng</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm thông tin nhập hàng</p>
                 </a>
               </li>
@@ -141,7 +140,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-receipt"></i>         
                 <p>Quản lý đơn hàng
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -149,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('order.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách đơn hàng</p>
                 </a>
               </li>
@@ -165,13 +164,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Banner</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới Banner</p>
                 </a>
               </li>
@@ -179,7 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fab fa-blogger"></i>             
                 <p>Quản lý Blog
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -187,13 +186,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Blog</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới Blog</p>
                 </a>
               </li>
@@ -201,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-comments"></i>              
                 <p>Quản lý Feedback
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -209,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Feedback</p>
                 </a>
               </li>
@@ -263,7 +262,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	});
   $(document).ready(function() {
     $('#table-pro').DataTable( {
-        "scrollX": true,
         "searching": true,
         "lengthChange": false,
         "paging": false,

@@ -56,7 +56,7 @@
 						<div class="input-group">
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" name="avatar">
-							<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+							<label class="custom-file-label" for="">Choose file</label>
 						</div>
 						</div>
 						@error('avatar')
@@ -67,8 +67,8 @@
 						<label for="exampleInputFile">Ảnh chi tiết</label>
 						<div class="input-group">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input" name="avatars[]" multiple>
-							<label class="custom-file-label" for="exampleInputFile">Choose file</label>
+							<input type="file" class="form-control-file custom-file-input" name="avatars[]" multiple>
+							<label class="custom-file-label" for="">Choose file</label>
 						</div>
 						</div>
 						@error('avatars')
@@ -132,7 +132,7 @@
 				<div class="col-md-4">
 					<div class="card-body">
 						<div class="form-group">
-							<label for="">Đường kính mặt</label>
+							<label for="">Đường kính mặt(mm)</label>
 							<input type="text" class="form-control" name="length_face" required>
 						</div>
 						<div class="form-group">
@@ -140,14 +140,14 @@
 							<input type="text" class="form-control" name="material_face" required>
 						</div>
 						<div class="form-group">
-							<label for="">Chống nước</label>
+							<label for="">Chống nước(ATM)</label>
 							<input type="text" class="form-control" name="waterproof" required>
 						</div>
 						<div class="form-group">
 							<label for="">Năng lượng sử dụng</label>
 							  <select class="form-control" name="use_energy" id="" required>
-								<option value="Pin">Pin</option>
-								<option value="Cơ">Cơ</option>
+								<option value="Pin">Quartz/Pin</option>
+								<option value="Cơ">Automatic (Cơ tự động)</option>
 							  </select>
 						</div>
 						<div class="form-group">

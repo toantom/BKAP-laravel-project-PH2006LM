@@ -19,7 +19,7 @@ class CreateFeedbacksTable extends Migration
             $table->foreign('id_product')->references('id')->on('products');
             $table->foreignId('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedInteger('star');
+            $table->unsignedFloat('star');
             $table->text('content');
             $table->tinyInteger('status');
 

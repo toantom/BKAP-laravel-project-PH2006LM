@@ -28,17 +28,21 @@
                 @csrf
                 <div class="card card-outline">
                 <div class="card-body box-profile">
-                  <h3 class="profile-username text-center">{{$order->name}}</h3>
-  
-                  <p class="text-center">{{$order->email}}</p>
-                  <p class="text-center">{{$order->phone}}</p>
-  
                   <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                      <b>Tên khách hàng</b> <a class="float-right">{{$order->name}}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Email khách hàng</b> <a class="float-right">{{$order->email}}</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Số điện thoại khách hàng</b> <a class="float-right">{{$order->phone}}</a>
+                    </li>
                     <li class="list-group-item">
                       <b>Địa chỉ giao hàng</b> <a class="float-right">{{$order->address_ship}}</a>
                     </li>
                     <li class="list-group-item">
-                      <b>Tổng tiền thành toán</b> <a class="float-right">{{number_format($order->total_price)}}</a>
+                      <b>Tổng tiền thành toán</b> <a class="float-right">{{number_format($order->total_price)}} VND</a>
                     </li>
                     <li class="list-group-item">
                       <b>Note</b> <a class="float-right">{{$order->note}}</a>
@@ -80,9 +84,9 @@
                     <tr>
                       <td>{{$item->product->name}}</td>
                       <td><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" alt="" width="100px"></td>
-                      <td>{{$item->price}}</td>
+                      <td>{{number_format($item->price)}} VND</td>
                       <td>{{$item->quantity}}</td>
-                      <td>{{$item->price * $item->quantity}}</td>
+                      <td>{{number_format($item->price * $item->quantity)}} VND</td>
                     </tr> 
                     @endforeach
                     </tbody>
