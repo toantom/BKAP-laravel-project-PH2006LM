@@ -51,7 +51,35 @@
 						@error('id_cate')
 							<small class="help-block text-danger">{{$message}}</small>
 						@enderror
-					</div>                 
+					</div>   
+					<div class="form-group">
+						<label for="exampleInputFile">Ảnh đại diện</label>
+						<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" name="avatar">
+							<label class="custom-file-label" for="exampleInputFile">{{$pro->image}}</label>
+						</div>
+						</div>
+						@error('avatar')
+							<small class="help-block text-danger">{{$message}}</small>
+						@enderror
+						<img src="{{URL::asset('public/images/product/'.$pro->image)}}" alt="" width="200px">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputFile">Ảnh chi tiết</label>
+						<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" name="avatars[]" multiple>
+							<label class="custom-file-label" for="exampleInputFile"></label>
+						</div>
+						</div>
+						@error('avatars')
+							<small class="help-block text-danger">{{$message}}</small>
+						@enderror
+						@foreach ($pro_imgs as $item)
+							<img src="{{URL::asset('public/images/product/imgs/'.$item->image)}}" alt="" width="200px">
+						@endforeach              
+					</div>
 					<div class="form-group">
 						<label for="">Kiểu đồng hồ</label>
 						<select class="form-control" name="type" id="">

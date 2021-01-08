@@ -111,8 +111,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $pro = Product::find($id);
+        $pro_imgs = Product_img::where('id_product',$id)->get();
         $cate = Category::where('status','=',1)->get();
-        return view('backend.product.edit',compact('pro','cate','id'));
+        return view('backend.product.edit',compact('pro','pro_imgs','cate','id'));
     }
 
     /**
@@ -124,6 +125,16 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {   
+        //cập nhật ảnh đại diện
+        $filename = Product::find($id)->image;
+        if($request->hasFile('avatar')){
+            File::delete('public/images/product/'.$filename.'');
+            $file = $request->file('avatar');
+            $file_name = $file->getClientOriginalName();
+            $file->move(public_path('images/product'),$file_name);
+        }else{
+            $file_name = $filename;
+        }        
         //cập nhập thông tin sản phẩm
         $id_attr = Product::find($id)->id_attr;
         $attr = Attribute::where('id',$id_attr)->update([
@@ -135,12 +146,27 @@ class ProductController extends Controller
             'material_coat' => $request->material_coat,
             'origin' => $request->origin,
             'guarantee' => $request->guarantee,
-        ]);
+        ]);       
+        //cập nhật ảnh chi tiết
+        if($request->hasFile('avatars')){
+            $files = $request->file('avatars');
+            // $imgs = Product_img::where('id_product',$id);
+            // File::delete('public/be/img/product/imgs'.$imgs->image.'');
+            Product_img::where('id_product',$id)->delete();
+            foreach ($files as $value) {
+                $file_names = $value->getClientOriginalName();
+                $value->move(public_path('images/product/imgs'),$file_names);
+                Product_img::create([
+                    'id_product' => $id,
+                    'image' => $file_names
+                ]);
+            }
+        }
         //merge thêm trường id_attr vào request
-        $request->merge(['id_attr' => $id_attr]);
+        $request->merge(['image' => $file_name ,'id_attr' => $id_attr]);
         //trường slug
         $request['slug'] = Str::slug($request->name);      
-        $data = $request->except(['_token','_method','length_face','material_face','waterproof',
+        $data = $request->except(['_token','_method','avatar','avatars','length_face','material_face','waterproof',
                                 'use_energy','material_strap','material_coat','origin','guarantee']);
         
         $product = Product::where('id',$id)->update($data);
@@ -180,47 +206,22 @@ class ProductController extends Controller
         }
     }
 
-    public function editPic($id){
-        $pro = Product::find($id);
-        $pro_imgs = Product_img::where('id_product',$id)->get();
-        return view('backend.product.editPic',compact('pro','pro_imgs'));
-    }
-    public function updatePic(Request $request, $id){
-        //cập nhật ảnh đại diện
-        dd($request->all());
-        $filename = Product::find($id)->image;
-        if($request->hasFile('avatar')){
-            File::delete('public/images/product/'.$filename.'');
-            $file = $request->file('avatar');
-            $file_name = $file->getClientOriginalName();
-            $file->move(public_path('images/product'),$file_name);
-        }else{
-            $file_name = $filename;
-        }
-        // //cập nhật ảnh chi tiết
-        // if($request->hasFile('avatars')){
-        //     $files = $request->file('avatars');
-        //     // $imgs = Product_img::where('id_product',$id);
-        //     // File::delete('public/be/img/product/imgs'.$imgs->image.'');
-        //     Product_img::where('id_product',$id)->delete();
-        //     foreach ($files as $value) {
-        //         $file_names = $value->getClientOriginalName();
-        //         $value->move(public_path('images/product/imgs'),$file_names);
-        //         Product_img::create([
-        //             'id_product' => $id,
-        //             'image' => $file_names
-        //         ]);
-        //     }
-        // }
-        $product = Product::where('id',$id)->update([
-            'image' => $file_name
-        ]);
+    // public function editPic($id){
+    //     $pro = Product::find($id);
+    //     $pro_imgs = Product_img::where('id_product',$id)->get();
+    //     return view('backend.product.editPic',compact('pro','pro_imgs'));
+    // }
+    // public function updatePic(Request $request, $id){
 
-        if($product){
-            return redirect()->route('product.index')->with('updatePicpro-success','sua anh thanh cong');
-        }else{
-            return redirect()->back()->with('updatePicpro-error','sua anh khong thanh cong');
-        }
-    }
+    //     $product = Product::where('id',$id)->update([
+    //         'image' => $file_name
+    //     ]);
+
+    //     if($product){
+    //         return redirect()->route('product.index')->with('updatePicpro-success','sua anh thanh cong');
+    //     }else{
+    //         return redirect()->back()->with('updatePicpro-error','sua anh khong thanh cong');
+    //     }
+    // }
 
 }
