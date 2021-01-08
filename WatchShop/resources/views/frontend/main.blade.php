@@ -92,8 +92,8 @@
                                     <li><a href="{{route('frontend.wishlist')}}">Danh sách ưa thích</a></li>
                                     @else
                                     <li><a href="{{route('frontend.login-register')}}">Đăng nhập/Đăng ký</a></li>
-                                    @endif
                                     <li><a href="{{route('frontend.cart')}}">Giỏ hàng</a></li>
+                                    @endif
                                     <li><a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a></li>
                                 </ul>
                             </div>

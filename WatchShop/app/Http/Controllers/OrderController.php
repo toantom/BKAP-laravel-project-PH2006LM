@@ -21,7 +21,12 @@ class OrderController extends Controller
         return view('frontend.checkout');
     }
     
-
+    //show orderdetail
+    public function showdetail($id){
+        $detail = Order_detail::where('id_order','=',$id)->get();
+        $bill = Order::find($id);
+        return view('frontend.orderdetail',compact('detail','bill'));
+    }
     //check out
     public function create(CartHelper $cart,CheckoutRequest $request)
     {

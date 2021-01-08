@@ -54,6 +54,16 @@ Route::group(['prefix' => 'user'], function () {
     route::get('login-register/logout','UserController@logout')->name('frontend.logout');
     //Thong tin tai khoan
     route::get('information','UserController@infor')->name('frontend.information')->middleware('auth');
+    //Xem chi tiet don hang
+    route::get('order_detail/{id}','OrderController@showdetail')->name('frontend.orderdetail')->middleware('auth');
+    //Sua thong tin tai khoan
+    route::post('information/{id}','UserController@update')->name('frontend.updateinfo')->middleware('auth');
+    //Lay lai mat khau
+    route::get('resetpass','UserController@reset')->name('frontend.view.resetpass');
+    route::post('resetpass','UserController@resetpass')->name('frontend.resetpass');
+    //Thay doi mat khau
+    route::get('updatepass/{id}','UserController@updatepass')->name('frontend.view.updatepass')->middleware('auth');
+    route::post('updatepass/{id}','UserController@updatepassword')->name('frontend.updatepass')->middleware('auth');
 });
 //route cart
 route::get('add_cart/{id}/{qty}','CartController@addcart')->name('frontend.addcart');

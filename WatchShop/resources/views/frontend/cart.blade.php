@@ -63,7 +63,7 @@
                         </div>
                         <div class="col-md-4 ml-auto">
                             <div class="cart-page-total">
-                                <h2>Cart totals</h2>
+                                <h2>Chi tiết giỏ hàng</h2>
                                 <ul>
                                     <li>Số lượng sản phẩm <span>{{count($data->items)}}</span></li>
                                     <li>Tổng tiền cần thanh toán <span>${{$data->total_price}}</span></li>

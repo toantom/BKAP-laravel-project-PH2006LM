@@ -15,6 +15,19 @@
         </div>
     </div>
 </div>
+@if(Session::has('success'))
+     <div class="alert alert-success">
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{Session::get('success')}}
+     </div>
+@endif
+@if(Session::has('updateok'))
+     <div class="alert alert-success">
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{Session::get('updateok')}}
+     </div>
+@endif
+
 <!-- breadcrumb-area end -->
 
 <!-- main-content-wrap start -->
@@ -48,7 +61,7 @@
                         <div class="col-md-12 col-lg-2">
                             <!-- Nav tabs -->
                             <ul role="tablist" class="nav flex-column dashboard-list">
-                                <li> <a href="#orders" data-toggle="tab" class="nav-link">Đơn hàng</a></li>
+                                <li> <a href="#orders" data-toggle="tab" class="nav-link">Lịch sử đơn hàng</a></li>
                                 <li><a href="#account-details" data-toggle="tab" class="nav-link">Thông tin tài khoản</a></li>
                                 
                             </ul>
@@ -56,117 +69,93 @@
                         <div class="col-md-12 col-lg-10">
                             <!-- Tab panes -->
                             <div class="tab-content dashboard-content">
-                                <div class="tab-pane active" id="dashboard">
-                                    <h3>Dashboard </h3>
-                                    <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
-                                </div>
-                                <div class="tab-pane fade" id="orders">
-                                    <h3>Orders</h3>
+                                <div class="tab-pane fade active" id="orders">
+                                    <h3>Lịch sử đơn hàng</h3>
                                     <div class="table-responsive">
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Order</th>
-                                                    <th>Date</th>
-                                                    <th>Status</th>
-                                                    <th>Total</th>
-                                                    <th>Actions</th>
+                                                    <th>Mã đơn hàng</th>
+                                                    <th>Ngày tạo đơn</th>
+                                                    <th>Trạng thái đơn hàng</th>
+                                                    <th>Tổng hóa đơn</th>
+                                                    <th>Xem chi tiết</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($bill as $item)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>May 10, 2018</td>
-                                                    <td>Processing</td>
-                                                    <td>$25.00 for 1 item </td>
-                                                    <td><a href="cart.html" class="view">view</a></td>
+                                                    <td>{{$item->id}}</td>
+                                                    <td>{{$item->created_at->format('d-m-Y')}}</td>
+                                                    <td>@switch($item->status)
+                                                        @case(0)
+                                                            Đang chờ xử lý
+                                                            @break
+                                                        @case(1)
+                                                            Đang giao hàng
+                                                            @break
+                                                        @case(2)
+                                                            Giao hàng thành công
+                                                            @break
+                                                        @endswitch</td>
+                                                    <td>${{$item->total_price}} </td>
+                                                    <td><a href="{{route('frontend.orderdetail',$item->id)}}" class="view">view</a></td>
                                                 </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>May 10, 2018</td>
-                                                    <td>Processing</td>
-                                                    <td>$17.00 for 1 item </td>
-                                                    <td><a href="cart.html" class="view">view</a></td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="downloads">
-                                    <h3>Downloads</h3>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Product</th>
-                                                    <th>Downloads</th>
-                                                    <th>Expires</th>
-                                                    <th>Download</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Haven - Free Real Estate PSD Template</td>
-                                                    <td>May 10, 2018</td>
-                                                    <td>never</td>
-                                                    <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nevara - ecommerce html template</td>
-                                                    <td>Sep 11, 2018</td>
-                                                    <td>never</td>
-                                                    <td><a href="#" class="view">Click Here To Download Your File</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="address">
-                                    <p>The following addresses will be used on the checkout page by default.</p>
-                                    <h4 class="billing-address">Billing address</h4>
-                                    <a href="#" class="view">edit</a>
-                                    <p class="biller-name">Johan Don</p>
-                                    <p>Bangladesh</p>
-                                </div>
+                                
                                 <div class="tab-pane fade" id="account-details">
-                                    <h3>Account details </h3>
+                                    <h3>Thông tin tài khoản </h3>
                                     <div class="login">
                                         <div class="login-form-container">
                                             <div class="account-login-form">
-                                                <form action="#">
-                                                    <p>Already have an account? <a href="#">Log in instead!</a></p>
-                                                    <label>Social title</label>
-                                                    <div class="input-radio">
-                                                        <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mr.</span>
-                                                        <span class="custom-radio"><input type="radio" value="1" name="id_gender"> Mrs.</span>
-                                                    </div>
+                                                <form action="{{route('frontend.updateinfo',Auth::user()->id)}}" method="post">
+                                                    @csrf
                                                     <div class="account-input-box">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="first-name">
-                                                        <label>Last Name</label>
-                                                        <input type="text" name="last-name">
+                                                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                                                        <label>Họ tên</label>
+                                                        <input type="text" value="{{Auth::user()->name}}" name="name">
+                                                        @error('name')
+                                                            <small class='text-danger'>{{$message}}</small>
+                                                        @enderror
                                                         <label>Email</label>
-                                                        <input type="text" name="email-name">
-                                                        <label>Password</label>
-                                                        <input type="password" name="user-password">
-                                                        <label>Birthdate</label>
-                                                        <input type="text" placeholder="MM/DD/YYYY" value="" name="birthday">
+                                                        <input type="text" name="email" value="{{Auth::user()->email}}">
+                                                        @error('email')
+                                                            <small class='text-danger'>{{$message}}</small>
+                                                        @enderror
+                                                        <label>Số điện thoại</label>
+                                                        <input type="number" name="phone" value="{{Auth::user()->phone}}">
+                                                        @error('phone')
+                                                            <small class='text-danger'>{{$message}}</small>
+                                                        @enderror
+                                                        <label>Địa chỉ</label>
+                                                        <input type="text" name="address" value="{{Auth::user()->address}}">
+                                                        @error('address')
+                                                            <small class='text-danger'>{{$message}}</small>
+                                                        @enderror
+                                                        <label>Ngày sinh</label>
+                                                        <input type="date" name="birthday" value="{{Auth::user()->birthday}}">
+                                                        @error('birthday')
+                                                            <small class='text-danger'>{{$message}}</small>
+                                                        @enderror
                                                     </div>
                                                     <div class="example">
-                                                        (E.g.: 05/31/1970)
+                                                        (Ví dụ : 05/31/1970)
                                                     </div>
-                                                    <div class="custom-checkbox">
-                                                        <input type="checkbox" value="1" name="optin">
-                                                        <label>Receive offers from our partners</label>
-                                                    </div>
-                                                    <div class="custom-checkbox">
-                                                        <input type="checkbox" value="1" name="newsletter">
-                                                        <label>Sign up for our newsletter<br><em>You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</em></label>
+                                                    <label>Giới tính</label>
+                                                    <div class="input-radio">
+                                                        <span class="custom-radio"><input type="radio" value="0" @if((Auth::user()->gender)==0) checked @endif name="gender"> Nam</span>
+                                                        <span class="custom-radio"><input type="radio" value="1" @if((Auth::user()->gender)==1) checked @endif name="gender"> Nữ.</span>
                                                     </div>
                                                     <div class="button-box">
-                                                        <button class="btn default-btn" type="submit">Save</button>
+                                                        <button class="btn default-btn" type="submit">Thay đổi thông tin tài khoản</button>
                                                     </div>
+                                                    
                                                 </form>
+                                                <a href="{{route('frontend.view.updatepass',Auth::user()->id)}}"><button class="btn default-btn">Thay đổi mật khẩu</button></a>
                                             </div>
                                         </div>
                                     </div>
