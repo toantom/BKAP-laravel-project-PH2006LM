@@ -31,7 +31,7 @@
                         <th style="width:10%" >Tên sản phẩm</th>
                         <th style="width:10%">Ảnh sản phẩm</th>
                         <th>Tồn kho</th>
-                        <th style="width:10%">Giá sản phẩm</th>
+                        <th style="width:13%">Giá sản phẩm</th>
                         <th style="width:10%">Giảm giá</th>
                         <th style="width:10%">Danh mục</th>
                         <th>Miêu tả sản phẩm</th>
@@ -47,9 +47,9 @@
                         <td><img src="{{URL::asset('public/images/product/')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td>{{$pro->stock}}</td>
                         <td>{{number_format($pro->price)}} VND</td>
-                        <td>{{$pro->discount}}</td>
+                        <td>{{$pro->discount}} %</td>
                         <td>{{$pro->category->name}}</td>
-                        <td style="display:block;text-overflow: ellipsis;width:150px;overflow: hidden !important; white-space: nowrap; border-left: inherit">{{$pro->des}}</td>
+                        <td style="display:block;text-overflow: ellipsis;width: 150px;overflow: hidden !important; white-space: nowrap; ">{{$pro->des}}</td>
                         <td>
                           {{$pro->attribute->length_face}}mm <br>
                           {{$pro->attribute->waterproof}} ATM <br>
@@ -61,7 +61,7 @@
                         <td>Ẩn</td>
                         @endif
                         <td>
-                            <a href="{{route('backend.product.editPic', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-primary btn-sm">Sửa ảnh</button></a>
+                            {{-- <a href="{{route('backend.product.editPic', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-primary btn-sm">Sửa ảnh</button></a> --}}
                             <a href="{{route('product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa thông tin</button></a>
                             <form action="{{route('product.destroy',$pro->id)}}" method="POST">
                             @method('DELETE') @csrf 
