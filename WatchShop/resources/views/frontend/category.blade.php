@@ -142,7 +142,7 @@
                                             <!-- single-product-wrap start -->
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                <a href="product-details.html"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
+                                                <a href="{{route('frontend.product',$item->id)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
                                                 </div>
                                             </div>
                                             <!-- single-product-wrap end -->
@@ -151,10 +151,10 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="product-content-list text-left">
                                                
-                                                <h4><a href="product-details.html" class="product-name">{{$item->name}}</a></h4>
+                                                <h4><a href="{{route('frontend.product',$item->id)}}" class="product-name">{{$item->name}}</a></h4>
                                                 <div class="price-box">
-                                                    <span class="new-price">${{$item->discount}}</span>
-                                                    <span class="old-price">${{$item->price}}</span>
+                                                    {{-- <span class="new-price">${{$item->discount}}</span> --}}
+                                                    <span class="new-price">{{number_format($item->price)}} VND</span>
                                                 </div>
 
                                                 <div class="product-rating">

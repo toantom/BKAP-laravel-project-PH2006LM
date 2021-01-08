@@ -16,13 +16,13 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
             $table->unsignedFloat('length_face');
-            $table->char('waterproof',225);
-            $table->char('material_face',225);
-            $table->char('use_energy',225);
-            $table->char('material_strap',225);
-            $table->char('material_coat',225);
+            $table->char('waterproof',255);
+            $table->char('material_face',255);
+            $table->char('use_energy',255);
+            $table->char('material_strap',255);
+            $table->char('material_coat',255);
             $table->tinyInteger('type');
-            $table->char('origin',225);
+            $table->char('origin',255);
             $table->unsignedInteger('guarantee');
             $table->timestamps();
         });

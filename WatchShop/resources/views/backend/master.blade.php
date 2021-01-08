@@ -9,7 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>TBT WatchShop</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/fontawesome-free/css/all.min.css')}}">
@@ -18,7 +18,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -33,10 +32,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('backend.index')}}" class="nav-link">Home</a>
+        <a href="{{route('backend.index')}}" class="nav-link">Trang quản trị</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="{{route('frontend.index')}}" class="nav-link">Trang mua hàng</a>
       </li>
     </ul>
 
@@ -58,9 +57,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('backend.index')}}" class="brand-link">
-      <img src="{{URL::asset('public/be/img/logo/logo1.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{URL::asset('public/images/logo/logo1.png')}}" alt="TBT Logo" class="brand-image elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">TBT</span>
+      <span class="brand-text font-weight-light">TBT WatchShop</span>
     </a>
 
     <!-- Sidebar -->
@@ -68,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{URL::asset('public/be/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{URL::asset('public/images/logo/logo2.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -81,29 +80,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
             <a href="" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-list-alt"></i>  
                 <p>Quản lý danh mục
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('backend.category')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{route('category.index')}}" class="nav-link ">
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách danh mục</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('backend.category.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thêm mới danh mục</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-clock"></i>              
                 <p>Quản lý sản phẩm
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -111,13 +104,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('product.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách sản phẩm</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới sản phẩm</p>
                 </a>
               </li>
@@ -125,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-truck"></i>              
                 <p>Quản lý nhập hàng
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -133,13 +126,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('product.index')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách nhập hàng</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm thông tin nhập hàng</p>
                 </a>
               </li>
@@ -147,15 +140,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-receipt"></i>         
                 <p>Quản lý đơn hàng
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                <a href="{{route('order.index')}}" class="nav-link ">
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách đơn hàng</p>
                 </a>
               </li>
@@ -171,13 +164,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Banner</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới Banner</p>
                 </a>
               </li>
@@ -185,7 +178,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fab fa-blogger"></i>             
                 <p>Quản lý Blog
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -193,13 +186,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Blog</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới Blog</p>
                 </a>
               </li>
@@ -207,7 +200,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-table"></i>              
+                <i class="nav-icon fas fa-comments"></i>              
                 <p>Quản lý Feedback
                 <i class="right fas fa-angle-left"></i>
               </p>
@@ -215,7 +208,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Feedback</p>
                 </a>
               </li>
@@ -242,7 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div> --}}
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="#">TBT Company</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -259,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{URL::asset('public/be/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{URL::asset('public/be/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <!-- bs-custom-file-input -->
-<script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.j')}}s"></script>
+<script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{URL::asset('public/be/js/adminlte.min.js')}}"></script>
 
@@ -268,10 +261,97 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		bsCustomFileInput.init();
 	});
   $(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollX": true
-    } );
+    $('#table-pro').DataTable( {
+        "searching": true,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+    });
+    $('#table-cate').DataTable({
+        "searching": true,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+    });
+    $('#table-order').DataTable({
+        "searching": true,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+    });
+    $('#table-detail').DataTable({
+        "searching": true,
+        "lengthChange": false,
+        "paging": false,
+        "info": false,
+    });
   } );
 </script>
+{{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- sweetalert category --}}
+@if(Session::has('addcate-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm mới danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('addcate-error'))
+  <script>
+    swal("Thất bại","Bạn thêm mới danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatecate-success'))
+  <script>
+    swal("Thành công","Bạn sửa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatecate-error'))
+  <script>
+    swal("Thất bại","Bạn sửa danh mục không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delcate-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa danh mục thành công", "success");
+  </script>
+@endif
+@if(Session::has('delcate-error'))
+  <script>
+    swal("Thất bại","Bạn đã xóa danh mục không thành công", "error");
+  </script>
+@endif
+{{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- sweetalert product --}}
+@if(Session::has('addpro-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('addpro-error'))
+  <script>
+    swal("Thất bại","Bạn thêm sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatepro-success'))
+  <script>
+    swal("Thành công","Bạn đã sửa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatepro-error'))
+  <script>
+    swal("Thất bại","Bạn sửa sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delpro-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('delpro-error'))
+  <script>
+    swal("Thất bại","Bạn xóa sản phẩm không thành công", "error");
+  </script>
+@endif
 </body>
 </html>

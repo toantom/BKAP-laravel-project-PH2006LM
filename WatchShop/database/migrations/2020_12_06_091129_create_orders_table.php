@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedFloat('total_price');
-            $table->char('address_ship',225);
+            $table->unsignedFloat('total_price',11);
+            $table->char('address_ship',255);
             $table->text('note');
             $table->tinyInteger('status');
             $table->timestamps();

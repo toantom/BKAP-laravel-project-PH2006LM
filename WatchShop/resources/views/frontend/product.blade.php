@@ -26,15 +26,15 @@
                 <div class="product-large-slider">
                   @foreach ($pro_img as $item)
                     <div class="pro-large-img img-zoom">
-                        <img src="{{URL::asset('public/images/product/')}}/{{$item->image}}" alt="product-details" />
-                        <a href="{{URL::asset('public/images/product/')}}/{{$item->image}}" data-fancybox="images"><i class="fa fa-search"></i></a>
+                        <img src="{{URL::asset('public/images/product/imgs')}}/{{$item->image}}" alt="product-details" />
+                        <a href="{{URL::asset('public/images/product/imgs')}}/{{$item->image}}" data-fancybox="images"><i class="fa fa-search"></i></a>
                     </div>
                     @endforeach
                 </div>
                 <div class="product-nav">
                  @foreach ($pro_img as $item)
                     <div class="pro-nav-thumb">
-                        <img src="{{URL::asset('public/images/product/')}}/{{$item->image}}" alt="product-details" />
+                        <img src="{{URL::asset('public/images/product/imgs')}}/{{$item->image}}" alt="product-details" />
                     </div>
                 @endforeach
                 </div>
@@ -84,7 +84,7 @@
                         </ul>
                         <ul class="stock-cont">
                             <li class="product-sku">Sku: <span>{{$pro_fend->sku}}</span></li>
-                            <li class="product-stock-status">Danh mục: <a href="{{$pro_fend->category->id}}">{{$pro_fend->category->name}}</a></li>
+                            <li class="product-stock-status">Danh mục: <a href="{{route('frontend.category',$pro_fend->category->id)}}">{{$pro_fend->category->name}}</a></li>
                             
                         </ul>
                         <div class="share-product-socail-area">
@@ -254,7 +254,7 @@
                         <!-- single-product-area start -->
                         <div class="single-product-area mt-30">
                             <div class="product-thumb">
-                                <a href="product-details.html">
+                                <a href="{{route('frontend.product',$item->id)}}">
                                     <img class="primary-image" src="{{URL::asset('public/images/product/')}}/{{$item->image}}" alt="">
                                 </a>
                                 <div class="label-product label_new">New</div>
@@ -265,7 +265,7 @@
                                 </div>
                             </div>
                             <div class="product-caption">
-                                <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                                <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                 <div class="price-box">
                                     <span class="new-price">${{$item->discount}}</span>
                                     <span class="old-price">${{$item->price}}</span>
@@ -292,7 +292,7 @@
                     <!-- single-product-area start -->
                     <div class="single-product-area mt-30">
                         <div class="product-thumb">
-                            <a href="product-details.html">
+                            <a href="{{route('frontend.product',$item->id)}}">
                                 <img class="primary-image" src="{{URL::asset('public/images/product/')}}/{{$item->image}}" alt="">
                             </a>
                             <div class="label-product label_new">New</div>
@@ -303,7 +303,7 @@
                             </div>
                         </div>
                         <div class="product-caption">
-                            <h4 class="product-name"><a href="product-details.html">{{$item->name}}</a></h4>
+                            <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
                                 <span class="new-price">${{$item->discount}}</span>
                                 <span class="old-price">${{$item->price}}</span>

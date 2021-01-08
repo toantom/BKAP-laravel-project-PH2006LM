@@ -14,16 +14,15 @@ class CreateInputsTable extends Migration
     public function up()
     {
         Schema::create('inputs', function (Blueprint $table) {
+
             $table->id();
             $table->char('sku',225)->unique();
             $table->foreign('sku')->references('sku')->on('products');
             $table->foreignId('id_admin');
             $table->foreign('id_admin')->references('id')->on('admins');
             $table->unsignedInteger('quantity');
-            $table->unsignedFloat('price');
-            $table->unsignedFloat('total');
-
-
+            $table->unsignedFloat('price', 11);
+            $table->unsignedFloat('total', 11);
             $table->timestamps();
         });
     }

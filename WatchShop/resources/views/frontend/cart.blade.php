@@ -86,6 +86,8 @@
 
 
 <script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
     
     $('.update').change(function(event){

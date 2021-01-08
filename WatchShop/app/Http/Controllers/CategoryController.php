@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Product_img;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -19,9 +20,18 @@ class CategoryController extends Controller
      */
 
 
+
     public function indexBE(){
         $cats = Category::where('status','=',1)->paginate(5);
         return view ('backend.category.index', compact('cats'));
+    }
+    public function index(){
+        $cats = Category::paginate(5);
+        return view ('backend.category.index', compact('cats'));
+    }
+    public function allpro(){
+        $pros = Product::paginate(10);
+        return view('frontend.category',compact('pros'));
     }
     //Show pro trang category
     public function showpro($id)
@@ -37,7 +47,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.category.create');
     }
 
     /**
@@ -49,16 +58,20 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $file_name = $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('be/img/brand'),$file_name);
+        $request->file('image')->move(public_path('images/brand'),$file_name);
         $request['slug'] = Str::slug($request->name);
         
-        Category::create([
+        $cate = Category::create([
             'name' => $request->name,
             'image'=> $file_name,
             'status'=>$request->status,
             'slug'=>$request->slug
         ]);
-        return redirect()->route('backend.category');
+        if($cate){
+            return redirect()->route('category.index')->with('addcate-success','Thêm mới thành công');
+        }else{
+            return redirect()->back()->with('addcate-error','Thêm mới không thành công');
+        }
     }
 
     /**
@@ -80,8 +93,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $cats = Category::paginate(5);
         $cat = Category::find($id);
-        return view('backend.category.edit',compact('cat'));
+        return view('backend.category.edit',compact('cats','cat'));
     }
 
     /**
@@ -92,22 +106,27 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCategoryRequest $request, $id)
-    {
-        $filename = Product::find($id)->image;
-        if( $request->file('image') != null){
+    {   
+        $filename = Category::find($id)->image;
+        if( $request->file('image')){
             $file_name = $request->file('image')->getClientOriginalName();
-            File::delete('be/img/brand/'.$filename.'');
-            $request->file('image')->move(public_path('be/img/brand'),$file_name);
+            File::delete('public/images/brand/'.$filename.'');
+            $request->file('image')->move(public_path('images/brand/'),$file_name);
         }else{
             $file_name = $filename;
         }
-        Category::where ('id',$id)->update([
+        $request['slug'] = Str::slug($request->name);
+        $cate = Category::where('id',$id)->update([
             'name'=>$request->name,
             'status'=>$request->status,
             'image'=>$file_name,
             'slug'=>$request->slug
         ]);
-        return redirect()->route('backend.category');
+        if($cate){
+            return redirect()->route('category.index')->with('updatecate-success','Sửa thành công');
+        }else{
+            return redirect()->back()->with('updatecate-error','Sửa không thành công');
+        }
     }
 
     /**
@@ -117,12 +136,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        $pro = Product::where('id_cate',$id)->get();
         $filename = Category::find($id)->image;
-        if($filename!=null){
-            File::delete('be/img/brand/'.$filename.'');
+        if($pro->count() > 0){
+            return redirect()->back()->with('delcate-error','Xóa không thàn công');
+        }else{
+            if($filename){
+                File::delete('public/images/brand/'.$filename.'');
+            }
+            $cate = Category::where('id',$id)->delete();
+            if($cate){
+                return redirect()->route('category.index')->with('delcate-success','Xoá thành công');
+            }else{
+                return redirect()->back()->with('delcate-error','Xóa không thàn công');
+            }
         }
-        Category::where('id',$id)->delete();
-    	return redirect()->route('backend.category');
     }
 }

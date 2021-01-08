@@ -7,6 +7,7 @@ use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
                 'wishlist'=>$wish,
             ]);
         });
+        Paginator::useBootstrap();
     }
 }

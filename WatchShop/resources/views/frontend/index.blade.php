@@ -72,8 +72,8 @@
                         <div class="product-caption">
                             <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
-                                <span class="new-price">${{$item->discount}}</span>
-                                <span class="old-price">${{$item->price}}</span>
+                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                             </div>
                         </div>
                     </div>
@@ -143,8 +143,8 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            <span class="new-price">${{$item->discount}}</span>
-                                            <span class="old-price">${{$item->price}}</span>
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,8 +177,8 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            <span class="new-price">${{$item->discount}}</span>
-                                            <span class="old-price">${{$item->price}}</span>
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                                         </div>
                                     </div>
                                 </div>
@@ -211,8 +211,8 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            <span class="new-price">${{$item->discount}}</span>
-                                            <span class="old-price">${{$item->price}}</span>
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                                         </div>
                                     </div>
                                 </div>
@@ -245,8 +245,8 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            <span class="new-price">${{$item->discount}}</span>
-                                            <span class="old-price">${{$item->price}}</span>
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                                         </div>
                                     </div>
                                 </div>

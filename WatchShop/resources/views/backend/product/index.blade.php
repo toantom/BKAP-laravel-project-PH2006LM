@@ -22,49 +22,55 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <div class="card" style=" height: 800px ,overflow: scroll">
+              <div class="card">
                 <!-- /.card-header -->
-                <div class="card-body table-responsive">
-                  <table id="table" class="table table-bordered table-hover">
+                <div class="card-body table-responsive" >
+                  <table id="table-pro" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Ảnh sản phẩm</th>
-                        <th>Ảnh chi tiết</th>
+                        <th style="width:10%" >Tên sản phẩm</th>
+                        <th style="width:10%">Ảnh sản phẩm</th>
                         <th>Tồn kho</th>
-                        <th>Giá sản phẩm</th>
-                        <th>Giảm giá</th>
-                        <th>Danh mục</th>
+                        <th style="width:10%">Giá sản phẩm</th>
+                        <th style="width:10%">Giảm giá</th>
+                        <th style="width:10%">Danh mục</th>
                         <th>Miêu tả sản phẩm</th>
-                        <th>Thông tin sản phẩm</th>
+                        <th style="width:10%">Thông tin sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Hoạt động</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($prod as $pro)    
+                    @foreach ($prod as $key=> $pro)    
                     <tr>
-                        <td>1</td>
                         <td>{{$pro->name}}</td>
+<<<<<<< HEAD
                         <td><img src="{{URL::asset('public/images/product')}}/{{$pro->image}}" alt="" width="100"></td>
                         <td></td>
+=======
+                        <td><img src="{{URL::asset('public/images/product/')}}/{{$pro->image}}" alt="" width="100"></td>
+>>>>>>> 0ee017b9e8688fdc0a360b6ffb389d975880f23f
                         <td>{{$pro->stock}}</td>
-                        <td>{{$pro->price}}</td>
+                        <td>{{number_format($pro->price)}} VND</td>
                         <td>{{$pro->discount}}</td>
-                        <td></td>
-                        <td>{{$pro->des}}</td>
-                        <td></td>
+                        <td>{{$pro->category->name}}</td>
+                        <td style="display:block;text-overflow: ellipsis;width:150px;overflow: hidden !important; white-space: nowrap; border-left: inherit">{{$pro->des}}</td>
+                        <td>
+                          {{$pro->attribute->length_face}}mm <br>
+                          {{$pro->attribute->waterproof}} ATM <br>
+                          {{$pro->attribute->material_face}}
+                        </td>
                         @if($pro->status==1)
                         <td> Hiện</td>
                         @else
                         <td>Ẩn</td>
                         @endif
                         <td>
-                            <a href="{{route('backend.product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa</button></a>
-                            <form action="{{route('backend.product.destroy',$pro->id)}}" method="POST">
+                            <a href="{{route('backend.product.editPic', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-primary btn-sm">Sửa ảnh</button></a>
+                            <a href="{{route('product.edit', $pro->id)}}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Sửa thông tin</button></a>
+                            <form action="{{route('product.destroy',$pro->id)}}" method="POST">
                             @method('DELETE') @csrf 
-                            <button class="btn btn-block btn-outline-danger btn-sm">Xóa</button>
+                            <a href="" onclick=" return confirm('Bạn có chắc là muốn xóa {{$pro->name}}')"><button class="btn btn-block btn-outline-danger btn-sm">Xóa</button></a>                            
                             </form>
                         </td>
                     </tr> 
@@ -72,6 +78,7 @@
                     </tbody>
                   </table>
                 </div>
+                {{$prod->links()}}
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
@@ -84,4 +91,37 @@
     {{$prod->links()}}
       </section>
       <!-- /.content -->
+      {{-- SweetAlert --}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- sweetalert product --}}
+@if(Session::has('addpro-success'))
+  <script>
+    swal("Thành công","Bạn đã thêm sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('addpro-error'))
+  <script>
+    swal("Thất bại","Bạn thêm sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('updatepro-success'))
+  <script>
+    swal("Thành công","Bạn đã sửa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('updatepro-error'))
+  <script>
+    swal("Thất bại","Bạn sửa sản phẩm không thành công", "error");
+  </script>
+@endif
+@if(Session::has('delpro-success'))
+  <script>
+    swal("Thành công","Bạn đã xóa sản phẩm thành công", "success");
+  </script>
+@endif
+@if(Session::has('delpro-error'))
+  <script>
+    swal("Thất bại","Bạn xóa sản phẩm không thành công", "error");
+  </script>
+@endif
 @endsection

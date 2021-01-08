@@ -7,18 +7,25 @@ use App\Models\Product_img;
 use App\Models\Category;
 use App\Models\Attribute;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
-    use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;    
+use Illuminate\Support\Str;
 
 
 class ProductController extends Controller
 {
   public function index()
   {
+
         $pro_img = Product_img::all();
         $prod = Product::paginate(5);
         return view('backend.product.index', compact('prod', 'pro_img'));
+
+        $prod = Product::paginate(4);
+        return view('backend.product.index', compact('prod'));
+
   }
     public function show_pro($id)
     {
@@ -38,9 +45,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $cate = Category::all();
-        $attr = Attribute::all();
-        return view('backend.product.create', compact('cate','attr'));
+        $cate = Category::where('status','=',1)->get();
+        return view('backend.product.create', compact('cate'));
     }
 
     /**
@@ -54,22 +60,41 @@ class ProductController extends Controller
         if($request->hasFile('avatar')){
             $file = $request->file('avatar');
             $file_name = $file->getClientOriginalName();
-            $file->move(public_path('be/img/product'),$file_name);
+            $file->move(public_path('images/product/'),$file_name);
         } 
-        
-        $request->merge(['image' => $file_name]);
+        $attr = Attribute::create([
+            'length_face' => $request->length_face,
+            'material_face' => $request->material_face,
+            'waterproof' => $request->waterproof,
+            'use_energy' => $request->use_energy,
+            'material_strap' => $request->material_strap,
+            'material_coat' => $request->material_coat,
+            'origin' => $request->origin,
+            'guarantee' => $request->guarantee,
+        ]);
+        $request->merge(['image' => $file_name, 'id_attr' => $attr->id]);
         $request['slug'] = Str::slug($request->name);      
         $data = $request->except(['_token','avatar', 'avatars']);
-        // dd($data);
         $product = Product::create($data);
-
+        
         if($request->hasFile('avatars')){
             $files = $request->file('avatars');
             foreach ($files as $value) {
                 $file_names = $value->getClientOriginalName();
-                $value->move(public_path('be/img/product/imgs'),$file_names);
+                $value->move(public_path('images/product/imgs'),$file_names);
+                Product_img::create([
+                    'id_product' => $product->id,
+                    'image' => $file_names
+                ]);
             }
         }
+        if($product){
+            return redirect()->route('product.index')->with('addpro-success','Thêm mới thành công');
+        }
+        else{
+            return redirect()->back()->with('addpro-error','Thêm mới không thành công');
+        }
+        
     }
 
     /**
@@ -83,5 +108,125 @@ class ProductController extends Controller
         //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $pro = Product::find($id);
+        $cate = Category::where('status','=',1)->get();
+        return view('backend.product.edit',compact('pro','cate','id'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateProductRequest $request, $id)
+    {   
+        //cập nhập thông tin sản phẩm
+        $id_attr = Product::find($id)->id_attr;
+        $attr = Attribute::where('id',$id_attr)->update([
+            'length_face' => $request->length_face,
+            'material_face' => $request->material_face,
+            'waterproof' => $request->waterproof,
+            'use_energy' => $request->use_energy,
+            'material_strap' => $request->material_strap,
+            'material_coat' => $request->material_coat,
+            'origin' => $request->origin,
+            'guarantee' => $request->guarantee,
+        ]);
+        //merge thêm trường id_attr vào request
+        $request->merge(['id_attr' => $id_attr]);
+        //trường slug
+        $request['slug'] = Str::slug($request->name);      
+        $data = $request->except(['_token','_method','length_face','material_face','waterproof',
+                                'use_energy','material_strap','material_coat','origin','guarantee']);
+        
+        $product = Product::where('id',$id)->update($data);
+        if($product){
+            return redirect()->route('product.index')->with('updatepro-success','sua thanh cong');
+        }else{
+            return redirect()->back()->with('updatepro-error');
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {   
+        $filename = Product::find($id)->image;
+        $id_attr = Product::find($id)->id_attr;
+        $filenames = Product_img::where('id_product',$id)->get();
+        if($filenames){
+            foreach ($filenames as $value) {
+                File::delete('public/images/product/imgs/'.$value.'');
+            }
+        }
+        if($filename){
+            File::delete('public/images/product/'.$filename.'');
+        }
+        Product_img::where('id_product',$id)->delete();
+        $pro = Product::find($id)->delete();
+        $attr = Attribute::where('id', $id_attr)->delete();
+        if($pro){
+            return redirect()->back()->with('delpro-success','Xóa sản phẩm thành công');
+        }else{
+            return redirect()->back()->with('delpro-error','Xóa sản phẩm không thành công');
+        }
+    }
+
+    public function editPic($id){
+        $pro = Product::find($id);
+        $pro_imgs = Product_img::where('id_product',$id)->get();
+        return view('backend.product.editPic',compact('pro','pro_imgs'));
+    }
+    public function updatePic(Request $request, $id){
+        //cập nhật ảnh đại diện
+        dd($request->all());
+        $filename = Product::find($id)->image;
+        if($request->hasFile('avatar')){
+            File::delete('public/images/product/'.$filename.'');
+            $file = $request->file('avatar');
+            $file_name = $file->getClientOriginalName();
+            $file->move(public_path('images/product'),$file_name);
+        }else{
+            $file_name = $filename;
+        }
+        // //cập nhật ảnh chi tiết
+        // if($request->hasFile('avatars')){
+        //     $files = $request->file('avatars');
+        //     // $imgs = Product_img::where('id_product',$id);
+        //     // File::delete('public/be/img/product/imgs'.$imgs->image.'');
+        //     Product_img::where('id_product',$id)->delete();
+        //     foreach ($files as $value) {
+        //         $file_names = $value->getClientOriginalName();
+        //         $value->move(public_path('images/product/imgs'),$file_names);
+        //         Product_img::create([
+        //             'id_product' => $id,
+        //             'image' => $file_names
+        //         ]);
+        //     }
+        // }
+        $product = Product::where('id',$id)->update([
+            'image' => $file_name
+        ]);
+
+        if($product){
+            return redirect()->route('product.index')->with('updatePicpro-success','sua anh thanh cong');
+        }else{
+            return redirect()->back()->with('updatePicpro-error','sua anh khong thanh cong');
+        }
+    }
 
 }
