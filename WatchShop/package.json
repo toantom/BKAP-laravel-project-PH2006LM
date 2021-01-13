@@ -17,6 +17,7 @@
         "resolve-url-loader": "^3.1.0"
     },
     "dependencies": {
+        "ckeditor4": "^4.15.1",
         "sweetalert": "^2.1.2"
     }
 }

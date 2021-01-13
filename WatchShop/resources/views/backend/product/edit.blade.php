@@ -63,7 +63,7 @@
 						@error('avatar')
 							<small class="help-block text-danger">{{$message}}</small>
 						@enderror
-						<img src="{{URL::asset('public/images/product/'.$pro->image)}}" alt="" width="200px">
+						<br><img src="{{URL::asset('public/images/product/'.$pro->image)}}" alt="" width="200px">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputFile">Ảnh chi tiết</label>
@@ -75,7 +75,7 @@
 						</div>
 						@error('avatars')
 							<small class="help-block text-danger">{{$message}}</small>
-						@enderror
+						@enderror <br>
 						@foreach ($pro_imgs as $item)
 							<img src="{{URL::asset('public/images/product/imgs/'.$item->image)}}" alt="" width="200px">
 						@endforeach              

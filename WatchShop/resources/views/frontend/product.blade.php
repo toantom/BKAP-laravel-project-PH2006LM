@@ -95,8 +95,13 @@ label.star:before {
                         </div>
                         
                         <div class="price-box">
-                            <span class="old-price">{{number_format($pro_fend->price)}} VND</span> <br>
-                                <span class="new-price">{{number_format($pro_fend->price - ($pro_fend->price * ($pro_fend->discount / 100)))}} VND</span>
+
+                            @if ($item->discount)
+                                <span class="old-price">{{number_format($item->price)}} VND</span>
+                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                            @else
+                                <span class="new-price">{{number_format($item->price)}} VND</span>
+                            @endif
                         </div>
                         <p>{{$pro_fend->des}}</p>
 
@@ -317,8 +322,12 @@ label.star:before {
                             <div class="product-caption">
                                 <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                 <div class="price-box">
-                                    <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                    <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                    @if ($item->discount)
+                                        <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                        <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                    @else
+                                        <span class="new-price">{{number_format($item->price)}} VND</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -358,8 +367,12 @@ label.star:before {
                         <div class="product-caption">
                             <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
-                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                @if ($item->discount)
+                                    <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                    <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                @else
+                                    <span class="new-price">{{number_format($item->price)}} VND</span>
+                                @endif
                             </div>
                         </div>
                     </div>

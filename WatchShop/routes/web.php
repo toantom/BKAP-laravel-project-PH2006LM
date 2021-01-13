@@ -52,7 +52,12 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     Route::get('/order','OrderController@index')->name('order.index');
     Route::get('/order/order-detail/{id}','OrderController@detail')->name('order.detail');
     Route::post('/order/order-detail/{id}','OrderController@updateStatus')->name('order.update');
+    //Input
 
+    //Banner
+    Route::resource('banner', 'BannerController');
+    //Blog
+    Route::resource('blog', 'BlogController');
 });
 //route frontend
 Route::get('/','HomeController@index')->name('frontend.index');

@@ -72,7 +72,6 @@
                   <table id="table-cate" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                      <th>STT</th>
                       <th>Tên danh mục</th>
                       <th>Ảnh danh mục</th>
                       <th>Trạng thái</th>
@@ -82,7 +81,6 @@
                     <tbody>
                     @foreach($cats as $key => $cate)
                     <tr>
-                      <td>{{$key+1}}</td>
                       <td>{{$cate->name}}
                       </td>
                       <td><img src="{{URL::asset('public/images/brand/')}}/{{$cate->image}}" alt="" width="100"></td>

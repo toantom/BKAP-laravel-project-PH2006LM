@@ -6,6 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class AdminController extends Controller
 {
     public function index(){
@@ -30,4 +31,52 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('backend.login');
     }
+
+    // public function index()
+    // {
+    //     $admin=Session::get('admin');
+    //     if (!isset($admin)) {
+    //         return redirect()->route('backend.login');
+    //     }else {
+    //         return view('backend.index');
+    //     }
+    //     return view('backend.index');
+    // }
+    // public function login()
+    // {
+    //     return view('backend.login');
+    // }
+    // public function postLogin(Request $req)
+    // {
+    //     // dd($req->all());
+    //     $email = $req->email;
+    //     $password = $req->password;
+    //    $admin= Admin::where('email','=',$req->email)->first();
+    //    if (empty($admin)) {
+    //         return redirect()->back()->with('error', 'Sai email');
+    //    }else {
+    //         if(Hash::check($password,$admin->password)) {
+    //             Session::put('admin',$admin);
+    //             return redirect()->route('backend.index')->with('success', 'Đăng nhập thành công');
+    //         } else {
+    //             return redirect()->back()->with('error', 'Sai mật khẩu');
+    //         }
+    //    }
+    // }
+    // public function logout()
+    // {
+    //     Session::forget('admin');
+    //     return redirect()->route('backend.login')->with('success', 'Đăng xuất thành công');
+    // }
+    // public function user_manager()
+    // {
+    //     $all = User::all();
+    //     // dd($all);
+    //     return view('backend.user.index', compact('all'));
+    // }
+    // public function delete_user($id)
+    // {
+    //     User::find($id)->delete();
+    //     return redirect()->back()->with('success', 'Xóa người dùng thành công');
+    // }
 }
