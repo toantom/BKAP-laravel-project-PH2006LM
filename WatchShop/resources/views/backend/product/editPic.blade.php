@@ -41,7 +41,6 @@
 						<img src="{{URL::asset('public/images/product/'.$pro->image)}}" alt="" width="200px">
 					</div>
 					@foreach ($pro_imgs as $key => $item)
-						
 					<div class="form-group">
 						<label for="exampleInputFile">Ảnh chi tiết {{$key+1}}</label>
 						<div class="input-group">
