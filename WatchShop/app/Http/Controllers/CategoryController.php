@@ -20,6 +20,11 @@ class CategoryController extends Controller
      */
 
 
+
+    public function indexBE(){
+        $cats = Category::where('status','=',1)->paginate(5);
+        return view ('backend.category.index', compact('cats'));
+    }
     public function index(){
         $cats = Category::paginate(5);
         return view ('backend.category.index', compact('cats'));

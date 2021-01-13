@@ -4,6 +4,8 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Helper\CartHelper;
 use App\Models\Wishlist;
+use App\Models\Order;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
                 'cart'=>($data = new CartHelper),
                 'cates'=>Category::where('status', '=', 1)->get(),
                 'wishlist'=>$wish,
+                'noti_order'=>count(Order::where('status','<',2)->get()),
+                'noti_fb'=>count(Feedback::where('status','=',1)->get()),
             ]);
         });
         Paginator::useBootstrap();

@@ -3,6 +3,7 @@
      * 
      */
     namespace App\Helper;
+    use Symfony\Component\HttpFoundation\Session\Session;
     class CartHelper
     {
         public $items = [];
@@ -23,10 +24,14 @@
                 'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
+                'stock'=>$product->stock,
                 'quantity'=>$qty
             ];
             if(isset($this->items[$product->id])){
                 $this->items[$product->id]['quantity']+=1;
+                if($this->items[$product->id]['quantity']>$this->items[$product->id]['stock']){
+                    $this->items[$product->id]['quantity']=$this->items[$product->id]['stock'];
+                };
             }else{
             $this->items[$product->id]=$item;
             };
@@ -37,6 +42,11 @@
             unset($this->items[$product->id]);
             session(['cart'=>$this->items]);
         }
+        //update cart
+        public function update($id,$qty){
+            $this->items[$id]['quantity']=$qty;
+            session(['cart'=>$this->items]);
+        }
         //addCart Detail
         public function addCartD($product,$qty){
             $item = [
@@ -44,10 +54,14 @@
                 'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
+                'stock'=>$product->stock,
                 'quantity'=>$qty
             ];
             if(isset($this->items[$product->id])){
                 $this->items[$product->id]['quantity']+= $qty;
+                if($this->items[$product->id]['quantity']>$this->items[$product->id]['stock']){
+                    $this->items[$product->id]['quantity']=$this->items[$product->id]['stock'];
+                };
             }else{
             $this->items[$product->id]=$item;
             };

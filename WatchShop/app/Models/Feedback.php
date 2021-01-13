@@ -9,7 +9,7 @@ class Feedback extends Model
 {
     use HasFactory;
     protected $table = 'feedbacks';
-    protected $fillable = ['id','id_product','id_user','star','content','updated_at'];
+    protected $fillable = ['id','id_product','id_user','star','name','image','content','updated_at'];
     public function user(){
         return $this->hasOne(User::class,'id','id_user');
     }

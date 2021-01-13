@@ -41,6 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('frontend.index')}}" class="nav-link">Trang mua hàng</a>
       </li>
+
     </ul>
 
     <!-- SEARCH FORM -->
@@ -54,6 +55,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </form>
+    <ul class="navbar-nav ml-auto" >
+      <a onclick="return sweetConfirm('Bạn có muốn đăng xuất không?')" href="{{route('backend.logout')}}" class="nav-link" style="color: red">Đăng xuất</a>
+    </ul>
+
+
   </nav>
   <!-- /.navbar -->
 
@@ -74,7 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{URL::asset('public/images/logo/logo2.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::guard('admin')->user()->name}}</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -129,15 +135,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link ">
+                <a href="{{route('backend.input')}}" class="nav-link ">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách nhập hàng</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{route('backend.input.create')}}" class="nav-link ">
                   <i class="fas fa-file-import nav-icon"></i>
-                  <p>Thêm thông tin nhập hàng</p>
+                  <p>Tạo mới phiếu nhập hàng</p>
                 </a>
               </li>
             </ul>
@@ -147,6 +153,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="nav-icon fas fa-receipt"></i>         
                 <p>Quản lý đơn hàng
                 <i class="right fas fa-angle-left"></i>
+                @if(($noti_order)>0)
+                <span class="pull-right-container">
+                  <span class="label pull-right bg-red">NEW</span>
+                </span>
+                @endif
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -154,6 +165,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a href="{{route('order.index')}}" class="nav-link ">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách đơn hàng</p>
+                  @if(($noti_order)>0)
+                  <span class="pull-right-container">
+                    <span class="label pull-right bg-red">{{$noti_order}}</span>
+                  </span>
+                  @endif
                 </a>
               </li>
             </ul>

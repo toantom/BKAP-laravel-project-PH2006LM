@@ -13,18 +13,7 @@
                     <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Trang chủ</a></li>
                     <li class="breadcrumb-item active">Danh sách yêu thích</li>
                 </ul>
-                @if(Session::has('delete'))
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{Session::get('delete')}}
-                </div>
-                @endif
-                @if(Session::has('wish'))
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{Session::get('wish')}}
-                </div>
-                @endif
+                
                 <!-- breadcrumb-list end -->
             </div>
         </div>
@@ -53,12 +42,12 @@
                             <tbody>
                                 @foreach ($wishlist as $item)
                                 <tr>
-                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item->product->id)}}"><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" height="120px" width="100px" alt=""></a></td>
+                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item->product->id)}}"><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" height="120px" width="auto" alt=""></a></td>
                                     <td class="plantmore-product-name"><a href="{{route('frontend.product',$item->product->id)}}">{{$item->product->name}}</a></td>
                                     <td class="plantmore-product-price"><span class="amount">${{$item->product->price}}</span></td>
                                     <td class="plantmore-product-stock-status"><span class="in-stock">in stock</span></td>
                                     <td class="plantmore-product-add-cart"><a href="{{route('frontend.addcart',[$item->product->id,1])}}">Thêm vào giỏ hàng</a></td>
-                                    <td class="plantmore-product-remove"><a onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi danh sách ưa thích không?')" href="{{route('frontend.delete-wishlist',$item->product->id)}}"><i class="fa fa-times"></i></a></td>
+                                    <td class="plantmore-product-add-cart"><a onclick="return sweetConfirm('Bạn có muốn xóa sản phẩm này khỏi danh sách yêu thích không?')" style="color: white" href="{{route('frontend.delete-wishlist',$item->product->id)}}"> Xóa</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -76,6 +65,16 @@
 
 
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+
+
+@if(Session::has('delete'))
+ <script>swal("","Đã bỏ một sản phẩm ưa thích", "success");</script>
+  @endif
+ @if(Session::has('wish'))
+ <script>swal("Sản phẩm này đã có trong danh sách yêu thích!");</script>
+@endif
 
 
 @endsection

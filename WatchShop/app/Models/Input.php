@@ -9,5 +9,8 @@ class Input extends Model
 {
     use HasFactory;
     protected $table = 'inputs';
-    protected $fillable = ['id', 'sku', 'id_admin', 'quantity', 'price', 'total',];
+    protected $fillable =['id','sku','name','id_admin','price','quantity','total','created_at','updated_at'];
+    public function admin(){
+        return $this->hasOne(Admin::class,'id','id_admin');
+    }
 }

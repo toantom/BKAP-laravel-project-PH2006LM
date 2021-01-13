@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Attribute;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,76 +23,19 @@ class HomeController extends Controller
         $bans_client_3= Banner::where('status', '=', 3)->get();
         $pros= Product::all();
         $pros_sale= Product::where('discount', '>', 0)->get();
-        $pros_bestsell= Product::where('status', '=', 1)->get();
+        $pros_bestsell = [];
+        $order_count= Product::withCount('order')->get();
+        foreach($order_count as $item){
+            if($item->order_count > 0){
+                $pros_bestsell[$item->id]= $item;
+            }
+        }
         $pros_man = Product::where('type', '=', 0)->get();
         $pros_woman = Product::where('type', '=', 1)->get();
         $blogs = Blog::all();
         return view('frontend.index',compact('blogs','bans_client_1','bans_client_2','bans_client_3','pros','pros_bestsell','pros_man','pros_woman','pros_sale'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function about(){
+        return view('frontend.about');
     }
 }

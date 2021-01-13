@@ -127,7 +127,7 @@
                                         <!-- ACCORDION END -->
                                     </div>
                                     <div class="order-button-payment">
-                                        <input type="submit" value="Xác nhận đặt hàng">
+                                        <input onclick="return sweetSubmit('Xác nhận đặt hàng?')" type="submit" value="Xác nhận đặt hàng">
                                     </div>
                                 </div>
                                 <!-- your-order-wrapper start -->
