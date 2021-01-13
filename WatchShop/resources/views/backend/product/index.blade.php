@@ -35,7 +35,6 @@
                         <th style="width:10%">Giảm giá</th>
                         <th style="width:10%">Danh mục</th>
                         <th>Miêu tả sản phẩm</th>
-                        <th style="width:10%">Thông tin sản phẩm</th>
                         <th>Trạng thái</th>
                         <th>Hoạt động</th>
                     </tr>
@@ -44,22 +43,15 @@
                     @foreach ($prod as $key=> $pro)    
                     <tr>
                         <td>{{$pro->name}}</td>
-<<<<<<< HEAD
-                        <td><img src="{{URL::asset('public/images/product')}}/{{$pro->image}}" alt="" width="100"></td>
-                        <td></td>
-=======
-                        <td><img src="{{URL::asset('public/images/product/')}}/{{$pro->image}}" alt="" width="100"></td>
->>>>>>> 0ee017b9e8688fdc0a360b6ffb389d975880f23f
+
+                        <td><img src="{{URL::asset('public/images/product')}}/{{$pro->image}}" alt="" width="60"></td>
+                        
+
                         <td>{{$pro->stock}}</td>
                         <td>{{number_format($pro->price)}} VND</td>
                         <td>{{$pro->discount}}</td>
                         <td>{{$pro->category->name}}</td>
                         <td style="display:block;text-overflow: ellipsis;width:150px;overflow: hidden !important; white-space: nowrap; border-left: inherit">{{$pro->des}}</td>
-                        <td>
-                          {{$pro->attribute->length_face}}mm <br>
-                          {{$pro->attribute->waterproof}} ATM <br>
-                          {{$pro->attribute->material_face}}
-                        </td>
                         @if($pro->status==1)
                         <td> Hiện</td>
                         @else
@@ -88,7 +80,6 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-    {{$prod->links()}}
       </section>
       <!-- /.content -->
       {{-- SweetAlert --}}

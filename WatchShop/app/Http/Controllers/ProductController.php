@@ -23,9 +23,6 @@ class ProductController extends Controller
         $prod = Product::paginate(5);
         return view('backend.product.index', compact('prod', 'pro_img'));
 
-        $prod = Product::paginate(4);
-        return view('backend.product.index', compact('prod'));
-
   }
     public function show_pro($id)
     {
@@ -35,7 +32,8 @@ class ProductController extends Controller
         $feedbacks = Feedback::where('id_product','=',$id)->get();
         $pro_img = Product_img::where('id_product','=',$id)->get();
         $pro_upsell = Product::limit(4)->get();
-        return view('frontend.product',compact('pro_upsell','pro_fend','pro_img','feedbacks','pro_related'));
+        $review = count(Feedback::where('id_product','=',$id)->get());
+        return view('frontend.product',compact('pro_upsell','review','pro_fend','pro_img','feedbacks','pro_related'));
     }
 
     /**
@@ -193,7 +191,6 @@ class ProductController extends Controller
     }
     public function updatePic(Request $request, $id){
         //cập nhật ảnh đại diện
-        dd($request->all());
         $filename = Product::find($id)->image;
         if($request->hasFile('avatar')){
             File::delete('public/images/product/'.$filename.'');

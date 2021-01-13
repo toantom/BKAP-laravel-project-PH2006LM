@@ -30,10 +30,7 @@
                                 </a>
                             </div>
                             @if(Session::has('updatefail'))
-                                    <div class="alert alert-danger">
-                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                          {{Session::get('updatefail')}}
-                                    </div>
+                                <script> swal("","Mật khẩu cũ không đúng", "error"); </script>
                             @endif
                             <!-- login-register-tab-list end -->
                             <div class="tab-content">
@@ -51,14 +48,11 @@
                                                     
                                                     <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu">
                                                     @if(Session::has('fail'))
-                                                    <div class="alert alert-danger">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('fail')}}
-                                                    </div>
+                                                    <script>swal("", "Mật khẩu cũ không đúng", "success"); </script>
                                                     @endif
                                                 </div>
                                                 <div class="button-box">
-                                                    <button class="register-btn btn" type="submit"><span>Thay đổi mật khẩu</span></button>
+                                                    <button class="register-btn btn" onclick="return sweetSubmit('Xác nhận thay đổi mật khẩu?')" type="submit"><span>Thay đổi mật khẩu</span></button>
                                                 </div>
                                             </form>
                                             

@@ -4,18 +4,18 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FeedbackRequest extends FormRequest
+class ContactRequest extends FormRequest
 {
     public function messages()
     {
         return [
             'name.required' => 'Tên người nhận không được để trống',
             'name.string' => 'Tên người nhận không đúng định dạng',
-            'image.required'=>'Ảnh sản phẩm không được để trống',
-            'image.mimes'=>'Ảnh không đúng định dạng',
+            'phone.required'=> 'Số điện thoại không được để trống',
+            'phone.min'=> 'Số điện thoại từ 10 đến 13 chữ số',
+            'phone.max'=> 'Số điện thoại từ 10 đến 13 chữ số',
             'content.required'=>'Nội dung không được để trống',
-            'content.max'=>'Nội dung không quá 225 ký tự',
-            'star.required'=>'Vui lòng đánh giá số sao'
+            'content.max'=>'Nội dung không quá 225 ký tự'
 
         ];
     }
@@ -23,9 +23,8 @@ class FeedbackRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'image' => 'required|mimes:jpg,jpeg,png,gif',
-            'content'=>'required|max:255',
-            'star'=>'required'
+            'phone' => 'required|min:10|max:13',
+            'content'=>'required|max:255'
         ];
     }
 }

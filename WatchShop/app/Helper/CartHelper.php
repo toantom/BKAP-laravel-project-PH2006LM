@@ -24,10 +24,14 @@
                 'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
+                'stock'=>$product->stock,
                 'quantity'=>$qty
             ];
             if(isset($this->items[$product->id])){
                 $this->items[$product->id]['quantity']+=1;
+                if($this->items[$product->id]['quantity']>$this->items[$product->id]['stock']){
+                    $this->items[$product->id]['quantity']=$this->items[$product->id]['stock'];
+                };
             }else{
             $this->items[$product->id]=$item;
             };
@@ -50,10 +54,14 @@
                 'image'=>$product->image,
                 'name'=>$product->name,
                 'price'=>$product->price,
+                'stock'=>$product->stock,
                 'quantity'=>$qty
             ];
             if(isset($this->items[$product->id])){
                 $this->items[$product->id]['quantity']+= $qty;
+                if($this->items[$product->id]['quantity']>$this->items[$product->id]['stock']){
+                    $this->items[$product->id]['quantity']=$this->items[$product->id]['stock'];
+                };
             }else{
             $this->items[$product->id]=$item;
             };

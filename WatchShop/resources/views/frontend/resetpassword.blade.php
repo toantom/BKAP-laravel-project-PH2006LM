@@ -53,8 +53,7 @@
                                                     <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu">
                                                     @if(Session::has('fail'))
                                                     <div class="alert alert-danger">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('fail')}}
+                                                        <script> swal("","Email và Số điện thoại đã đăng ký không trùng khớp", "error"); </script>
                                                     </div>
                                                     @endif
                                                 </div>

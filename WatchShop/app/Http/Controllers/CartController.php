@@ -26,6 +26,7 @@ class CartController extends Controller
     }
     //update cart ajax
     public function updatecart( CartHelper $cart,Request $request){
+        
         $id= $request->id;
         $qty = $request->qty;
         $cart->update($id,$qty);

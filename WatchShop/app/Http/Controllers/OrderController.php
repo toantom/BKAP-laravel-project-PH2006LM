@@ -6,6 +6,7 @@ use App\Models\Order_detail;
 use App\Helper\CartHelper;
 use App\Http\Requests\CheckoutRequest;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
@@ -13,9 +14,10 @@ class OrderController extends Controller
     //backend order index
     public function index()
     {
-        $order = Order::paginate(5);
+        $order = Order::orderBy('status','ASC')->orderBy('created_at','DESC')->paginate(5);
         return view('backend.order.index',compact('order'));
     }
+    
 
     //backend order detail
     public function detail($id){
@@ -67,7 +69,12 @@ class OrderController extends Controller
                 'price'=>$item['price'],
                 'quantity'=>$item['quantity']
             ]);
+            $quantity = Product::find($item['id'])->stock - $item['quantity'];
+            Product::find($item['id'])->update([
+                'stock'=>$quantity
+            ]);
         };
+
         session()->forget('cart');
         return redirect()->route('frontend.index')->with('checkout_success',"Đặt hàng thành công, vui lòng chờ xác thực");
 

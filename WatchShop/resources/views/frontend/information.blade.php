@@ -8,7 +8,7 @@
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
                     <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Thông tin của tôi</li>
+                    <li class="breadcrumb-item active">Thông tin tài khoản</li>
                 </ul>
                 <!-- breadcrumb-list end -->
             </div>
@@ -16,16 +16,10 @@
     </div>
 </div>
 @if(Session::has('success'))
-     <div class="alert alert-success">
-     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      {{Session::get('success')}}
-     </div>
+        <script>swal("", "Sửa thông tin thành công", "success"); </script>
 @endif
 @if(Session::has('updateok'))
-     <div class="alert alert-success">
-     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      {{Session::get('updateok')}}
-     </div>
+<script>swal("", "Đổi mật khẩu thành công", "success"); </script>
 @endif
 
 <!-- breadcrumb-area end -->
@@ -41,7 +35,7 @@
                             <div class="col-lg-3 col-md-12">
                                 <div class="d-single-info">
                                     <p class="user-name">Xin chào <span>{{Auth::user()->name}}</span></p>
-                                    <a href="{{route('frontend.logout')}}"> <strong> Đăng xuất </strong></a></p>
+                                    <a onclick="return sweetConfirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}"> <strong> Đăng xuất </strong></a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">
@@ -98,7 +92,7 @@
                                                             Giao hàng thành công
                                                             @break
                                                         @endswitch</td>
-                                                    <td>${{$item->total_price}} </td>
+                                                    <td>{{number_format($item->total_price)}}VND </td>
                                                     <td><a href="{{route('frontend.orderdetail',$item->id)}}" class="view">view</a></td>
                                                 </tr>
                                                 @endforeach
@@ -151,7 +145,7 @@
                                                         <span class="custom-radio"><input type="radio" value="1" @if((Auth::user()->gender)==1) checked @endif name="gender"> Nữ.</span>
                                                     </div>
                                                     <div class="button-box">
-                                                        <button class="btn default-btn" type="submit">Thay đổi thông tin tài khoản</button>
+                                                        <button onclick="return sweetSubmit('Xác nhận thay đổi thông tin cá nhân?')" class="btn default-btn" type="submit">Thay đổi thông tin tài khoản</button>
                                                     </div>
                                                     
                                                 </form>

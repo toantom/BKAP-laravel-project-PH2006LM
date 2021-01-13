@@ -47,11 +47,11 @@
                       <td>{{number_format($item->total_price)}} VND</td>
                       <td>
                         @if ($item->status == 0)
-                          Chờ duyệt
+                          Chờ duyệt   <i class="fas fa-minus-square" style="color: red"></i>
                         @elseif($item->status == 1)
-                          Đang giao
+                          Đang giao <i class="fas fa-minus-square" style="color: red"></i>
                         @else
-                          Thành công
+                          Thành công <i class="fas fa-check-square" style="color: green"></i>
                         @endif
                       </td>
                       <td>{{$item->note}}</td>

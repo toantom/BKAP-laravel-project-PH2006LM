@@ -21,7 +21,7 @@
     <section class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4 ">
               <div class="card">
                 <div class="card-body">
                   <form action="{{route('category.store')}}" role="form" method="POST" enctype="multipart/form-data">
@@ -65,7 +65,7 @@
                 </div>
               </div>
           </div> 
-            <div class="col-6">
+            <div class="col-8">
               <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -113,10 +113,7 @@
           <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-<<<<<<< HEAD
-        {{$cats->links()}}
-=======
->>>>>>> 0ee017b9e8688fdc0a360b6ffb389d975880f23f
+
       </section>
       
       <!-- /.content -->

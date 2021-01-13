@@ -8,7 +8,7 @@
                 <!-- breadcrumb-list start -->
                 <ul class="breadcrumb-list">
                     <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Trang chủ</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('frontend.information')}}"></a>Thông tin tài khoản</li>
+                    <li class="breadcrumb-item"><a href="{{route('frontend.information')}}">Thông tin tài khoản</a></li>
                     <li class="breadcrumb-item active">Chi tiết đơn hàng</li>
                 </ul>
                 <!-- breadcrumb-list end -->
@@ -39,11 +39,11 @@
                                 @foreach($detail as $item)
                                 <tr>
                                     
-                                    <td class="plantmore-product-thumbnail"><a href="#"><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" alt="" height="120px" width="100px"></a></td>
+                                    <td class="plantmore-product-thumbnail"><a href="#"><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" alt="" height="120px" width="auto"></a></td>
                                     <td class="plantmore-product-name"><a href="#">{{$item->product->name}}</a></td>
-                                    <td class="plantmore-product-price"><span class="amount">${{$item->product->price}}</span></td>
+                                    <td class="plantmore-product-price"><span class="amount">{{number_format($item->product->price)}} VND</span></td>
                                     <td class="plantmore-product-quantity"><span class="amount">{{$item->quantity}}</span></td>
-                                    <td class="product-subtotal"><span class="amount">${{($item->price)*($item->quantity)}}</span></td>
+                                    <td class="product-subtotal"><span class="amount">{{number_format(($item->price)*($item->quantity))}} VND</span></td>
                                 </tr>
                                 @endforeach
                             </tbody>

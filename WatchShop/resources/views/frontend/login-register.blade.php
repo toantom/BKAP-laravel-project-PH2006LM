@@ -47,25 +47,19 @@
                                                         <a href="{{route('frontend.view.resetpass')}}">Quên mật khẩu?</a>
                                                     </div>
                                                     @if(Session::has('resetok'))
-                                                    <div class="alert alert-success">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('resetok')}}
-                                                    </div>
+                                                        <script>swal("", "Lấy lại mật khẩu thành công", "success"); </script>
                                                     @endif
                                                     @if(Session::has('error'))
-                                                    <div class="alert alert-danger">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('error')}}
-                                                    </div>
+                                                        <script>swal("", "Tên đăng nhập hoặc mật khẩu không đúng!", "error"); </script>
                                                     @endif
                                                     @if(Session::has('register'))
-                                                    <div class="alert alert-success">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('register')}}
-                                                    </div>
-                                                    @endif
+                                                        <script>swal("", "Đăng ký thành công!", "success"); </script>
+                                                     @endif
                                                     <div class="button-box">
                                                         <button class="login-btn btn" type="submit"><span>Đăng nhập</span></button>
+                                                    </div>
+                                                    <div class="button-box">
+                                                        <a class="login-btn btn" href="{{route('backend.login')}}" role="button"><span>Đăng nhập trang quản trị</span></a>
                                                     </div>
                                                 </div>
                                             </form>
@@ -79,7 +73,7 @@
                         <div class="login-register-wrapper">
                             <!-- login-register-tab-list start -->
                             <div class="login-register-tab-list nav" id="myTab">
-                                <a data-toggle="tab active" href="#lg2">
+                                <a data-toggle="tab" class="active" href="#lg2">
                                     <h4> Đăng ký </h4>
                                 </a>
                             </div>
@@ -94,7 +88,7 @@
                                                     @error('name')
                                                             <small class='text-danger'>{{$message}}</small>
                                                     @enderror
-                                                    <input type="text" name="name" placeholder="Tên đăng nhập">
+                                                    <input type="text" name="name" placeholder="Họ và tên">
                                                     @error('password')
                                                             <small class='text-danger'>{{$message}}</small>
                                                     @enderror

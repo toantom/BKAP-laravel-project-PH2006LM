@@ -1,5 +1,6 @@
 @extends('frontend.main')
 @section('content')
+
     <!-- Hero Section Start -->
     <div class="hero-slider hero-slider-one">
 
@@ -59,8 +60,10 @@
                     <!-- single-product-area start -->
                     <div class="single-product-area mt-30">
                         <div class="product-thumb">
-                            <a href="{{route('frontend.product',$item->id)}}">
-                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                            <a  href="{{route('frontend.product',$item->id)}}">
+                            <img style="margin-left: auto;
+                            margin-right: auto;
+                            display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                             </a>
                             <div class="label-product label_new">New</div>
                             <div class="action-links">
@@ -72,8 +75,13 @@
                         <div class="product-caption">
                             <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
+                                @if(($item->discount) == 0)
+                                <span class="old-price"></span><br>
+                                <span class="new-price">{{number_format($item->price)}} VND</span>
+                                @else
                                 <span class="old-price">{{number_format($item->price)}} VND</span> <br>
                                 <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -130,8 +138,10 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
@@ -143,8 +153,13 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
+                                            @else
                                             <span class="old-price">{{number_format($item->price)}} VND</span> <br>
                                             <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -164,8 +179,10 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
@@ -177,8 +194,13 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
+                                            @else
                                             <span class="old-price">{{number_format($item->price)}} VND</span> <br>
                                             <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -198,8 +220,10 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
@@ -211,8 +235,13 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
+                                            @else
                                             <span class="old-price">{{number_format($item->price)}} VND</span> <br>
                                             <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -232,8 +261,10 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
@@ -245,8 +276,13 @@
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
+                                            @else
                                             <span class="old-price">{{number_format($item->price)}} VND</span> <br>
                                             <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -300,32 +336,5 @@
         </div>
     </div>
     {{-- Brands area end --}}
-    {{-- Email Contact --}}
-    <div class="newletter-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="newletter-wrap">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7 col-md-12">
-                                <div class="newsletter-title mb-30">
-                                    <h3>Join Our <br><span>Newsletter Now</span></h3>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-5 col-md-7">
-                                <div class="newsletter-footer mb-30">
-                                    <input type="text" placeholder="Your email address...">
-                                    <div class="subscribe-button">
-                                        <button class="subscribe-btn">Subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection

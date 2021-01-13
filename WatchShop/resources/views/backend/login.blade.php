@@ -17,8 +17,12 @@
   <link rel="stylesheet" href="{{URL::asset('public/be/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="hold-transition login-page">
+  @if(Session::has('error'))
+     <script>swal("", "Tên đăng nhập hoặc mật khẩu không đúng!", "error"); </script>
+  @endif
     <div class="login-box">
         <div class="login-logo">
           <a href=""><b>TBT </b>WatchShop</a>
