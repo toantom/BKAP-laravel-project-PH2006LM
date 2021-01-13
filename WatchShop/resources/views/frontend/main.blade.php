@@ -216,7 +216,6 @@
                                             </ul>
                                         </li>
                                         <li><a href="{{route('frontend.about')}}">Giới thiệu về TBT WATCH</a></li>
-                                        <li><a href="{{route('frontend.contact')}}">Hỗ trợ và tư vấn</a></li>
                                     </ul>
                                 </nav>
 

@@ -19,7 +19,13 @@ class UserController extends Controller
     
     public function index()
     {
-        //
+        $users = User::orderBy('status','ASC')->orderBy('created_at','DESC')->paginate(5);
+        return view('backend.user.index',compact('users'));
+    }
+    public function seen($id)
+    {
+        User::where("id",$id)->update(['status'=> "1" ]);
+        return redirect()->route('backend.user')->with('success',"");
     }
     //view reset pass
     public function reset(){

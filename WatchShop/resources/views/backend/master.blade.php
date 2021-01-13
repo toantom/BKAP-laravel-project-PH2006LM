@@ -216,16 +216,52 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-comments"></i>              
-                <p>Quản lý Feedback
+                <i class="nav-icon fab fa-blogger"></i>             
+                <p>Quản lý người dùng
                 <i class="right fas fa-angle-left"></i>
+                @if(($new_user)>0)
+                <span class="pull-right-container">
+                  <span class="label pull-right bg-red">NEW</span>
+                </span>
+                @endif
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="{{route('backend.user')}}" class="nav-link ">
+                  <i class="fas fa-list-ul nav-icon"></i>
+                  <p>Danh sách người dùng</p>
+                  @if(($new_user)>0)
+                  <span class="pull-right-container">
+                    <span class="label pull-right bg-red">{{$new_user}}</span>
+                  </span>
+                  @endif
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-comments"></i>              
+                <p>Quản lý Feedback
+                 <i class="right fas fa-angle-left"></i>
+                 @if(($noti_fb)>0)
+                <span class="pull-right-container">
+                  <span class="label pull-right bg-red">NEW</span>
+                </span>
+                @endif
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('backend.feedback')}}" class="nav-link ">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Feedback</p>
+                    @if(($noti_fb)>0)
+                    <span class="pull-right-container">
+                      <span class="label pull-right bg-red">{{$noti_fb}}</span>
+                    </span>
+                    @endif
                 </a>
               </li>
             </ul>

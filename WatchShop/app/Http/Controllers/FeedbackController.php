@@ -14,10 +14,17 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    
+    //show index
     public function index()
     {
-        //
+        $feedbacks = Feedback::orderBy('status','ASC')->orderBy('created_at','DESC')->paginate(5);
+        return view('backend.feedback.index',compact('feedbacks'));
+    }
+    //Seen feedback
+    public function seen($id)
+    {
+        Feedback::where("id",$id)->update(['status'=> "1" ]);
+        return redirect()->route('backend.feedback')->with('success',"");
     }
     //Add feedback
     public function create(FeedbackRequest $request)
@@ -104,6 +111,7 @@ class FeedbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Feedback::find($id)->delete();
+        return redirect()->back()->with('deletefeedback',"");
     }
 }

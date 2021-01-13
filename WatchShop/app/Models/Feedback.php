@@ -13,4 +13,8 @@ class Feedback extends Model
     public function user(){
         return $this->hasOne(User::class,'id','id_user');
     }
+    public function product(){
+        return $this->hasOne(Product::class,'id','id_product');
+    }
+
 }

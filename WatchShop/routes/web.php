@@ -32,8 +32,13 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     route::delete('/input/delete/{id}','InputController@destroy')->name('backend.input.delete');
     route::get('/input/edit/{id}','InputController@edit')->name('backend.input.edit');
     route::post('/input/edit/{id}','InputController@update')->name('backend.input.update');
-
-    
+    //feedback
+    route::get('/feedback','FeedbackController@index')->name('backend.feedback');
+    route::post('/feedback/{id}','FeedbackController@seen')->name('backend.feedback.seen');
+    route::delete('/feedback/delete/{id}','FeedbackController@destroy')->name('backend.feedback.delete');
+    //Users
+    route::get('/user','UserController@index')->name('backend.user');
+    route::post('/user/{id}','UserController@seen')->name('backend.user.seen');
 
     Route::get('/product', 'ProductController@indexBE')->name('backend.product');
     Route::get('/product/create', 'ProductController@create')->name('backend.product.create');
