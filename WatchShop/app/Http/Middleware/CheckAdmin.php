@@ -19,10 +19,10 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
-            return $next($request);
-        }else{
+        if(!Auth::guard('admin')->check()){
             return redirect('/loginAdmin');
+        }else{
+            return $next($request);
         }
     }
 }

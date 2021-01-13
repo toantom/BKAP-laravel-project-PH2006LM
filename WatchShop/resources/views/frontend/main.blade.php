@@ -21,7 +21,6 @@
     <!-- Icon Font CSS -->
     <link rel="stylesheet" href="{{URL::asset('public/css/vendor/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('public/css/vendor/simple-line-icons.css')}}">
-
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{URL::asset('public/css/plugins/animation.css')}}">
     <link rel="stylesheet" href="{{URL::asset('public/css/plugins/slick.css')}}">
@@ -41,8 +40,9 @@
     <!--<link rel="stylesheet" href="assets/css/style.min.css">-->
 
 </head>
-
 <body>
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <div class="main-wrapper">
         
@@ -52,16 +52,13 @@
             <!-- Header Top Start -->
             <div class="header-top-area d-none d-lg-block text-color-white bg-gren border-bm-1">
                 @if(Session::has('success'))
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{Session::get('success')}}
-                </div>
+                <script>swal("", "Đăng nhập thành công", "success"); </script>
                 @endif
                 @if(Session::has('checkout_success'))
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{Session::get('checkout_success')}}
-                </div>
+                <script>swal("", "Đặt hàng thành công, vui lòng chờ xác thực", "success"); </script>
+                @endif
+                @if(Session::has('contact'))
+                <script>swal("", "Gửi yêu cầu thành công, xin vui lòng chờ", "success"); </script>
                 @endif
                 <div class="container">
                     <div class="row">
@@ -87,14 +84,14 @@
                             <div class="top-info-wrap text-right">
                                 <ul class="my-account-container">
                                     @if (Auth::check())
-                                    <li><a href="{{route('frontend.login-register')}}">{{Auth::user()->name}}</a></li>
-                                    <li><a onclick="return confirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}">Đăng xuất</a></li>
+                                    <li><a href="{{route('frontend.information')}}">Xin chào {{Auth::user()->name}}</a></li>
+                                    <li><a onclick="return sweetConfirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}">Đăng xuất</a></li>
                                     <li><a href="{{route('frontend.wishlist')}}">Danh sách ưa thích</a></li>
                                     @else
                                     <li><a href="{{route('frontend.login-register')}}">Đăng nhập/Đăng ký</a></li>
-                                    @endif
                                     <li><a href="{{route('frontend.cart')}}">Giỏ hàng</a></li>
-                                    <li><a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a></li>
+                                    @endif
+                                    <li><a @if(!Auth::check()) onclick="return sweetConfirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -117,11 +114,11 @@
                             <div class="search-box-wrapper">
                                 <div class="search-box-inner-wrap">
                                     <form class="search-box-inner">
+                                        @csrf
                                         <div class="search-select-box">
                                             <select class="nice-select">
                                                 <optgroup label=" Watch">
                                                     <option value="saab">Sản phẩm</option>
-                                                    <option value="saab">Hãng</option>
                                                 </optgroup>
                                             </select>
                                         </div>
@@ -158,21 +155,21 @@
                                                 </a>
                                                 <div class="quanti-price-wrap">
                                                     <span class="quantity">{{$item['quantity']}} ×</span>
-                                                    <div class="price-box"><span class="new-price">${{$item['price']}}</span></div>
+                                                    <div class="price-box"><span class="new-price">{{number_format($item['price'])}} VND</span></div>
                                                 </div>
-                                                <a class="remove_from_cart" onclick="return confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')" href="{{route('frontend.deletecart',$item['id'])}}"><i class="icon_close"></i></a>
+                                                <a class="remove_from_cart" onclick="return sweetConfirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')" href="{{route('frontend.deletecart',$item['id'])}}"><i class="icon_close"></i></a>
                                             </div>
                                         </li>
                                         @endforeach
                                         <li class="subtotal-box">
                                             <div class="subtotal-title">
-                                                <h3>Tổng tiền cần thanh toán :</h3><span>$ {{$cart->total_price}}</span>
+                                                <h3>Tổng tiền cần thanh toán :</h3><span> {{number_format($cart->total_price)}} VND</span>
                                             </div>
                                         </li>
                                         <li class="mini-cart-btns">
                                             <div class="cart-btns">
                                                 <a href="{{route('frontend.cart')}}">Xem giỏ hàng</a>
-                                                <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a>
+                                                <a @if(!Auth::check()) onclick="return sweetConfirm('Bạn cần đăng nhập để thanh toán')" @endif href="{{route('frontend.checkout')}}">Thanh toán</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -206,15 +203,6 @@
                                                         @endforeach
                                                     </ul>
                                                 </li>
-                                                <li><a href="#">Shop Pages</a>
-                                                    <ul>
-                                                        <li><a href="error404.html">Error 404</a></li>
-                                                        <li><a href="compare.html">Compare Page</a></li>
-                                                        <li><a href="cart.html">Cart Page</a></li>
-                                                        <li><a href="checkout.html">Checkout Page</a></li>
-                                                        <li><a href="wishlist.html">Wish List Page</a></li>
-                                                    </ul>
-                                                </li>
                                             </ul>
 
                                         </li>
@@ -227,25 +215,15 @@
                                                 <li><a href="blog-largeimage.html">Báo chí viết về TBT Watch</a></li>
                                             </ul>
                                         </li>
-
-                                        <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub-menu">
-                                                <li><a href="frequently-questions.html">FAQ</a></li>
-                                                <li><a href="my-account.html">My Account</a></li>
-                                                <li><a href="login-register.html">login &amp; register</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="contact-us.html">Contact</a></li>
+                                        <li><a href="{{route('frontend.about')}}">Giới thiệu về TBT WATCH</a></li>
+                                        <li><a href="{{route('frontend.contact')}}">Hỗ trợ và tư vấn</a></li>
                                     </ul>
                                 </nav>
 
                             </div>
                         </div>
 
-                        <div class="col-5 col-md-6 d-block d-lg-none">
-                            <div class="logo"><a href="index.html"><img src="./resources/images/logo/logo.png" alt=""></a></div>
-                        </div>
+                        
                         
                         
                         <div class="col-lg-3 col-md-6 col-7 d-block d-lg-none">
@@ -386,15 +364,6 @@
                                             <li><a href="blog-details.html">Blog Details Page</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children "><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="frequently-questions.html">FAQ</a></li>
-                                            <li><a href="my-account.html">My Account</a></li>
-                                            <li><a href="login-register.html">login &amp; register</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="contact-us.html">Contact</a></li>
                                 </ul>
                             </nav>
                             <!-- mobile menu navigation end -->
@@ -530,7 +499,7 @@
         <!-- footer End -->
           
            
-          
+        
            
         
         
@@ -544,6 +513,7 @@
     <!-- jQuery JS -->
     <script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
     <!-- Bootstrap JS -->
+    
     <script src="{{URL::asset('public/js/vendor/popper.min.js')}}"></script>
     <script src="{{URL::asset('public/js/vendor/bootstrap.min.js')}}"></script>
 
@@ -565,6 +535,42 @@
 
     <!-- Main JS -->
     <script src="{{URL::asset('public/js/main.js')}}"></script>
+    <script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
+    <script type="text/javascript">
+        function sweetConfirm(text) {
+        event.preventDefault();
+        var target = $(event.target);
+        var linkURL = target.attr("href");
+        swal({
+                title: "",
+                text: text,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((result) => {
+                if (result) {
+                    window.location.href = linkURL;
+                }
+            })
+    };
+        function sweetSubmit(text) {
+            event.preventDefault();
+            var target = $(event.target);
+            var form = target.closest("form");
+            swal({
+                    title: "",
+                    text: text,
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((result) => {
+                    if (result) {
+                        form.submit();
+                    }
+                })
+        };
+
+</script>
 
 </body>
 

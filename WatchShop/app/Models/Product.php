@@ -9,7 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = 'products';
-    protected $fillable =['id','name','image','sku','slug','stock','status','type','id_cate','id_attr','discount','des','price'];
+    protected $fillable =['id','name','image','sku','slug','star','stock','status','type','id_cate','id_attr','discount','des','price'];
     //join table category, attribute, product_imgs
     public function category(){
         return $this->hasOne(Category::class,'id','id_cate');
@@ -22,6 +22,12 @@ class Product extends Model
     }
     public function attribute(){
         return $this->hasOne(Attribute::class,'id','id_attr');
+    }
+    public function order(){
+        return $this->hasMany(Order_detail::class,'id_product','id');
+    }
+    public function feedback(){
+        return $this->hasMany(Feedback::class,'id_product','id');
     }
 
 }
