@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Danh sách danh mục</h1>
+            <h1 class="m-0 text-dark">Sửa danh mục</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('backend.index')}}">Trang chủ</a></li>
-            <li class="breadcrumb-item active">Danh sách danh mục</li>
+            <li class="breadcrumb-item active">Sửa danh mục</li>
             </ol>
         </div><!-- /.col -->
         </div><!-- /.row -->
@@ -60,7 +60,7 @@
                         <small class="help-block text-danger">{{$message}}</small>
                         @enderror
                         <div class="form-group">
-                          <img src="{{URL::asset('public/images/brand/'.$cat->image)}}" alt="" width="200px">
+                          <br><img src="{{URL::asset('public/images/brand/'.$cat->image)}}" alt="" width="200px">
                         </div>
                       </div>
                     </div>

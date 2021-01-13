@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Input extends Model
 {
     use HasFactory;
+    protected $table = 'inputs';
+    protected $fillable = ['id', 'sku', 'id_admin', 'quantity', 'price', 'total',];
 }

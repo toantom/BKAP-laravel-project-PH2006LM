@@ -49,7 +49,7 @@
                         <td>{{number_format($pro->price)}} VND</td>
                         <td>{{$pro->discount}} %</td>
                         <td>{{$pro->category->name}}</td>
-                        <td style="display:block;text-overflow: ellipsis;width: 150px;overflow: hidden !important; white-space: nowrap; ">{{$pro->des}}</td>
+                        <td style="display:block;text-overflow: ellipsis;width: 150px;overflow: hidden !important; white-space: nowrap;height:11em ">{{$pro->des}}</td>
                         <td>
                           {{$pro->attribute->length_face}}mm <br>
                           {{$pro->attribute->waterproof}} ATM <br>

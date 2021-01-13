@@ -153,8 +153,12 @@
                                                
                                                 <h4><a href="{{route('frontend.product',$item->id)}}" class="product-name">{{$item->name}}</a></h4>
                                                 <div class="price-box">
-                                                    {{-- <span class="new-price">${{$item->discount}}</span> --}}
-                                                    <span class="new-price">{{number_format($item->price)}} VND</span>
+                                                    @if ($item->discount)
+                                                        <span class="old-price">{{number_format($item->price)}} VND</span>
+                                                        <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                                    @else
+                                                        <span class="new-price">{{number_format($item->price)}} VND</span>
+                                                    @endif
                                                 </div>
 
                                                 <div class="product-rating">

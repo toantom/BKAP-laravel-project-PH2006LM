@@ -57,8 +57,12 @@
                             <a href="#reviews">(<span class="count">1</span> đánh giá)</a>
                         </div>
                         <div class="price-box">
-                            <span class="new-price">${{$pro_fend->discount}}</span>
-                            <span class="old-price">${{$pro_fend->price}}</span>
+                            @if ($item->discount)
+                                <span class="old-price">{{number_format($item->price)}} VND</span>
+                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                            @else
+                                <span class="new-price">{{number_format($item->price)}} VND</span>
+                            @endif
                         </div>
                         <p>{{$pro_fend->des}}</p>
 
@@ -249,8 +253,12 @@
                             <div class="product-caption">
                                 <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                 <div class="price-box">
-                                    <span class="new-price">${{$item->discount}}</span>
-                                    <span class="old-price">${{$item->price}}</span>
+                                    @if ($item->discount)
+                                        <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                        <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                    @else
+                                        <span class="new-price">{{number_format($item->price)}} VND</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -287,8 +295,12 @@
                         <div class="product-caption">
                             <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
-                                <span class="new-price">${{$item->discount}}</span>
-                                <span class="old-price">${{$item->price}}</span>
+                                @if ($item->discount)
+                                    <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                    <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                @else
+                                    <span class="new-price">{{number_format($item->price)}} VND</span>
+                                @endif
                             </div>
                         </div>
                     </div>
