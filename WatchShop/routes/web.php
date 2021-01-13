@@ -48,8 +48,11 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     Route::delete('/product/destroy/{id}', 'ProductController@destroy')->name('backend.product.destroy');
     Route::resource('product', 'ProductController');
 
+
     Route::get('/product/editPic/{id}','ProductController@editPic')->name('backend.product.editPic');
     Route::put('/product/updatePic/{id}','ProductController@updatePic')->name('backend.product.updatePic');
+
+  
     //Order
     Route::get('/order','OrderController@index')->name('order.index');
     Route::get('/order/order-detail/{id}','OrderController@detail')->name('order.detail');
