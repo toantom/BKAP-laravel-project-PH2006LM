@@ -18,13 +18,13 @@ class WishlistController extends Controller
     //Show Whislist
     public function show_whislist()
     {   
-        $wishlist = Wishlist::Where('id_user','=', "21" )->get();
+        $wishlist = Wishlist::Where('id_user','=', Auth::user()->id )->get();
         return view('frontend.wishlist',compact('wishlist'));
     }
     //Add whislist
     public function create($id)
     {
-        if(null !== Wishlist::where(['id_user'=> Auth::user()->id ,'id_product'=> $id])){
+        if(count(Wishlist::where(['id_user'=> Auth::user()->id ,'id_product'=> $id])->get()) == 1){
             return redirect()->route('frontend.wishlist')->with('wish',"Sản phẩm này đã có trong danh sách yêu thích");
         }else{
         Wishlist::create([

@@ -1,5 +1,6 @@
 @extends('frontend.main')
 @section('content')
+
     <!-- Hero Section Start -->
     <div class="hero-slider hero-slider-one">
 
@@ -16,7 +17,7 @@
                             <p>{{$item->content}} </p>
                             <p>Chỉ từ <strong>{{$item->title}}</strong></p>
                             <div class="slide-btn-group">
-                                <a href="{{route('frontend.pro')}}" class="btn btn-bordered btn-style-1">Mua ngay</a>
+                                <a href="{{route('frontend.category',1)}}" class="btn btn-bordered btn-style-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -35,7 +36,7 @@
              @foreach ($bans_client_2 as $item)
                 <div class="col-lg-6 col-md-6">
                     <div class="single-banner mb-30">
-                        <a href="{{route('frontend.pro')}}"><img src="./public/images/banner/{{$item->image}}" alt=""></a>
+                        <a href="{{route('frontend.category',2)}}"><img src="./public/images/banner/{{$item->image}}" alt=""></a>
                     </div>
                 </div>
              @endforeach
@@ -59,24 +60,27 @@
                     <!-- single-product-area start -->
                     <div class="single-product-area mt-30">
                         <div class="product-thumb">
-                            <a href="{{route('frontend.product',$item->id)}}">
-                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                            <a  href="{{route('frontend.product',$item->id)}}">
+                            <img style="margin-left: auto;
+                            margin-right: auto;
+                            display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                             </a>
                             <div class="label-product label_new">New</div>
                             <div class="action-links">
                                 <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                 <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                
                             </div>
                         </div>
                         <div class="product-caption">
                             <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
-                                @if ($item->discount)
-                                    <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                    <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                @if(($item->discount) == 0)
+                                <span class="old-price"></span><br>
+                                <span class="new-price">{{number_format($item->price)}} VND</span>
                                 @else
-                                    <span class="new-price">{{number_format($item->price)}} VND</span> <br>
+                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
                                 @endif
                             </div>
                         </div>
@@ -134,25 +138,28 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            @if ($item->discount)
-                                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
                                             @else
-                                                <span class="new-price">{{number_format($item->price)}} VND</span>
-                                            @endif                                        
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -172,25 +179,28 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            @if ($item->discount)
-                                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
                                             @else
-                                                <span class="new-price">{{number_format($item->price)}} VND</span>
-                                            @endif                                        
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -210,25 +220,28 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            @if ($item->discount)
-                                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
                                             @else
-                                                <span class="new-price">{{number_format($item->price)}} VND</span>
-                                            @endif                                        
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -248,25 +261,28 @@
                                 <!-- single-product-area start -->
                                 <div class="single-product-area mt-30">
                                     <div class="product-thumb">
-                                        <a href="{{route('frontend.product',$item->id)}}">
-                                            <img class="primary-image" src="./public/images/product/{{$item->image}}" alt="">
+                                        <a  href="{{route('frontend.product',$item->id)}}">
+                                        <img style="margin-left: auto;
+                                        margin-right: auto;
+                                        display: block;" class="primary-image" src="./public/images/product/{{$item->image}}" width="150px" alt="">
                                         </a>
                                         <div class="label-product label_new">New</div>
                                         <div class="action-links">
                                             <a href="{{route('frontend.addcart',[$item->id,1])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                             <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i></a>
-                                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="product-caption">
                                         <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
                                         <div class="price-box">
-                                            @if ($item->discount)
-                                                <span class="old-price">{{number_format($item->price)}} VND</span> <br>
-                                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @if(($item->discount) == 0)
+                                            <span class="old-price"></span><br>
+                                            <span class="new-price">{{number_format($item->price)}} VND</span>
                                             @else
-                                                <span class="new-price">{{number_format($item->price)}} VND</span>
-                                            @endif                                        
+                                            <span class="old-price">{{number_format($item->price)}} VND</span> <br>
+                                            <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -313,39 +329,12 @@
             <div class="row our-brand-active">
                 @foreach ($cates as $item)
                 <div class="brand-single-item" >
-                    <a href="#"><img src="./public/images/brand/{{$item->image}}" alt=""></a>
+                    <a href="{{route('frontend.category',$item->id)}}"><img src="./public/images/brand/{{$item->image}}" alt=""></a>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
     {{-- Brands area end --}}
-    {{-- Email Contact --}}
-    <div class="newletter-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="newletter-wrap">
-                        <div class="row align-items-center">
-                            <div class="col-lg-7 col-md-12">
-                                <div class="newsletter-title mb-30">
-                                    <h3>Join Our <br><span>Newsletter Now</span></h3>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-5 col-md-7">
-                                <div class="newsletter-footer mb-30">
-                                    <input type="text" placeholder="Your email address...">
-                                    <div class="subscribe-button">
-                                        <button class="subscribe-btn">Subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection

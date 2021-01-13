@@ -7,8 +7,8 @@
                     <div class="col-12">
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active">login &amp; register</li>
+                            <li class="breadcrumb-item"><a href="{{route('frontend.index')}}">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Đăng nhập &amp; Đăng ký</li>
                         </ul>
                         <!-- breadcrumb-list end -->
                     </div>
@@ -21,20 +21,17 @@
         <div class="main-content-wrap section-ptb lagin-and-register-page">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                    <div class="col-lg-6 col-md-6 ml-auto mr-auto">
                         <div class="login-register-wrapper">
                             <!-- login-register-tab-list start -->
-                            <div class="login-register-tab-list nav">
+                            <div class="login-register-tab-list nav" id="myTab">
                                 <a class="active" data-toggle="tab" href="#lg1">
-                                    <h4> login </h4>
-                                </a>
-                                <a data-toggle="tab" href="#lg2">
-                                    <h4> register </h4>
+                                    <h4> Đăng nhập </h4>
                                 </a>
                             </div>
                             <!-- login-register-tab-list end -->
                             <div class="tab-content">
-                                <div id="lg1" class ="tab-pane @if($error_re = 0) active @endif" >
+                                <div id="lg1" class ="tab-pane active" >
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                         <form action="{{route('frontend.login')}}" method="post">
@@ -47,29 +44,42 @@
                                                     <div class="login-toggle-btn">
                                                         <input type="checkbox" name="remember">
                                                         <label>Ghi nhớ đăng nhập</label>
-                                                        <a href="#">Quên mật khẩu?</a>
+                                                        <a href="{{route('frontend.view.resetpass')}}">Quên mật khẩu?</a>
                                                     </div>
+                                                    @if(Session::has('resetok'))
+                                                        <script>swal("", "Lấy lại mật khẩu thành công", "success"); </script>
+                                                    @endif
                                                     @if(Session::has('error'))
-                                                    <div class="alert alert-danger">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('error')}}
-                                                    </div>
+                                                        <script>swal("", "Tên đăng nhập hoặc mật khẩu không đúng!", "error"); </script>
                                                     @endif
                                                     @if(Session::has('register'))
-                                                    <div class="alert alert-success">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                                        {{Session::get('register')}}
-                                                    </div>
-                                                    @endif
+                                                        <script>swal("", "Đăng ký thành công!", "success"); </script>
+                                                     @endif
                                                     <div class="button-box">
                                                         <button class="login-btn btn" type="submit"><span>Đăng nhập</span></button>
+                                                    </div>
+                                                    <div class="button-box">
+                                                        <a class="login-btn btn" href="{{route('backend.login')}}" role="button"><span>Đăng nhập trang quản trị</span></a>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="lg2"  class ="tab-pane @if($error_re = 1) active @endif " >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 ml-auto mr-auto">
+                        <div class="login-register-wrapper">
+                            <!-- login-register-tab-list start -->
+                            <div class="login-register-tab-list nav" id="myTab">
+                                <a data-toggle="tab" class="active" href="#lg2">
+                                    <h4> Đăng ký </h4>
+                                </a>
+                            </div>
+                            <!-- login-register-tab-list end -->
+                            <div class="tab-content">
+                                <div id="lg2"  class ="tab-pane active" >
                                     <div class="login-form-container">
                                         <div class="login-register-form">
                                         <form action="{{route('frontend.register')}}" method="post">
@@ -78,7 +88,7 @@
                                                     @error('name')
                                                             <small class='text-danger'>{{$message}}</small>
                                                     @enderror
-                                                    <input type="text" name="name" placeholder="Tên đăng nhập">
+                                                    <input type="text" name="name" placeholder="Họ và tên">
                                                     @error('password')
                                                             <small class='text-danger'>{{$message}}</small>
                                                     @enderror
@@ -122,11 +132,5 @@
             </div>
         </div>
         <!-- main-content-wrap end -->
-
-
-
-
-
-
-
+        
 @endsection

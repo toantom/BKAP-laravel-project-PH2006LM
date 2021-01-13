@@ -18,8 +18,11 @@ class ProductController extends Controller
 {
   public function index()
   {
-        $prod = Product::paginate(4);
-        return view('backend.product.index', compact('prod'));
+
+        $pro_img = Product_img::all();
+        $prod = Product::paginate(5);
+        return view('backend.product.index', compact('prod', 'pro_img'));
+
   }
     public function show_pro($id)
     {
@@ -29,7 +32,8 @@ class ProductController extends Controller
         $feedbacks = Feedback::where('id_product','=',$id)->get();
         $pro_img = Product_img::where('id_product','=',$id)->get();
         $pro_upsell = Product::limit(4)->get();
-        return view('frontend.product',compact('pro_upsell','pro_fend','pro_img','feedbacks','pro_related'));
+        $review = count(Feedback::where('id_product','=',$id)->get());
+        return view('frontend.product',compact('pro_upsell','review','pro_fend','pro_img','feedbacks','pro_related'));
     }
 
     /**
@@ -206,12 +210,6 @@ class ProductController extends Controller
         }
     }
 
-    // public function editPic($id){
-    //     $pro = Product::find($id);
-    //     $pro_imgs = Product_img::where('id_product',$id)->get();
-    //     return view('backend.product.editPic',compact('pro','pro_imgs'));
-    // }
-    // public function updatePic(Request $request, $id){
 
     //     $product = Product::where('id',$id)->update([
     //         'image' => $file_name
