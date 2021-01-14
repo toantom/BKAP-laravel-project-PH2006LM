@@ -102,6 +102,3 @@ route::get('wishlist/add/{id}','WishlistController@create')->name('frontend.add-
 route::get('wishlist/delete/{id}','WishlistController@destroy')->name('frontend.delete-wishlist')->middleware('auth');
 //route feedbacks
 route::post('feedback','FeedbackController@create')->name('frontend.feedback')->middleware('auth');
-// route contact
-route::get('contact','ContactController@form')->name('frontend.contact');
-route::post('sentcontact','ContactController@post')->name('frontend.postcontact');
