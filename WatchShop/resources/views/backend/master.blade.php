@@ -18,8 +18,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- DataTables -->
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{URL::asset('public/be/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{URL::asset('public/be/plugins/summernote/summernote-bs4.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Make sure the path to CKEditor is correct. -->
+  <script src="{{URL::asset('node_modules/ckeditor4/ckeditor.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -179,15 +183,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="{{route('banner.index')}}" class="nav-link ">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Banner</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-file-import nav-icon"></i>
-                  <p>Thêm mới Banner</p>
                 </a>
               </li>
             </ul>
@@ -201,13 +199,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link ">
+                <a href="{{route('blog.index')}}" class="nav-link ">
                   <i class="fas fa-list-ul nav-icon"></i>
                   <p>Danh sách Blog</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('blog.create')}}" class="nav-link">
                   <i class="fas fa-file-import nav-icon"></i>
                   <p>Thêm mới Blog</p>
                 </a>
@@ -307,11 +305,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{URL::asset('public/be/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{URL::asset('public/be/js/adminlte.min.js')}}"></script>
-
+<!-- Summernote -->
+<script src="{{URL::asset('public/be/plugins/summernote/summernote-bs4.min.js')}}"></script>
+<script>
+  
+</script>
 <script type="text/javascript">
 	$(document).ready(function () {
 		bsCustomFileInput.init();
-	});
+  });
+  $(function () {
+    // Summernote
+    $('.summernote').summernote({
+      height : 300,
+    })
+  })
   $(document).ready(function() {
     $('#table-pro').DataTable( {
         "searching": true,
@@ -338,108 +346,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         "info": false,
     });
   } );
-</script>
-{{-- SweetAlert --}}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{-- sweetalert category --}}
-@if(Session::has('addcate-success'))
-  <script>
-    swal("Thành công","Bạn đã thêm mới danh mục thành công", "success");
-  </script>
-@endif
-@if(Session::has('addcate-error'))
-  <script>
-    swal("Thất bại","Bạn thêm mới danh mục không thành công", "error");
-  </script>
-@endif
-@if(Session::has('updatecate-success'))
-  <script>
-    swal("Thành công","Bạn sửa danh mục thành công", "success");
-  </script>
-@endif
-@if(Session::has('updatecate-error'))
-  <script>
-    swal("Thất bại","Bạn sửa danh mục không thành công", "error");
-  </script>
-@endif
-@if(Session::has('delcate-success'))
-  <script>
-    swal("Thành công","Bạn đã xóa danh mục thành công", "success");
-  </script>
-@endif
-@if(Session::has('delcate-error'))
-  <script>
-    swal("Thất bại","Bạn đã xóa danh mục không thành công", "error");
-  </script>
-@endif
-{{-- SweetAlert --}}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{-- sweetalert product --}}
-@if(Session::has('addpro-success'))
-  <script>
-    swal("Thành công","Bạn đã thêm sản phẩm thành công", "success");
-  </script>
-@endif
-@if(Session::has('addpro-error'))
-  <script>
-    swal("Thất bại","Bạn thêm sản phẩm không thành công", "error");
-  </script>
-@endif
-@if(Session::has('updatepro-success'))
-  <script>
-    swal("Thành công","Bạn đã sửa sản phẩm thành công", "success");
-  </script>
-@endif
-@if(Session::has('updatepro-error'))
-  <script>
-    swal("Thất bại","Bạn sửa sản phẩm không thành công", "error");
-  </script>
-@endif
-@if(Session::has('delpro-success'))
-  <script>
-    swal("Thành công","Bạn đã xóa sản phẩm thành công", "success");
-  </script>
-@endif
-@if(Session::has('delpro-error'))
-  <script>
-    swal("Thất bại","Bạn xóa sản phẩm không thành công", "error");
-  </script>
-@endif
-<script src="{{URL::asset('public/js/vendor/jquery-3.3.1.min.js')}}"></script>
-    <script type="text/javascript">
-        function sweetConfirm(text) {
-        event.preventDefault();
-        var target = $(event.target);
-        var linkURL = target.attr("href");
-        swal({
-                title: "",
-                text: text,
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((result) => {
-                if (result) {
-                    window.location.href = linkURL;
-                }
-            })
-    };
-        function sweetSubmit(text) {
-            event.preventDefault();
-            var target = $(event.target);
-            var form = target.closest("form");
-            swal({
-                    title: "",
-                    text: text,
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((result) => {
-                    if (result) {
-                        form.submit();
-                    }
-                })
-        };
-
 </script>
 </body>
 </html>

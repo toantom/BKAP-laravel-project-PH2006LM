@@ -307,7 +307,7 @@
                         <div class="singel-latest-blog">
                             <div class="aritcles-content">
                                 <div class="author-name">
-                                    post by: <a href="#">{{$item->admins->name}}</a> - {{$item->created_at}}
+                                    post by: <a href="#">{{$item->admin->name}}</a> - {{$item->created_at}}
                                 </div>
                                 <h4><a href="blog-details.html" class="articles-name">{{$item->name}}</a></h4>
                             </div>
