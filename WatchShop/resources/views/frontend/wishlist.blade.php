@@ -44,9 +44,20 @@
                                 <tr>
                                     <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item->product->id)}}"><img src="{{URL::asset('public/images/product/')}}/{{$item->product->image}}" height="120px" width="auto" alt=""></a></td>
                                     <td class="plantmore-product-name"><a href="{{route('frontend.product',$item->product->id)}}">{{$item->product->name}}</a></td>
-                                    <td class="plantmore-product-price"><span class="amount">${{$item->product->price}}</span></td>
-                                    <td class="plantmore-product-stock-status"><span class="in-stock">in stock</span></td>
-                                    <td class="plantmore-product-add-cart"><a href="{{route('frontend.addcart',[$item->product->id,1])}}">Thêm vào giỏ hàng</a></td>
+                                    <td class="plantmore-product-price">@if( ($item->product->discount) >0 )
+                                        <span class="new-price">{{number_format($item->product->price - ($item->product->price * ($item->product->discount / 100)))}} VND</span>
+                                    @else
+                                        <span class="new-price">{{number_format($item->product->price)}} VND</span>
+                                    @endif</td>
+                                    <td class="plantmore-product-stock-status"><span class="in-stock">@if ($item->product->stock > 0)
+                                        Còn hàng
+                                    @else Tạm thời hết hàng @endif</span></td>
+                                    <td class="plantmore-product-add-cart">@if ($item->product->stock > 0)
+                                        <a href="{{route('frontend.addcart',[$item->product->id,1])}}">Thêm vào giỏ hàng</a>
+                                        @else
+                                        <a href="">Gửi yêu cầu đặt hàng</a>
+                                        @endif
+                                        </td>
                                     <td class="plantmore-product-add-cart"><a onclick="return sweetConfirm('Bạn có muốn xóa sản phẩm này khỏi danh sách yêu thích không?')" style="color: white" href="{{route('frontend.delete-wishlist',$item->product->id)}}"> Xóa</a></td>
                                 </tr>
                                 @endforeach
@@ -74,6 +85,9 @@
   @endif
  @if(Session::has('wish'))
  <script>swal("Sản phẩm này đã có trong danh sách yêu thích!");</script>
+@endif
+@if(Session::has('loginsuccess'))
+    <script>swal("", "Đăng nhập thành công", "success"); </script>
 @endif
 
 

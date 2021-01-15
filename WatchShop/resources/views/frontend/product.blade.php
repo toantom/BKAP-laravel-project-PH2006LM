@@ -96,7 +96,7 @@ label.star:before {
                         
                         <div class="price-box">
 
-                            @if ($pro_fend->discount)
+                            @if( ($pro_fend->discount) >0 )
                                 <span class="old-price">{{number_format($pro_fend->price)}} VND</span>
                                 <span class="new-price">{{number_format($pro_fend->price - ($pro_fend->price * ($pro_fend->discount / 100)))}} VND</span>
                             @else
@@ -121,7 +121,7 @@ label.star:before {
                         <p>Còn {{$pro_fend->stock}} sản phẩm</p>
                         <ul class="single-add-actions">
                             <li class="add-to-wishlist">
-                                <a href="{{route('frontend.add-wishlist',$pro_fend->id)}}" class="add_to_wishlist"><i class="icon-heart"></i> Thêm vào danh sách yêu thích</a>
+                                <a @if(!Auth::check()) onclick="return sweetConfirm('Bạn cần đăng nhập để thêm sản phẩm yêu thích')" @endif href="{{route('frontend.add-wishlist',$pro_fend->id)}}" class="add_to_wishlist"><i class="icon-heart"></i> Thêm vào danh sách yêu thích</a>
                             </li>
                         </ul>
                         <ul class="stock-cont">
@@ -225,6 +225,7 @@ label.star:before {
                                                         <small class='text-danger'>{{$message}}</small>
                                                     @enderror
                                                     <input type="hidden" name="id_product" value="{{$pro_fend->id}}">
+                                                    <input type="hidden" name="slug" value="{{$pro_fend->slug}}">
                                                 </div>
                                             </div>
                                             <div class="row comment-input">
@@ -390,6 +391,9 @@ label.star:before {
 @endif
 @if(Session::has('success'))
  <script>swal("Cảm ơn bạn đã góp ý cho sản phẩm");</script>
+@endif
+@if(Session::has('loginsuccess'))
+    <script>swal("", "Đăng nhập thành công", "success"); </script>
 @endif
 
 @endsection

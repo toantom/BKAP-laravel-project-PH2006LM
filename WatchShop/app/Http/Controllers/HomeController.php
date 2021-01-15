@@ -32,7 +32,7 @@ class HomeController extends Controller
         }
         $pros_man = Product::where('type', '=', 0)->get();
         $pros_woman = Product::where('type', '=', 1)->get();
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(3);
         return view('frontend.index',compact('blogs','bans_client_1','bans_client_2','bans_client_3','pros','pros_bestsell','pros_man','pros_woman','pros_sale'));
     }
     public function about(){

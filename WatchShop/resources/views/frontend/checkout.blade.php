@@ -100,7 +100,7 @@
                                                     {{$item['name']}} <strong class="product-quantity"> × {{$item['quantity']}}</strong>
                                                 </td>
                                                 <td class="product-total">
-                                                    <span class="amount">${{$item['price']}}</span>
+                                                    <span class="amount">{{number_format($item['price'])}} VND</span>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -108,7 +108,7 @@
                                         <tfoot>
                                             <tr class="order-total">
                                                 <th>Tổng tiền</th>
-                                                <td><strong><span class="amount">${{$cart->total_price}}</span></strong>
+                                                <td><strong><span class="amount">{{number_format($cart->total_price)}} VND</span></strong>
                                                 </td>
                                             </tr>
                                         </tfoot>
@@ -142,7 +142,9 @@
     </div>
 </div>
 <!-- main-content-wrap end -->
-
+@if(Session::has('loginsuccess'))
+    <script>swal("", "Đăng nhập thành công", "success"); </script>
+@endif
 
 
 

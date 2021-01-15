@@ -32,8 +32,19 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     route::delete('/input/delete/{id}','InputController@destroy')->name('backend.input.delete');
     route::get('/input/edit/{id}','InputController@edit')->name('backend.input.edit');
     route::post('/input/edit/{id}','InputController@update')->name('backend.input.update');
-    //Product
-    Route::resource('product', 'ProductController'); 
+    //feedback
+    route::get('/feedback','FeedbackController@index')->name('backend.feedback');
+    route::post('/feedback/{id}','FeedbackController@seen')->name('backend.feedback.seen');
+    route::delete('/feedback/delete/{id}','FeedbackController@destroy')->name('backend.feedback.delete');
+    //Users
+    route::get('/user','UserController@index')->name('backend.user');
+    route::post('/user/{id}','UserController@seen')->name('backend.user.seen');
+
+
+    Route::resource('product', 'ProductController');
+
+
+  
     //Order
     Route::get('/order','OrderController@index')->name('order.index');
     Route::get('/order/order-detail/{id}','OrderController@detail')->name('order.detail');
@@ -81,14 +92,11 @@ route::get('cart','CartController@show')->name('frontend.cart');
 route::get('delete_cart/{id}','CartController@deletecart')->name('frontend.deletecart');
 route::get('add_cart_detail','CartController@addcartdetail')->name('frontend.addcartdetail');
 route::post('update_cart','CartController@updatecart')->name('frontend.updatecart');
-route::get('checkout','OrderController@showcheckout')->name('frontend.checkout')->middleware('auth');
+route::get('checkout','OrderController@showcheckout')->name('frontend.checkout');
 route::post('checkout','OrderController@create')->name('frontend.checkout');
 //route wish
-route::get('wishlist','WishlistController@show_whislist')->name('frontend.wishlist')->middleware('auth');
+route::get('wishlist','WishlistController@show_whislist')->name('frontend.wishlist');
 route::get('wishlist/add/{id}','WishlistController@create')->name('frontend.add-wishlist')->middleware('auth');
 route::get('wishlist/delete/{id}','WishlistController@destroy')->name('frontend.delete-wishlist')->middleware('auth');
 //route feedbacks
-route::post('feedback','FeedbackController@create')->name('frontend.feedback')->middleware('auth');
-// route contact
-route::get('contact','ContactController@form')->name('frontend.contact');
-route::post('sentcontact','ContactController@post')->name('frontend.postcontact');
+route::post('feedback','FeedbackController@create')->name('frontend.feedback');

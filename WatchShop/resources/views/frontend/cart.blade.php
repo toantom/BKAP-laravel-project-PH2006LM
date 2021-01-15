@@ -46,14 +46,17 @@
                                 
                                 @foreach($data->items as $item)
                                 <tr>
-                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item['id'])}}"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="auto"></a></td>
-                                    <td class="plantmore-product-name"><a href="{{route('frontend.product',$item['id'])}}">{{$item['name']}}</a></td>
+                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item['slug'])}}"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="auto"></a></td>
+                                    <td class="plantmore-product-name"><a href="{{route('frontend.product',$item['slug'])}}">{{$item['name']}}</a></td>
                                     <td class="plantmore-product-price"><span class="amount">{{number_format($item['price'])}} VND</span></td>
                                     <td class="plantmore-product-quantity">
                                         @csrf
                                         <input style="margin : 10px" value="{{$item['quantity']}}" min="1" max="{{$item['stock']}}" dataId="{{$item['id']}}" class="update" type="number">
                                         <br>
                                         <p >Sản phẩm này còn <strong style="color: red"> {{$item['stock']}} </strong>chiếc </p>
+                                        @isset($error)
+                                          <small class='text-danger'>Không thể mua quá số lượng tồn kho</small>
+                                        @endisset
                                     </td>
                                     <td class="product-subtotal"><span class="amount">{{number_format($item['price']*$item['quantity'])}} VND</span></td>
                                     <td class="plantmore-product-add-cart"><a onclick="return sweetConfirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không?')" href="{{route('frontend.deletecart',$item['id'])}}">Xóa</a></td>
@@ -113,4 +116,7 @@
         });
     });
 </script>
+@if(Session::has('delete'))
+    <script>swal("", "Đã bỏ một sản phẩm", "success"); </script>
+@endif
 @endsection

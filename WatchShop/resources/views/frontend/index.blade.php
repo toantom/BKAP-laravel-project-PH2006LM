@@ -313,7 +313,7 @@
                             </div>
                             <div class="articles-image">
                                 <a href="{{route('frontend.blog-detail',$item->slug)}}">
-                                    <img src="./public/images/blog/{{$item->image}}" alt="">
+                                    <img src="./public/images/blog/{{$item->image}}" width="370px" height="280px" alt="">
                                 </a>
                             </div>
                         </div>

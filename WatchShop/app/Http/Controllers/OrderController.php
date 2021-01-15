@@ -7,6 +7,9 @@ use App\Helper\CartHelper;
 use App\Http\Requests\CheckoutRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
@@ -38,8 +41,22 @@ class OrderController extends Controller
     }
 
     //show checkout
-    public function showcheckout(){
-        return view('frontend.checkout');
+    public function showcheckout(CartHelper $cart){
+        $data = new CartHelper;
+        $check = "checkout";
+        $error = "error";
+        if(Auth::check()){
+            foreach($data->items as $item){
+                $pro = Product::find($item['id']);
+                if($item['quantity'] > $pro->stock){
+                    return view('frontend.cart',compact('error','data'));
+                }else{
+                    return view('frontend.checkout');
+                }
+            };
+        }else{
+            return view('frontend.login-register',compact('check'));
+        }
     }
     
     //show orderdetail
@@ -74,7 +91,13 @@ class OrderController extends Controller
                 'stock'=>$quantity
             ]);
         };
+        $id = Order::orderBy('id','DESC')->first()->id;
+        $detail = Order_detail::where('id_order','=',$id)->get();
+        $bill = Order::find($id);
+        $email_to = $request->email;
 
+        //mailable ordermail
+        Mail::to($email_to)->send(new OrderMail($detail,$bill));
         session()->forget('cart');
         return redirect()->route('frontend.index')->with('checkout_success',"Đặt hàng thành công, vui lòng chờ xác thực");
 

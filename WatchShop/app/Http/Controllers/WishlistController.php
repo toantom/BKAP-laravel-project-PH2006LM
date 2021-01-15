@@ -18,8 +18,13 @@ class WishlistController extends Controller
     //Show Whislist
     public function show_whislist()
     {   
+        $check ="wishlist";
+        if(Auth::check()){
         $wishlist = Wishlist::Where('id_user','=', Auth::user()->id )->get();
         return view('frontend.wishlist',compact('wishlist'));
+        }else{
+            return view('frontend.login-register',compact('check'));
+        }
     }
     //Add whislist
     public function create($id)
