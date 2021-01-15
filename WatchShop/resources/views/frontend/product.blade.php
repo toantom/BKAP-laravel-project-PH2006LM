@@ -306,7 +306,7 @@ label.star:before {
                         <!-- single-product-area start -->
                         <div class="single-product-area mt-30">
                             <div class="product-thumb">
-                                <a href="{{route('frontend.product',$item->id)}}">
+                                <a href="{{route('frontend.product',$item->slug)}}">
                                     <img class="primary-image" src="{{URL::asset('public/images/product/')}}/{{$item->image}}"  style="margin-left: auto;
                                                                 margin-right: auto;
                                                                 display: block;"
@@ -320,7 +320,7 @@ label.star:before {
                                 </div>
                             </div>
                             <div class="product-caption">
-                                <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
+                                <h4 class="product-name"><a href="{{route('frontend.product',$item->slug)}}">{{$item->name}}</a></h4>
                                 <div class="price-box">
                                     @if ($item->discount)
                                         <span class="old-price">{{number_format($item->price)}} VND</span> <br>
@@ -351,7 +351,7 @@ label.star:before {
                     <!-- single-product-area start -->
                     <div class="single-product-area mt-30">
                         <div class="product-thumb">
-                            <a href="{{route('frontend.product',$item->id)}}">
+                            <a href="{{route('frontend.product',$item->slug)}}">
                                 <img class="primary-image" src="{{URL::asset('public/images/product/')}}/{{$item->image}}"  style="margin-left: auto;
                                                             margin-right: auto;
                                                             display: block;"
@@ -365,7 +365,7 @@ label.star:before {
                             </div>
                         </div>
                         <div class="product-caption">
-                            <h4 class="product-name"><a href="{{route('frontend.product',$item->id)}}">{{$item->name}}</a></h4>
+                            <h4 class="product-name"><a href="{{route('frontend.product',$item->slug)}}">{{$item->name}}</a></h4>
                             <div class="price-box">
                                 @if ($item->discount)
                                     <span class="old-price">{{number_format($item->price)}} VND</span> <br>

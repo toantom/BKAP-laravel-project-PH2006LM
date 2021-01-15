@@ -85,17 +85,17 @@
 {{-- sweetalert category --}}
 @if(Session::has('inputsuccess'))
   <script>
-    swal("","Đã tạo phiếu", "success");
+    swal("Thành công","Đã tạo phiếu", "success");
   </script>
 @endif
 @if(Session::has('deleteinput'))
   <script>
-    swal("","Đã xóa phiếu", "success");
+    swal("Thành công","Đã xóa phiếu", "success");
   </script>
 @endif
 @if(Session::has('editsuccess'))
   <script>
-    swal("","Đã sửa phiếu", "success");
+    swal("Thành công","Đã sửa phiếu", "success");
   </script>
 @endif
 @endsection

@@ -34,22 +34,23 @@
               <div class="form-group col-md-6">
                 <label for="">Danh mục</label>
                 <select class="form-control" name="id_cate">
-                @foreach ($cates as $item)
+                @foreach ($cateblog as $item)
                   <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
                 </select>
                 @error('id_cate')
                   <small class="help-block text-danger">{{$message}}</small>
-                @enderror
+                @enderror               
               </div>
               <div class="form-group col-md-6">
-                <label for="">Người đăng</label>
-                <select class="form-control" name="id_admin" id="">
-                @foreach ($admin as $item)
-                  <option value="{{$item->id}}">{{$item->name}}</option>
-                @endforeach
-                </select>
-                @error('id_admin')
+                <label for="exampleInputFile">Ảnh blog</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="image">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  </div>
+                </div>
+                @error('image')
                   <small class="help-block text-danger">{{$message}}</small>
                 @enderror
               </div>
@@ -64,17 +65,7 @@
                 @enderror
               </div>
             </div>{{-- end row  --}}
-            <div class="form-group">
-              <label for="exampleInputFile">Ảnh blog</label>
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="image">
-                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                </div>
-              </div>
-              @error('image')
-                <small class="help-block text-danger">{{$message}}</small>
-              @enderror
+            
             
             <div class="card card-outline mt-2">
               <div class="card-header">

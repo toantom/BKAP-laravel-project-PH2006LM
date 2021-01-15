@@ -29,12 +29,11 @@
 
                         <!--sidebar-categores-box start  -->
                         <div class="sidebar-categores-box shop-sidebar mb-30">
-                            <h4 class="title">Đồng hồ chính hãng</h4>
                             <!-- category-sub-menu start -->
                             <div class="category-sub-menu">
                                 <ul>
                                     @foreach ($cates as $item)
-                                    <li><h4 style="color: red"><a href="{{route('frontend.category',$item->id)}}">{{$item->name}}</a></h4>
+                                        <li><h4 style="color: red"><a href="{{route('frontend.category',$item->slug)}}">{{$item->name}}</a></h4>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -48,6 +47,7 @@
                             <h4 class="title"><a href="">Đồng hồ Nữ</a></h4>
                         </div>
                         <!-- man-woman end -->
+<<<<<<< HEAD
                         <!-- shop-sidebar start -->
                         <div class="shop-sidebar mb-30">
                             <h4 class="title">Khoảng giá</h4>
@@ -78,6 +78,8 @@
                         </div>
                         
 
+=======
+>>>>>>> 39a4d60cfc5e88a463272db77b4c4a827eba87ce
                     </div>
                 </div>
                 <!-- shop-sidebar-wrap end -->
@@ -123,7 +125,7 @@
                                             <!-- single-product-wrap start -->
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                <a href="{{route('frontend.product',$item->id)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
+                                                <a href="{{route('frontend.product',$item->slug)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
                                                 </div>
                                             </div>
                                             <!-- single-product-wrap end -->
@@ -132,7 +134,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="product-content-list text-left">
                                                
-                                                <h4><a href="{{route('frontend.product',$item->id)}}" class="product-name">{{$item->name}}</a></h4>
+                                                <h4><a href="{{route('frontend.product',$item->slug)}}" class="product-name">{{$item->name}}</a></h4>
                                                 <div class="price-box">
                                                     @if ($item->discount)
                                                         <span class="old-price">{{number_format($item->price)}} VND</span>
