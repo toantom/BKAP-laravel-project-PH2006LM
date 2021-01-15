@@ -5,6 +5,8 @@ use App\Models\Banner;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBannerRequest;
+use App\Http\Requests\UpdateBannerRequest;
 
 class BannerController extends Controller
 {
@@ -34,7 +36,7 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBannerRequest $request)
     {
         $file_name = $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('images/banner'),$file_name);
@@ -86,7 +88,7 @@ class BannerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBannerRequest $request, $id)
     {
         $filename = Banner::find($id)->image;
         if( $request->file('image')){

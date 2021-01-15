@@ -51,7 +51,7 @@
                         <td>{{number_format($pro->price)}} VND</td>
                         <td>{{$pro->discount}} %</td>
                         <td>{{$pro->category->name}}</td>
-                        <td style="display:block;text-overflow: ellipsis;width:150px;overflow: hidden !important; white-space: nowrap; border-left: inherit">{{$pro->des}}</td>
+                        <td>{{$pro->des}}</td>
                         @if($pro->status==1)
                         <td> Hiện</td>
                         @else

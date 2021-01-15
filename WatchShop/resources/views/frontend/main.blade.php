@@ -199,20 +199,19 @@
                                                 <li><a href="#">Đồng hồ chính hãng</a>
                                                     <ul>
                                                         @foreach ($cates as $item)
-                                                        <li><a href="{{route('frontend.category',$item->id)}}">{{$item->name}}</a></li>
+                                                            <li><a href="{{route('frontend.category', $item->slug)}}">{{$item->name}}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
                                             </ul>
 
                                         </li>
-                                        <li><a href="blog.html">Bài viết<i class="fa fa-angle-down"></i></a>
+                                        <li><a href="{{route('frontend.blog')}}">Bài viết<i class="fa fa-angle-down"></i></a>
 
                                             <ul class="sub-menu">
-                                                <li><a href="blog.html">Tin tức-Sự Kiện</a></li>
-                                                <li><a href="blog-right-sidebar.html">Kiến thức về đồng hồ</a></li>
-                                                <li><a href="blog-grid.html">Hỏi đáp về đồng hồ</a></li>
-                                                <li><a href="blog-largeimage.html">Báo chí viết về TBT Watch</a></li>
+                                                @foreach ($cateblog as $item)
+                                                    <li><a href="{{route('frontend.show-blog',$item->slug)}}">{{$item->name}}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="{{route('frontend.about')}}">Giới thiệu về TBT WATCH</a></li>

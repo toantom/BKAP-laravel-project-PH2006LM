@@ -46,9 +46,12 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
 //route frontend
 Route::get('/','HomeController@index')->name('frontend.index');
 Route::get('category','CategoryController@allpro')->name('frontend.pro');
-route::get('category/{id}','CategoryController@showpro')->name('frontend.category');
-route::get('product/{id}','ProductController@show_pro')->name('frontend.product');
+route::get('category/{slug}','CategoryController@showpro')->name('frontend.category');
+route::get('product/{slug}','ProductController@show_pro')->name('frontend.product');
 route::get('about','HomeController@about')->name('frontend.about');
+route::get('blog','BlogController@listBlog')->name('frontend.blog');
+route::get('blog/{slug}','BlogController@showBlog')->name('frontend.show-blog');
+route::get('blog_detail/{slug}','BlogController@blogDetail')->name('frontend.blog-detail');
 
 Route::group(['prefix' => 'user'], function () {
     //Hien thi form dang ky
