@@ -6,15 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
 {
-    
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
     public function rules()
     {
         return [
             'name' => 'required|unique:products',
             'sku' => 'required|unique:products',
             'id_cate' => 'required',
-            'avatar' => 'required',
-            'avatars' => 'required',
+            'avatar' => 'required|mimes:jpg,jpeg,png,gif',
+            'avatars' => 'required|mimes:jpg,jpeg,png,gif',
             'type' => 'required',
             'stock' => 'required',
             'price' => 'required',
@@ -32,7 +46,9 @@ class StoreProductRequest extends FormRequest
             'sku.unique' => 'Mã sản phẩm đã tồn tại',
             'id_cate.required' => 'Vui lòng chọn danh mục',
             'avatar.required' => 'Vui lòng chọn ảnh đại diện',
+            'avatar.mimes' => 'Ảnh phải có định dạnh jpeg,png,gif',
             'avatars.required' => 'Vui lòng chọn ảnh chi tiết',
+            'avatars.mimes' => 'Ảnh phải có định dạnh jpeg,png,gif',
             'type.required' => 'Vui lòng chọn kiểu dáng',
             'stock.required' => 'Vui lòng nhập tồn kho',
             'price.required' => 'Vui lòng nhập giá sản phẩm',

@@ -24,8 +24,10 @@ class ProductController extends Controller
         return view('backend.product.index', compact('prod', 'pro_img'));
 
   }
-    public function show_pro($id)
+    public function show_pro($slug)
     {
+        $pro_slug = Product::where('slug', $slug)->first();
+        $id = $pro_slug->id;
         $pro_fend = Product::find($id);
         $id_cate = $pro_fend->id_cate;
         $pro_related = Product::where('id_cate','=',$id_cate)->limit(4)->get();

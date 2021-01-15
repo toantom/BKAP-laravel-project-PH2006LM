@@ -32,28 +32,12 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
     route::delete('/input/delete/{id}','InputController@destroy')->name('backend.input.delete');
     route::get('/input/edit/{id}','InputController@edit')->name('backend.input.edit');
     route::post('/input/edit/{id}','InputController@update')->name('backend.input.update');
-
-    
-
-    Route::get('/product', 'ProductController@indexBE')->name('backend.product');
-    Route::get('/product/create', 'ProductController@create')->name('backend.product.create');
-    Route::post('/product', 'ProductController@store')->name('backend.product.store');
-    Route::get('/product/edit/{id}', 'ProductController@edit')->name('backend.product.edit');
-    Route::put('/product/update', 'ProductController@update')->name('backend.product.update');
-    Route::delete('/product/destroy/{id}', 'ProductController@destroy')->name('backend.product.destroy');
-    Route::resource('product', 'ProductController');
-
-
-    Route::get('/product/editPic/{id}','ProductController@editPic')->name('backend.product.editPic');
-    Route::put('/product/updatePic/{id}','ProductController@updatePic')->name('backend.product.updatePic');
-
-  
+    //Product
+    Route::resource('product', 'ProductController'); 
     //Order
     Route::get('/order','OrderController@index')->name('order.index');
     Route::get('/order/order-detail/{id}','OrderController@detail')->name('order.detail');
     Route::post('/order/order-detail/{id}','OrderController@updateStatus')->name('order.update');
-    //Input
-
     //Banner
     Route::resource('banner', 'BannerController');
     //Blog
@@ -62,9 +46,12 @@ Route::group(['prefix' => 'backend','middleware'=>'admin'], function () {
 //route frontend
 Route::get('/','HomeController@index')->name('frontend.index');
 Route::get('category','CategoryController@allpro')->name('frontend.pro');
-route::get('category/{id}','CategoryController@showpro')->name('frontend.category');
-route::get('product/{id}','ProductController@show_pro')->name('frontend.product');
+route::get('category/{slug}','CategoryController@showpro')->name('frontend.category');
+route::get('product/{slug}','ProductController@show_pro')->name('frontend.product');
 route::get('about','HomeController@about')->name('frontend.about');
+route::get('blog','BlogController@listBlog')->name('frontend.blog');
+route::get('blog/{slug}','BlogController@showBlog')->name('frontend.show-blog');
+route::get('blog_detail/{slug}','BlogController@blogDetail')->name('frontend.blog-detail');
 
 Route::group(['prefix' => 'user'], function () {
     //Hien thi form dang ky

@@ -67,8 +67,8 @@
                       <label>Trạng thái</label>
                       <select class="form-control custom-select" name="status">
                         <option value="1" @if ($banner->status == 1) selected @endif>Slide</option>
-                        <option value="2" @if ($banner->status == 2) selected @endif>Banner 1</option>
-                        <option value="3" @if ($banner->status == 3) selected @endif>Banner 2</option>
+                        <option value="2" @if ($banner->status == 2) selected @endif>Khuyến mãi</option>
+                        <option value="3" @if ($banner->status == 3) selected @endif>Quảng cáo</option>
                       </select>
                       @error('status')
                         <small class="help-block text-danger">{{$message}}</small>
@@ -110,9 +110,9 @@
                         @if ($item->status == 1)
                           Slide
                         @elseif ($item->status == 2)
-                          Banner 1
+                          Khuyến mãi
                         @else
-                          Banner 2
+                          Quảng cáo
                         @endif
                       </td>
                       <td>

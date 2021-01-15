@@ -71,9 +71,6 @@
       </section>
       
       <!-- /.content -->
-      {{-- SweetAlert --}}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{-- sweetalert category --}}
 @endsection
 
 

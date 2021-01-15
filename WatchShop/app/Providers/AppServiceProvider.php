@@ -35,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with([
                 'cart'=>($data = new CartHelper),
                 'cates'=>Category::where('status', '=', 1)->get(),
+                'cateblog'=>Category::where('status', '=', 0)->get(),
                 'wishlist'=>$wish,
                 'noti_order'=>count(Order::where('status','<',2)->get()),
                 'noti_fb'=>count(Feedback::where('status','=',1)->get()),

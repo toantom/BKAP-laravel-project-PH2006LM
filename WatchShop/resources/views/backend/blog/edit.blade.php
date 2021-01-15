@@ -21,12 +21,13 @@
     <section class="content">
         <div class="row">
           <div class="col-md-12">
-            <form action="{{route('blog.store')}}" method="POST" enctype="multipart/form-data">
-            @csrf
+            <form action="{{route('blog.update', $blog->id)}}" method="POST" enctype="multipart/form-data">
+            @csrf @method('PUT')
             <div class="row">
+              <input type="hidden" name="id" value="{{$blog->id}}">
               <div class="form-group col-md-6">
                 <label>Tiêu đề</label>
-                <input type="text" class="form-control" name="name" placeholder="Nhập tiêu đề">
+                <input type="text" class="form-control" name="name" value="{{$blog->name}}">
                 @error('name')
                   <small class="help-block text-danger">{{$message}}</small>
                 @enderror
@@ -34,8 +35,8 @@
               <div class="form-group col-md-6">
                 <label for="">Danh mục</label>
                 <select class="form-control" name="id_cate" id="">
-                @foreach ($cates as $item)
-                  <option value="{{$item->id}}">{{$item->name}}</option>
+                @foreach ($cateblog as $item)
+                  <option value="{{$item->id}}" @if ($blog->id_cate == $item->id) selected @endif>{{$item->name}}</option>
                 @endforeach
                 </select>
                 @error('id_cate')
@@ -46,7 +47,7 @@
                 <label for="">Người đăng</label>
                 <select class="form-control" name="id_admin" id="">
                 @foreach ($admin as $item)
-                  <option value="{{$item->id}}">{{$item->name}}</option>
+                  <option value="{{$item->id}}" @if ($blog->id_admin == $item->id) selected @endif>{{$item->name}}</option>
                 @endforeach
                 </select>
                 @error('id_admin')
@@ -56,8 +57,8 @@
               <div class="form-group col-md-6">
                 <label>Trạng thái</label>
                 <select class="form-control custom-select" name="status">
-                <option selected value="1">Hiện</option>
-                <option value="0">Ẩn</option>
+                <option value="1" @if ($blog->status == 1) selected @endif>Hiện</option>
+                <option value="0" @if ($blog->status == 0) selected @endif>Ẩn</option>
                 </select>
                 @error('status')
                   <small class="help-block text-danger">{{$message}}</small>
@@ -75,7 +76,7 @@
               @error('image')
                 <small class="help-block text-danger">{{$message}}</small>
               @enderror
-            
+              <img src="{{URL::asset('public/images/blog/')}}/{{$blog->image}}" alt="" width="200px">
             <div class="card card-outline mt-2">
               <div class="card-header">
                 <h3 class="card-title">
@@ -95,9 +96,9 @@
               <!-- /.card-header -->
                 <div class="card-body pad">
                     <div class="mb-3">
-                    <textarea class="summernote" placeholder="Place some text here" name="content" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <textarea class="summernote" name="content" style="width: 100%; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$blog->content}}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Thêm mới</button>
+                    <button type="submit" class="btn btn-primary">Sửa</button>
                 </div>
               </form>
             </div>

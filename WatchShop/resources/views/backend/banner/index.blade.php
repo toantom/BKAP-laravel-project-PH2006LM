@@ -107,9 +107,9 @@
                         @if ($item->status == 1)
                           Slide
                         @elseif ($item->status == 2)
-                          Banner 1
+                          Khuyến mãi
                         @else
-                          Banner 2
+                          Quảng cáo
                         @endif
                       </td>
                       <td>

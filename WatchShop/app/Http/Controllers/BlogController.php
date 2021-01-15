@@ -7,6 +7,9 @@ use App\Models\Blog;
 use App\Models\Admin;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Auth;
+use App\Http\Requests\StoreBlogRequest;
+use App\Http\Requests\UpdateBlogRequest;
 
 class BlogController extends Controller
 {
@@ -15,6 +18,25 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function listBlog(){
+        $blogs = Blog::paginate(4);
+        return view('frontend.blog',compact('blogs'));
+    }
+    public function showBlog($slug){
+        $blog_slug = Category::where('slug', $slug)->first();
+        $id = $blog_slug->id;
+        $blogs = Blog::where('id_cate',$id)->paginate(2);
+        return view('frontend.blog',compact('blogs','blog_slug'));
+    }
+    public function blogDetail($slug){
+        $blog_slug = Blog::where('slug', $slug)->first();
+        $id = $blog_slug->id;
+        $blog = Blog::find($id);
+        $blogs = Blog::orderBy('created_at','desc')->paginate(3);
+
+        return view('frontend.blogdetail',compact('blogs','blog'));
+    }
+
     public function index()
     {
         $blogs = Blog::paginate(5);
@@ -28,9 +50,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $cates = Category::where('status','=',0)->get();
+        $cateblog = Category::where('status','=',0)->get();
         $admin = Admin::all();
-        return view('backend.blog.create', compact('cates','admin'));
+        return view('backend.blog.create', compact('cateblog','admin'));
     }
 
     /**
@@ -39,7 +61,7 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogRequest $request)
     {
         if($request->image){
             $file_name = $request->file('image')->getClientOriginalName();
@@ -50,7 +72,7 @@ class BlogController extends Controller
             'name' => $request->name,
             'slug' =>$request->slug,
             'id_cate' => $request->id_cate,
-            'id_admin' =>$request->id_admin,
+            'id_admin' =>Auth::guard('admin')->user()->id,
             'content' =>$request->content,
             'image' => $file_name,
             'status' => $request->status
@@ -82,9 +104,8 @@ class BlogController extends Controller
     public function edit($id)
     {
         $blog = Blog::find($id);
-        $cate = Category::all();
         $admin = Admin::all();
-        return view('backend.blog.edit',compact('blog','cate','admin'));
+        return view('backend.blog.edit',compact('blog','admin'));
     }
 
     /**
@@ -94,9 +115,31 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBlogRequest $request, $id)
     {
-        //
+        $filename = Blog::find($id)->image;
+        if( $request->file('image')){
+            $file_name = $request->file('image')->getClientOriginalName();
+            File::delete('public/images/blog/'.$filename.'');
+            $request->file('image')->move(public_path('images/blog/'),$file_name);
+        }else{
+            $file_name = $filename;
+        }
+        $request['slug'] = Str::slug($request->name);
+        $blog = Blog::where('id',$id)->update([
+            'name' => $request->name,
+            'slug' =>$request->slug,
+            'id_cate' => $request->id_cate,
+            'id_admin' =>Auth::guard('admin')->user()->id,
+            'content' =>$request->content,
+            'image' => $file_name,
+            'status' => $request->status
+        ]);
+        if($blog){
+            return redirect()->route('blog.index')->with('updateblog-success','them thanh cong');
+        }else{
+            return redirect()->back()->with('updateblog-error','Thêm mới không thành công');
+        }
     }
 
     /**

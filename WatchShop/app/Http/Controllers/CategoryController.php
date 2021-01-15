@@ -18,13 +18,6 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-    public function indexBE(){
-        $cats = Category::where('status','=',1)->paginate(5);
-        return view ('backend.category.index', compact('cats'));
-    }
     public function index(){
         $cats = Category::paginate(5);
         return view ('backend.category.index', compact('cats'));
@@ -34,9 +27,11 @@ class CategoryController extends Controller
         return view('frontend.category',compact('pros'));
     }
     //Show pro trang category
-    public function showpro($id)
+    public function showpro($slug)
     {
-        $pros = Product::where('id_cate','=',$id)->paginate(3);
+        $cate_slug = Category::where('slug', $slug)->first();
+        $id = $cate_slug->id;
+        $pros = Product::where('id_cate',$id)->paginate(3);
         return view('frontend.category',compact('pros'));
     }
 

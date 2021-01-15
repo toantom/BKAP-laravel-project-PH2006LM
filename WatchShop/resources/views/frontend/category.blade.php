@@ -29,12 +29,11 @@
 
                         <!--sidebar-categores-box start  -->
                         <div class="sidebar-categores-box shop-sidebar mb-30">
-                            <h4 class="title">Đồng hồ chính hãng</h4>
                             <!-- category-sub-menu start -->
                             <div class="category-sub-menu">
                                 <ul>
                                     @foreach ($cates as $item)
-                                    <li><h4 style="color: red"><a href="{{route('frontend.category',$item->id)}}">{{$item->name}}</a></h4>
+                                        <li><h4 style="color: red"><a href="{{route('frontend.category',$item->slug)}}">{{$item->name}}</a></h4>
                                     </li>
                                     @endforeach
                                 </ul>
@@ -48,55 +47,6 @@
                             <h4 class="title"><a href="">Đồng hồ Nữ</a></h4>
                         </div>
                         <!-- man-woman end -->
-                        <!-- shop-sidebar start -->
-                        <div class="shop-sidebar mb-30">
-                            <h4 class="title">Khoảng giá</h4>
-                            <!-- filter-price-content start -->
-                            <div class="filter-price-content">
-                                <form action="#" method="post">
-                                    <div id="price-slider" class="price-slider"></div>
-                                    <div class="filter-price-wapper">
-
-                                        <a class="add-to-cart-button" href="#">
-                                            <span>FILTER</span>
-                                        </a>
-                                        <div class="filter-price-cont">
-
-                                            <span>Price:</span>
-                                            <div class="input-type">
-                                                <input type="text" id="min-price" readonly="" />
-                                            </div>
-                                            <span>—</span>
-                                            <div class="input-type">
-                                                <input type="text" id="max-price" readonly="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- filter-price-content end -->
-                        </div>
-                        <!-- shop-sidebar end -->
-                        {{-- <!-- shop-sidebar start -->
-                        <div class="shop-sidebar mb-30">
-                            <h4 class="title">Product tags</h4>
-
-                            <ul class="sidebar-tag">
-                                <li><a href="#">accesories</a></li>
-                                <li><a href="#">blouse</a></li>
-                                <li><a href="#">clothes</a></li>
-                                <li><a href="#">desktop</a></li>
-                                <li><a href="#">digital</a></li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">laptop</a></li>
-                                <li><a href="#">handbag</a></li>
-                            </ul>
-
-                        </div>
-                        <!-- shop-sidebar end --> --}}
-
                     </div>
                 </div>
                 <!-- shop-sidebar-wrap end -->
@@ -142,7 +92,7 @@
                                             <!-- single-product-wrap start -->
                                             <div class="single-product">
                                                 <div class="product-image">
-                                                <a href="{{route('frontend.product',$item->id)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
+                                                <a href="{{route('frontend.product',$item->slug)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
                                                 </div>
                                             </div>
                                             <!-- single-product-wrap end -->
@@ -151,7 +101,7 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="product-content-list text-left">
                                                
-                                                <h4><a href="{{route('frontend.product',$item->id)}}" class="product-name">{{$item->name}}</a></h4>
+                                                <h4><a href="{{route('frontend.product',$item->slug)}}" class="product-name">{{$item->name}}</a></h4>
                                                 <div class="price-box">
                                                     @if ($item->discount)
                                                         <span class="old-price">{{number_format($item->price)}} VND</span>
