@@ -31,6 +31,7 @@ class FeedbackController extends Controller
     {   
         $check = "feedback";
         $id = $request->id_product;
+        $slug = $request->slug;
         if(Auth::check()){
         $checks = DB::table('Order_details')
                     ->crossJoin('Orders')
@@ -77,7 +78,7 @@ class FeedbackController extends Controller
         ]);
         return redirect()->back()->with('success',"");}
         }else{
-            return view('frontend.login-register',compact('check','id'));
+            return view('frontend.login-register',compact('check','slug'));
         }
     }
 

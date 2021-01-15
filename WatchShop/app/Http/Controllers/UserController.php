@@ -111,7 +111,7 @@ class UserController extends Controller
             }elseif(($request->check) == "wishlist"){
                 return redirect()->route('frontend.wishlist')->with('loginsuccess','Đăng nhập thành công');
             }elseif(($request->check) == "feedback"){
-                return redirect()->route('frontend.product',$request->id)->with('loginsuccess','Đăng nhập thành công');
+                return redirect()->route('frontend.product',$request->slug)->with('loginsuccess','Đăng nhập thành công');
             }else{
             return redirect()->route('frontend.index')->with('success','Đăng nhập thành công');
             }

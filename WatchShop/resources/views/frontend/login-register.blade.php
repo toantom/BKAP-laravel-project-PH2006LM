@@ -39,8 +39,8 @@
                                                 @isset($check)
                                                 <input type="hidden" name="check" value="{{$check}}">  
                                                 @endisset
-                                                @isset($id)
-                                                <input type="hidden" name="id" value="{{$id}}">  
+                                                @isset($slug)
+                                                <input type="hidden" name="slug" value="{{$slug}}">  
                                                 @endisset
                                                 <div class="login-input-box">
                                                     <input type="text" name="email" placeholder="Email">

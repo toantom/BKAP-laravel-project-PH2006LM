@@ -55,7 +55,7 @@
                                     <td class="plantmore-product-add-cart">@if ($item->product->stock > 0)
                                         <a href="{{route('frontend.addcart',[$item->product->id,1])}}">Thêm vào giỏ hàng</a>
                                         @else
-                                        <a href="{{route('frontend.addcart',[$item->product->id,1])}}">Gửi yêu cầu đặt hàng</a>
+                                        <a href="">Gửi yêu cầu đặt hàng</a>
                                         @endif
                                         </td>
                                     <td class="plantmore-product-add-cart"><a onclick="return sweetConfirm('Bạn có muốn xóa sản phẩm này khỏi danh sách yêu thích không?')" style="color: white" href="{{route('frontend.delete-wishlist',$item->product->id)}}"> Xóa</a></td>

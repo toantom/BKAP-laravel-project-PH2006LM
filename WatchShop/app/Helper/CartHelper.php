@@ -20,6 +20,7 @@
         //addcart
         public function add($product,$qty = 1){
             $item = [
+                'slug'=>$product->slug,
                 'id'=> $product->id,
                 'image'=>$product->image,
                 'name'=>$product->name,

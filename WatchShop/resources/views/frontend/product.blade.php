@@ -121,7 +121,7 @@ label.star:before {
                         <p>Còn {{$pro_fend->stock}} sản phẩm</p>
                         <ul class="single-add-actions">
                             <li class="add-to-wishlist">
-                                <a href="{{route('frontend.add-wishlist',$pro_fend->id)}}" class="add_to_wishlist"><i class="icon-heart"></i> Thêm vào danh sách yêu thích</a>
+                                <a @if(!Auth::check()) onclick="return sweetConfirm('Bạn cần đăng nhập để thêm sản phẩm yêu thích')" @endif href="{{route('frontend.add-wishlist',$pro_fend->id)}}" class="add_to_wishlist"><i class="icon-heart"></i> Thêm vào danh sách yêu thích</a>
                             </li>
                         </ul>
                         <ul class="stock-cont">
@@ -225,6 +225,7 @@ label.star:before {
                                                         <small class='text-danger'>{{$message}}</small>
                                                     @enderror
                                                     <input type="hidden" name="id_product" value="{{$pro_fend->id}}">
+                                                    <input type="hidden" name="slug" value="{{$pro_fend->slug}}">
                                                 </div>
                                             </div>
                                             <div class="row comment-input">

@@ -46,8 +46,8 @@
                                 
                                 @foreach($data->items as $item)
                                 <tr>
-                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item['id'])}}"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="auto"></a></td>
-                                    <td class="plantmore-product-name"><a href="{{route('frontend.product',$item['id'])}}">{{$item['name']}}</a></td>
+                                    <td class="plantmore-product-thumbnail"><a href="{{route('frontend.product',$item['slug'])}}"><img src="{{URL::asset('public/images/product/')}}/{{$item['image']}}" alt="" height="120px" width="auto"></a></td>
+                                    <td class="plantmore-product-name"><a href="{{route('frontend.product',$item['slug'])}}">{{$item['name']}}</a></td>
                                     <td class="plantmore-product-price"><span class="amount">{{number_format($item['price'])}} VND</span></td>
                                     <td class="plantmore-product-quantity">
                                         @csrf

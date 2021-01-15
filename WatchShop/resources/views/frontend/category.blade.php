@@ -47,7 +47,7 @@
                             <h4 class="title"><a href="">Đồng hồ Nữ</a></h4>
                         </div>
                         <!-- man-woman end -->
-<<<<<<< HEAD
+
                         <!-- shop-sidebar start -->
                         <div class="shop-sidebar mb-30">
                             <h4 class="title">Khoảng giá</h4>
@@ -78,8 +78,7 @@
                         </div>
                         
 
-=======
->>>>>>> 39a4d60cfc5e88a463272db77b4c4a827eba87ce
+
                     </div>
                 </div>
                 <!-- shop-sidebar-wrap end -->
@@ -124,8 +123,8 @@
                                         <div class="col-lg-3 col-md-3">
                                             <!-- single-product-wrap start -->
                                             <div class="single-product">
-                                                <div class="product-image">
-                                                <a href="{{route('frontend.product',$item->slug)}}"><img src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
+                                                <div class="product-image" >
+                                                <a  href="{{route('frontend.product',$item->slug)}}"><img  style="max-width : 56%; margin: auto" src="{{URL::asset('public/images/product')}}/{{$item->image}}" alt="Produce Images"></a>
                                                 </div>
                                             </div>
                                             <!-- single-product-wrap end -->
