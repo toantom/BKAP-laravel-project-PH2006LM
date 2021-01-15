@@ -22,7 +22,7 @@ class CartController extends Controller
     public function deletecart(CartHelper $cart,$id){
         $product = Product::find($id);
         $cart->delete($product);
-        return redirect()->back();
+        return redirect()->back()->with('delete',"");
     }
     //update cart ajax
     public function updatecart( CartHelper $cart,Request $request){

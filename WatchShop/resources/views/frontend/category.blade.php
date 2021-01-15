@@ -76,26 +76,7 @@
                             </div>
                             <!-- filter-price-content end -->
                         </div>
-                        <!-- shop-sidebar end -->
-                        {{-- <!-- shop-sidebar start -->
-                        <div class="shop-sidebar mb-30">
-                            <h4 class="title">Product tags</h4>
-
-                            <ul class="sidebar-tag">
-                                <li><a href="#">accesories</a></li>
-                                <li><a href="#">blouse</a></li>
-                                <li><a href="#">clothes</a></li>
-                                <li><a href="#">desktop</a></li>
-                                <li><a href="#">digital</a></li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">laptop</a></li>
-                                <li><a href="#">handbag</a></li>
-                            </ul>
-
-                        </div>
-                        <!-- shop-sidebar end --> --}}
+                        
 
                     </div>
                 </div>
@@ -163,11 +144,9 @@
 
                                                 <div class="product-rating">
                                                     <ul class="d-flex">
+                                                        @for($i=0;$i<$item->star;$i++)
                                                         <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                                        <li class="bad-reting"><a href="#"><i class="icon-star"></i></a></li>
+                                                        @endfor
                                                     </ul>
                                                 </div>
 
@@ -185,12 +164,12 @@
                                                    
                                                     <ul class="actions">
                                                         <li class="add-to-wishlist">
-                                                            <a href="wishlist.html" class="add_to_wishlist"><i class="icon-heart"></i> Add to Wishlist</a>
+                                                            <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để thêm danh sách yêu thích')" @endif href="{{route('frontend.add-wishlist',$item->id)}}" class="wishlist-btn" title="Add to Wish List"><i class="icon-heart"></i>Thêm vào danh sách yêu thích</a>
                                                         </li>
                                                     </ul>
                                                     <div class="add-to-cart">
                                                         <div class="product-button-action">
-                                                            <a href="#" class="add-to-cart">Add to cart</a>
+                                                            <a href="{{route('frontend.addcart',[$item->id,1])}}" class="add-to-cart">Thêm vào giỏ hàng</a>
                                                         </div>
                                                     </div>
                                                 </div>

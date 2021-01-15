@@ -96,11 +96,11 @@ label.star:before {
                         
                         <div class="price-box">
 
-                            @if ($item->discount)
-                                <span class="old-price">{{number_format($item->price)}} VND</span>
-                                <span class="new-price">{{number_format($item->price - ($item->price * ($item->discount / 100)))}} VND</span>
+                            @if( ($pro_fend->discount) >0 )
+                                <span class="old-price">{{number_format($pro_fend->price)}} VND</span>
+                                <span class="new-price">{{number_format($pro_fend->price - ($pro_fend->price * ($pro_fend->discount / 100)))}} VND</span>
                             @else
-                                <span class="new-price">{{number_format($item->price)}} VND</span>
+                                <span class="new-price">{{number_format($pro_fend->price)}} VND</span>
                             @endif
                         </div>
                         <p>{{$pro_fend->des}}</p>
@@ -390,6 +390,9 @@ label.star:before {
 @endif
 @if(Session::has('success'))
  <script>swal("Cảm ơn bạn đã góp ý cho sản phẩm");</script>
+@endif
+@if(Session::has('loginsuccess'))
+    <script>swal("", "Đăng nhập thành công", "success"); </script>
 @endif
 
 @endsection

@@ -347,5 +347,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
     });
   } );
 </script>
+<script type="text/javascript">
+  function sweetConfirm(text) {
+  event.preventDefault();
+  var target = $(event.target);
+  var linkURL = target.attr("href");
+  swal({
+          title: "",
+          text: text,
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+      }).then((result) => {
+          if (result) {
+              window.location.href = linkURL;
+          }
+      })
+};
+  function sweetSubmit(text) {
+      event.preventDefault();
+      var target = $(event.target);
+      var form = target.closest("form");
+      swal({
+              title: "",
+              text: text,
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          }).then((result) => {
+              if (result) {
+                  form.submit();
+              }
+          })
+  };
+
+</script>
 </body>
 </html>

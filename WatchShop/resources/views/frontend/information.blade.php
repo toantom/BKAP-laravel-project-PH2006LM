@@ -35,7 +35,7 @@
                             <div class="col-lg-3 col-md-12">
                                 <div class="d-single-info">
                                     <p class="user-name">Xin chào <span>{{Auth::user()->name}}</span></p>
-                                    <a onclick="return sweetConfirm('Bạn có muốn đăng xuất không?')" href="{{route('frontend.logout')}}"> <strong> Đăng xuất </strong></a>
+                                    <a href="{{route('frontend.logout')}}"> <strong> Đăng xuất </strong></a>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-12">

@@ -99,11 +99,11 @@ route::get('cart','CartController@show')->name('frontend.cart');
 route::get('delete_cart/{id}','CartController@deletecart')->name('frontend.deletecart');
 route::get('add_cart_detail','CartController@addcartdetail')->name('frontend.addcartdetail');
 route::post('update_cart','CartController@updatecart')->name('frontend.updatecart');
-route::get('checkout','OrderController@showcheckout')->name('frontend.checkout')->middleware('auth');
+route::get('checkout','OrderController@showcheckout')->name('frontend.checkout');
 route::post('checkout','OrderController@create')->name('frontend.checkout');
 //route wish
-route::get('wishlist','WishlistController@show_whislist')->name('frontend.wishlist')->middleware('auth');
+route::get('wishlist','WishlistController@show_whislist')->name('frontend.wishlist');
 route::get('wishlist/add/{id}','WishlistController@create')->name('frontend.add-wishlist')->middleware('auth');
 route::get('wishlist/delete/{id}','WishlistController@destroy')->name('frontend.delete-wishlist')->middleware('auth');
 //route feedbacks
-route::post('feedback','FeedbackController@create')->name('frontend.feedback')->middleware('auth');
+route::post('feedback','FeedbackController@create')->name('frontend.feedback');

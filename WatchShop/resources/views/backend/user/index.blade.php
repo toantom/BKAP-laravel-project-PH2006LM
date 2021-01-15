@@ -29,7 +29,7 @@
                   <table id="table-cate" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                      <th>Id người dùng</th>
+                      <th>Id</th>
                       <th>Tên người dùng</th>
                       <th>Email</th>
                       <th>Số điện thoại</th>
@@ -42,7 +42,7 @@
                     <tbody>
                     @foreach($users as $key => $item)
                     <tr>
-                      <td>{{$item->id}}</td>
+                      <td style="width: 5%">{{$item->id}}</td>
                       <td>{{$item->name}}</td>
                       <td style="text-align: center">{{$item->email}}</td>
                       <td>{{$item->phone}}</td>

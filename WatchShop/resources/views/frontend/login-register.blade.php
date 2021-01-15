@@ -36,6 +36,12 @@
                                         <div class="login-register-form">
                                         <form action="{{route('frontend.login')}}" method="post">
                                             @csrf
+                                                @isset($check)
+                                                <input type="hidden" name="check" value="{{$check}}">  
+                                                @endisset
+                                                @isset($id)
+                                                <input type="hidden" name="id" value="{{$id}}">  
+                                                @endisset
                                                 <div class="login-input-box">
                                                     <input type="text" name="email" placeholder="Email">
                                                     <input type="password" name="password" placeholder="Password">

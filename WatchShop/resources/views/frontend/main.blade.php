@@ -138,7 +138,11 @@
                             <div class="right-blok-box text-white d-flex">
 
                                 <div class="user-wrap">
-                                    <a @if(!Auth::check()) onclick="return confirm('Bạn cần đăng nhập để xem danh sách yêu thích')" @endif href="{{route('frontend.wishlist')}}"><span class="cart-total">@if(Auth::check()){{count($wishlist)}}@else 0 @endif</span> <i class="icon-heart"></i></a>
+                                    @if(Auth::check())
+                                    <a href="{{route('frontend.wishlist')}}"><span class="cart-total">{{count($wishlist)}}</span><i class="icon-heart"></i></a>
+                                    @else
+                                    <a onclick="return confirm('Bạn cần đăng nhập để xem danh sách yêu thích')" href="{{route('frontend.wishlist')}}"><i class="icon-heart"></i><span class="cart-total">0</span></a>
+                                    @endif
                                 </div>
 
                                 <div class="shopping-cart-wrap">
